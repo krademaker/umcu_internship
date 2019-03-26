@@ -3,6 +3,8 @@
 # DATE: 25 March 2019
 
 
+# Install and/or load ggplot2
+install.packages("ggplot2")
 library(ggplot2)
 # Load data
 maf_comparison <- read.delim("~/Data/MDD_MAF_comparison/maf_comparison.txt", row.names=NULL)
