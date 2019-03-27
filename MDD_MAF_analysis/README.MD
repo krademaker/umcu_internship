@@ -21,7 +21,7 @@ MAF indicates how common a SNP is in a population, and can be used to discern ra
 1. Run the code (loading data might take a moment!) and export the plots as you please.
 
 ### Requirements
-- Linux environment (I used Ubuntu 18.04) with wget, gunzip & awk installed
+- Unix environment (I used Ubuntu 18.04) with wget, gunzip & awk installed
 - R version 3.5> (https://www.r-project.org/) with the ggplot2 package
 - RStudio version 1.1> (https://www.rstudio.com/)
 
