@@ -1,4 +1,5 @@
 #!/bin/bash
+
 # ABOUT: Script to automatically download, extract and organize summary statistics files.
 # AUTHOR: Koen Rademaker
 # DATE: 22 March 2019

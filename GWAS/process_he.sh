@@ -13,6 +13,9 @@
 
 
 # (1) File organization
+summary_file="$TMPDIR"/he/output_he/summary.txt
+output_file="$TMPDIR"/he/output_he/processed_he_2018_sum_stats.txt
+depict_file="$TMPDIR"/he/output_he/depict_he_2018.txt
 mkdir "$TMPDIR"/he # Create work directory
 mkdir "$TMPDIR"/he/output_he # Create output directory
 cp $HOME/Koen/GWAS_data/control_gwas/he_2018_sum_stats.txt "$TMPDIR"/he # Copy summary statistics file to work directory
@@ -31,21 +34,20 @@ awk '$5=="G" || $5=="A" || $5=="C" ||$5=="T"' he_tmp_bialleles.txt > he_tmp_maf_
 awk 'BEGIN { print "CHR\tPOS\tSNP\tTested_Allele\tOther_Allele\tFreq_Tested_Allele_in_HRS\tBETA\tSE\tP\tN" } { print }' he_tmp_maf_p_biallelic.txt > he_tmp_maf_p_biallelic_header.txt # Re-add header to file
 	# (2d) 1KGP filter
 # TO-DO: Check against 1KGP reference SNPs
-# TO-DO: Write output file > "$TMPDIR"/he/output_he/processed_he_2018_sum_stats.txt
+# TO-DO: Write output file > ${output_file}
 	# (2e) DEPICT formatting
-awk 'BEGIN { OFS = "\t" } FNR>1 {print $3,$1,$2,$9}' "$TMPDIR"/he/output_he/processed_he_2018_sum_stats.txt > he_tmp_depict.txt # Extract columns 'SNP', 'CHR', 'BP' and 'P'
-awk 'BEGIN { print "SNP\tChr\tPos\tP" }{ print }' he_tmp_depict.txt > "$TMPDIR"/he/output_he/depict_he_2018.txt # Rename columns to 'SNP', 'Chr', 'Pos', 'P' for final DEPICT file
+awk 'BEGIN { OFS = "\t" } FNR>1 {print $3,$1,$2,$9}' ${output_file} > he_tmp_depict.txt # Extract columns 'SNP', 'CHR', 'BP' and 'P'
+awk 'BEGIN { print "SNP\tChr\tPos\tP" }{ print }' he_tmp_depict.txt > ${depict_file} # Rename columns to 'SNP', 'Chr', 'Pos', 'P' for final DEPICT file
 
 
 # (3) File export and cleaning
 	# (3a) Summarize filter effect size
-summary_file="$TMPDIR"/he/output_he/summary.txt
 wc -l he_2018_sum_stats.txt >> ${summary_file} # Original file size
 wc -l he_tmp_maf.txt >> ${summary_file} # Effect of MAF filter
 wc -l he_tmp_maf_p.txt >> ${summary_file} # Effect of P filter
 wc -l he_tmp_maf_p_biallelic_header.txt >> ${summary_file} # Effect of bi-allelic filter
-wc -l "$TMPDIR"/he/output_he/processed_he_2018_sum_stats.txt >> ${summary_file} # Processed file size
-wc -l "$TMPDIR"/he/output_he/depict_he_2018.txt >> ${summary_file} # DEPICT file size
+wc -l ${output_file} >> ${summary_file} # Processed file size
+wc -l ${depict_file} >> ${summary_file} # DEPICT file size
 	# (3b) Export output directory
 cp -r "$TMPDIR"/he/output_he $HOME/Koen/GWAS_data
 	# (3c) Clean temporary files

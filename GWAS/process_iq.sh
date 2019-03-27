@@ -13,6 +13,9 @@
 
 
 # (1) File organization
+summary_file="$TMPDIR"/iq/output_iq/summary.txt
+output_file="$TMPDIR"/iq/output_iq/processed_iq_2018_sum_stats.txt
+depict_file="$TMPDIR"/iq/output_iq/depict_iq_2018.txt
 mkdir "$TMPDIR"/iq # Create work directory
 mkdir "$TMPDIR"/iq/output_iq # Create output directory
 cp $HOME/Koen/GWAS_data/control_gwas/iq_2018_sum_stats.txt "$TMPDIR"/iq # Copy summary statistics file to work directory
@@ -33,22 +36,21 @@ awk '$6=="G" || $6=="A" || $6=="C" ||$6=="T"' iq_tmp_bialleles.txt > iq_tmp_info
 awk 'BEGIN { print "SNP\tUNIQUE_ID\tCHR\tPOS\tA1\tA2\tEAF_HRC\tZscore\tstdBeta\tSE\tP\tN_analyzed\tminINFO\tEffectDirection" } { print }' iq_tmp_info_maf_p_biallelic.txt > iq_tmp_info_maf_p_biallelic_header.txt # Re-add header to file
 	# (2e) 1KGP filter
 # TO-DO: Check against 1KGP reference SNPs
-# TO-DO: Write output file > "$TMPDIR"/iq/output_iq/processed_iq_2018_sum_stats.txt
+# TO-DO: Write output file > ${output_file}
 	# (2f) DEPICT formatting
-awk 'BEGIN { OFS = "\t" } FNR>1 {print $1,$3,$4,$11}' "$TMPDIR"/iq/output_iq/processed_iq_2018_sum_stats.txt > iq_tmp_depict.txt # Extract columns 'SNP', 'CHR', 'BP' and 'P'
-awk 'BEGIN { print "SNP\tChr\tPos\tP" }{ print }' iq_tmp_depict.txt > "$TMPDIR"/iq/output_iq/depict_iq_2018.txt # Rename columns to 'SNP', 'Chr', 'Pos', 'P' for final DEPICT file
+awk 'BEGIN { OFS = "\t" } FNR>1 {print $1,$3,$4,$11}' ${output_file} > iq_tmp_depict.txt # Extract columns 'SNP', 'CHR', 'BP' and 'P'
+awk 'BEGIN { print "SNP\tChr\tPos\tP" }{ print }' iq_tmp_depict.txt > ${depict_file} # Rename columns to 'SNP', 'Chr', 'Pos', 'P' for final DEPICT file
 
 
 # (3) File export and cleaning
 	# (3a) Summarize filter effect size
-summary_file="$TMPDIR"/iq/output_iq/summary.txt
 wc -l iq_2018_sum_stats.txt >> ${summary_file} # Original file size
 wc -l iq_tmp_info.txt >> ${summary_file} # Effect of INFO filter
 wc -l iq_tmp_info_maf.txt >> ${summary_file} # Effect of MAF filter
 wc -l iq_tmp_info_maf_p.txt >> ${summary_file} # Effect of P filter
 wc -l iq_tmp_info_maf_p_biallelic_header.txt >> ${summary_file} # Effect of bi-allelic filter
-wc -l "$TMPDIR"/iq/output_iq/processed_iq_2018_sum_stats.txt >> ${summary_file} # Processed file size
-wc -l "$TMPDIR"/iq/output_iq/depict_iq_2018.txt >> ${summary_file} # DEPICT file size
+wc -l ${output_file} >> ${summary_file} # Processed file size
+wc -l ${depict_file} >> ${summary_file} # DEPICT file size
 	# (3b) Export output directory
 cp -r "$TMPDIR"/iq/output_iq $HOME/Koen/GWAS_data
 	# (3c) Clean temporary files

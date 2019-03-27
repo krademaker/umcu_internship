@@ -13,6 +13,9 @@
 
 
 # (1) File organization
+summary_file="$TMPDIR"/scz/output_scz/summary.txt
+output_file="$TMPDIR"/scz/output_scz/processed_scz_2018_sum_stats.txt
+depict_file="$TMPDIR"/scz/output_scz/depict_scz_2018.txt
 mkdir "$TMPDIR"/scz # Create work directory
 mkdir "$TMPDIR"/scz/output_scz # Create output directory
 cp $HOME/Koen/GWAS_data/scz_gwas/scz_2018_sum_stats.txt "$TMPDIR"/scz # Copy summary statistics file to work directory
@@ -38,23 +41,22 @@ paste -d'\t' scz_tmp_info_maf_biallelic_header.txt scz_tmp_beta.txt > scz_tmp_in
 awk '$9<0.05' scz_tmp_info_maf_biallelic_header_beta.txt > scz_tmp_info_maf_biallelic_header_beta_p.txt # Filter out SNPs with P >= 0.05
 	# (2f) 1KGP filter
 # TO-DO: Check against 1KGP reference SNPs
-# TO-DO: Write output file > "$TMPDIR"/scz/output_scz/processed_scz_2018_sum_stats.txt
+# TO-DO: Write output file > ${output_file}
 	# (2g) DEPICT formatting
-awk 'BEGIN { OFS = "\t" } FNR>1 {print $1,$3,$4,$9}' "$TMPDIR"/scz/output_scz/processed_scz_2018_sum_stats.txt > scz_tmp_depict.txt # Extract columns 'SNP', 'CHR', 'BP' and 'P'
-awk 'BEGIN { print "SNP\tChr\tPos\tP" }{ print }' scz_tmp_depict.txt > "$TMPDIR"/scz/output_scz/depict_scz_2018.txt # Rename columns to 'SNP', 'Chr', 'Pos', 'P' for final DEPICT file
+awk 'BEGIN { OFS = "\t" } FNR>1 {print $1,$3,$4,$9}' ${output_file} > scz_tmp_depict.txt # Extract columns 'SNP', 'CHR', 'BP' and 'P'
+awk 'BEGIN { print "SNP\tChr\tPos\tP" }{ print }' scz_tmp_depict.txt > ${depict_file} # Rename columns to 'SNP', 'Chr', 'Pos', 'P' for final DEPICT file
 
 
 # (3) File export and cleaning
 	# (3a) Summarize filter effect size
-summary_file="$TMPDIR"/scz/output_scz/summary.txt
 wc -l scz_2018_sum_stats.txt >> ${summary_file} # Original file size
 wc -l scz_2018_hq_imputed_snps.txt >> ${summary_file} # Original high-quality SNPs file size
 wc -l scz_tmp_info.txt >> ${summary_file} # Effect of INFO filter
 wc -l scz_tmp_info_maf.txt >> ${summary_file} # Effect of MAF filter
 wc -l scz_tmp_info_maf_biallelic_header.txt >> ${summary_file} # Effect of bi-allelic filter
 wc -l scz_tmp_info_maf_biallelic_header_beta_p.txt >> ${summary_file} # Effect of P filter
-wc -l "$TMPDIR"/scz/output_scz/processed_scz_2018_sum_stats.txt >> ${summary_file} # Processed file size
-wc -l "$TMPDIR"/scz/output_scz/depict_scz_2018.txt >> ${summary_file} # DEPICT file size
+wc -l ${output_file} >> ${summary_file} # Processed file size
+wc -l ${depict_file} >> ${summary_file} # DEPICT file size
 	# (3b) Export output directory
 cp -r "$TMPDIR"/scz/output_scz $HOME/Koen/GWAS_data
 	# (3c) Clean temporary files
