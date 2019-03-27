@@ -1,3 +1,22 @@
+![image](https://user-images.githubusercontent.com/24732704/55021982-f822ec00-4ff9-11e9-802a-649cfdb4892c.png)
+
+## UMC Utrecht internship code repository - Annotate rs IDs for SNPs
+
+### Background
+
+### Scripts
+
+### Data
+
+### Usage
+
+### Requirements
+
+### References
+
+### Glossary
+
+
 # TABLE DETAILS
 (method: https://www.biostars.org/p/171557/)
 (table browser: https://genome.ucsc.edu/cgi-bin/hgTables?hgsid=717651021_1HbDJl5BHsQRkvS9FaV45qXQu02k)
