@@ -9,7 +9,7 @@
 # ABOUT: Script to process MDD (Major Depressive Disorder) summary statistics data with (1) INFO > 0.9, (2) MAF > 0.01, (3) P < 0.05, (4) bi-allelic variants, (5) presence in 1000 Genomes Project (1KGP)
 # REQUIRED: Wray et al. (2018) MDD summary statistics, 1KGP reference SNPs
 # AUTHOR: Koen Rademaker
-# DATE: 25 March 2019
+# DATE: 28 March 2019
 
 
 # (1) File organization
@@ -37,8 +37,8 @@ awk 'BEGIN {print "CHR\tSNP\tBP\tA1\tA2\tFRQ_A_59851\tFRQ_U_113154\tINFO\tOR\tSE
 	# (2d) P filter
 awk '$11<0.05' mdd_tmp_info_maf_biallelic_header.txt > mdd_tmp_info_maf_biallelic_header_p.txt # Filter out SNPs with P >= 0.05
 	# (2e) 1KGP filter
-# TO-DO: Check against 1KGP reference SNPs
-# TO-DO: Write output file > ${output_file}
+awk 'BEGIN { OFS=""; print "SNP" } FNR>2 { for (i=1; i<=NF; i++) print "rs",$i }' g1000_eur.synonyms > mdd_tmp_rs_g1000_eur.synonyms # Reformat SNP synonyms to include 'rs' prefix
+awk 'NR == FNR{c[$1]++;next};c[$2] > 0' mdd_tmp_rs_g1000_eur.synonyms mdd_tmp_info_maf_biallelic_header_p.txt > ${output_file} # Filter out SNPs not included in 1KGP list
 	# (2f) DEPICT formatting
 awk 'BEGIN { OFS = "\t" } FNR>1 {print $2,$1,$3,$11}' ${output_file} > mdd_tmp_depict.txt # Extract columns 'SNP', 'CHR', 'BP' and 'P'
 awk 'BEGIN { print "SNP\tChr\tPos\tP" }{ print }' mdd_tmp_depict.txt > ${depict_file} # Rename columns to 'SNP', 'Chr', 'Pos', 'P' for final DEPICT file

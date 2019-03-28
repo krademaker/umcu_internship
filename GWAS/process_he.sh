@@ -9,7 +9,7 @@
 # ABOUT: Script to process height summary statistics data with (1) INFO > 0.9, (2) MAF > 0.01, (3) P < 0.05, (4) bi-allelic variants, (5) presence in 1000 Genomes Project (1KGP)
 # REQUIRED: Yengo et al. (2018) height summary statistics, 1KGP reference SNPs
 # AUTHOR: Koen Rademaker
-# DATE: 26 March 2019
+# DATE: 29 March 2019
 
 
 # (1) File organization
@@ -32,9 +32,9 @@ awk '$9<0.05' he_tmp_maf.txt > he_tmp_maf_p.txt # Filter out SNPs with P>= 0.05
 awk '$4=="G" || $4=="A" || $4=="C" ||$4=="T"' he_tmp_maf_p.txt > he_tmp_bialleles.txt # Filter out multi-allelic effect alleles
 awk '$5=="G" || $5=="A" || $5=="C" ||$5=="T"' he_tmp_bialleles.txt > he_tmp_maf_p_biallelic.txt # Filter out multi-allelic non-effect alleles
 awk 'BEGIN { print "CHR\tPOS\tSNP\tTested_Allele\tOther_Allele\tFreq_Tested_Allele_in_HRS\tBETA\tSE\tP\tN" } { print }' he_tmp_maf_p_biallelic.txt > he_tmp_maf_p_biallelic_header.txt # Re-add header to file
-	# (2d) 1KGP filter
-# TO-DO: Check against 1KGP reference SNPs
-# TO-DO: Write output file > ${output_file}
+  # (2d) 1KGP filter
+awk 'BEGIN { OFS=""; print "SNP" } FNR>2 { for (i=1; i<=NF; i++) print "rs",$i }' g1000_eur.synonyms > he_tmp_rs_g1000_eur.synonyms # Reformat SNP synonyms to include 'rs' prefix
+awk 'NR == FNR{c[$1]++;next};c[$3] > 0' he_tmp_rs_g1000_eur.synonyms he_tmp_maf_p_biallelic_header.txt > ${output_file} # Filter out SNPs not included in 1KGP list
 	# (2e) DEPICT formatting
 awk 'BEGIN { OFS = "\t" } FNR>1 {print $3,$1,$2,$9}' ${output_file} > he_tmp_depict.txt # Extract columns 'SNP', 'CHR', 'BP' and 'P'
 awk 'BEGIN { print "SNP\tChr\tPos\tP" }{ print }' he_tmp_depict.txt > ${depict_file} # Rename columns to 'SNP', 'Chr', 'Pos', 'P' for final DEPICT file

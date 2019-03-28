@@ -9,7 +9,7 @@
 # ABOUT: Script to process IQ (Intelligence Quotient) summary statistics data with (1) INFO > 0.9, (2) MAF > 0.01, (3) P < 0.05, (4) bi-allelic variants, (5) presence in 1000 Genomes Project (1KGP)
 # REQUIRED: Savage et al. (2018) IQ summary statistics, 1KGP reference SNPs
 # AUTHOR: Koen Rademaker
-# DATE: 26 March 2019
+# DATE: 28 March 2019
 
 
 # (1) File organization
@@ -35,8 +35,8 @@ awk '$5=="G" || $5=="A" || $5=="C" ||$5=="T"' iq_tmp_info_maf_p.txt > iq_tmp_bia
 awk '$6=="G" || $6=="A" || $6=="C" ||$6=="T"' iq_tmp_bialleles.txt > iq_tmp_info_maf_p_biallelic.txt # Filter out multi-allelic non-effect alleles
 awk 'BEGIN { print "SNP\tUNIQUE_ID\tCHR\tPOS\tA1\tA2\tEAF_HRC\tZscore\tstdBeta\tSE\tP\tN_analyzed\tminINFO\tEffectDirection" } { print }' iq_tmp_info_maf_p_biallelic.txt > iq_tmp_info_maf_p_biallelic_header.txt # Re-add header to file
 	# (2e) 1KGP filter
-# TO-DO: Check against 1KGP reference SNPs
-# TO-DO: Write output file > ${output_file}
+awk 'BEGIN { OFS=""; print "SNP" } FNR>2 { for (i=1; i<=NF; i++) print "rs",$i }' g1000_eur.synonyms > iq_tmp_rs_g1000_eur.synonyms # Reformat SNP synonyms to include 'rs' prefix
+awk 'NR == FNR{c[$1]++;next};c[$1] > 0' iq_tmp_rs_g1000_eur.synonyms iq_tmp_info_maf_p_biallelic_header.txt > ${output_file} # Filter out SNPs not included in 1KGP list
 	# (2f) DEPICT formatting
 awk 'BEGIN { OFS = "\t" } FNR>1 {print $1,$3,$4,$11}' ${output_file} > iq_tmp_depict.txt # Extract columns 'SNP', 'CHR', 'BP' and 'P'
 awk 'BEGIN { print "SNP\tChr\tPos\tP" }{ print }' iq_tmp_depict.txt > ${depict_file} # Rename columns to 'SNP', 'Chr', 'Pos', 'P' for final DEPICT file
