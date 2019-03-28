@@ -21,7 +21,7 @@ The following parameters were used to obtain the SNP annotation table from [UCSC
 | Region             | Genome                                        |
 | Output format      | Select fields from primary and related tables |
 | File type returned | Plain text                                    |
-| Seected fields     | chrom, chromStart, chromEnd, name             |
+| Selected fields     | chrom, chromStart, chromEnd, name             |
 
 Note: This file easily exceeds 12 GB!
 
