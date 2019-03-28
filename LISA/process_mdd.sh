@@ -28,15 +28,15 @@ cd "$TMPDIR"/mdd # Move to work directory
   awk '($6>0.01 && $6<0.99) || ($7>0.01 && $7<0.99)' mdd_2018_ex23andme_sum_stats.txt > mdd_tmp_maf.txt # Filter out SNPs with MAF < 0.01
 	# (2b) INFO filter
 awk '$8>0.9' mdd_tmp_maf.txt > mdd_tmp_maf_info.txt # Filter out SNPs with INFO <= 0.9
-	# (2c) Bi-allelic filter
-awk '$4=="G" || $4=="A" || $4=="C" ||$4=="T"' mdd_tmp_maf_info.txt > mdd_tmp_bialleles.txt # Filter out multi-allelic effect alleles
-awk '$5=="G" || $5=="A" || $5=="C" ||$5=="T"' mdd_tmp_bialleles.txt > mdd_tmp_maf_info_biallelic.txt # Filter out multi-allelic non-effect alleles
-awk 'BEGIN {print "CHR\tSNP\tBP\tA1\tA2\tFRQ_A_59851\tFRQ_U_113154\tINFO\tOR\tSE\tP\tngt\tDirection\tHetISqt\tHetDf\tHetPVa\tNca\tNco\tNeff\tFreq_Avg"} { print }' mdd_tmp_maf_info_biallelic.txt > mdd_tmp_maf_info_biallelic_header.txt # Re-add header to file
-	# (2d) P filter
-awk '$11<0.05' mdd_tmp_maf_info_biallelic_header.txt > mdd_tmp_maf_info_biallelic_header_p.txt # Filter out SNPs with P >= 0.05
+  # (2c) P filter
+awk '$11<0.05' mdd_tmp_maf_info.txt > mdd_tmp_maf_info_p.txt # Filter out SNPs with P >= 0.05
+	# (2d) Bi-allelic filter
+awk '$4=="G" || $4=="A" || $4=="C" ||$4=="T"' mdd_tmp_maf_info_p.txt > mdd_tmp_bialleles.txt # Filter out multi-allelic effect alleles
+awk '$5=="G" || $5=="A" || $5=="C" ||$5=="T"' mdd_tmp_bialleles.txt > mdd_tmp_maf_info_p_biallelic.txt # Filter out multi-allelic non-effect alleles
+awk 'BEGIN {print "CHR\tSNP\tBP\tA1\tA2\tFRQ_A_59851\tFRQ_U_113154\tINFO\tOR\tSE\tP\tngt\tDirection\tHetISqt\tHetDf\tHetPVa\tNca\tNco\tNeff\tFreq_Avg"} { print }' mdd_tmp_maf_info_p_biallelic.txt > mdd_tmp_maf_info_p_biallelic_header.txt # Re-add header to file
 	# (2e) 1KGP filter
 awk 'BEGIN { OFS=""; print "SNP" } FNR>2 { for (i=1; i<=NF; i++) print "rs",$i }' g1000_eur.synonyms > mdd_tmp_rs_g1000_eur.synonyms # Reformat SNP synonyms to include 'rs' prefix
-awk 'NR == FNR{c[$1]++;next};c[$2] > 0' mdd_tmp_rs_g1000_eur.synonyms mdd_tmp_maf_info_biallelic_header_p.txt > ${output_file} # Filter out SNPs not included in 1KGP list
+awk 'NR == FNR{c[$1]++;next};c[$2] > 0' mdd_tmp_rs_g1000_eur.synonyms mdd_tmp_maf_info_p_biallelic_header.txt > ${output_file} # Filter out SNPs not included in 1KGP list
 	# (2f) DEPICT formatting
 awk 'BEGIN { OFS = "\t" } FNR>1 {print $2,$1,$3,$11}' ${output_file} > mdd_tmp_depict.txt # Extract columns 'SNP', 'CHR', 'BP' and 'P'
 awk 'BEGIN { print "SNP\tChr\tPos\tP" }{ print }' mdd_tmp_depict.txt > ${depict_file} # Rename columns to 'SNP', 'Chr', 'Pos', 'P' for final DEPICT file
