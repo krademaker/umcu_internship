@@ -47,8 +47,8 @@ awk 'BEGIN { print "SNP\tChr\tPos\tP" }{ print }' mdd_tmp_depict.txt > ${depict_
 wc -l mdd_2018_ex23andme_sum_stats.txt >> ${summary_file} # Original file size
 wc -l mdd_tmp_maf.txt >> ${summary_file} # Effect of INFO filter
 wc -l mdd_tmp_maf_info.txt >> ${summary_file} # Effect of MAF filter
-wc -l mdd_tmp_maf_info_biallelic_header.txt >> ${summary_file} # Effect of bi-allelic filter
-wc -l mdd_tmp_maf_info_biallelic_header_p.txt >> ${summary_file} # Effect of P filter
+wc -l mdd_tmp_maf_info_p.txt >> ${summary_file} # Effect of P filter
+wc -l mdd_tmp_maf_info_p_biallelic_header.txt >> ${summary_file} # Effect of bi-allelic filter
 wc -l ${output_file} >> ${summary_file} # Processed file size
 wc -l ${depict_file} >> ${summary_file} # DEPICT file size
 	# (3b) Export output directory
