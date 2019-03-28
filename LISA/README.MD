@@ -1,14 +1,12 @@
-# TABLE DETAILS
-(method: https://www.biostars.org/p/171557/)
-(table browser: https://genome.ucsc.edu/cgi-bin/hgTables?hgsid=717651021_1HbDJl5BHsQRkvS9FaV45qXQu02k)
+![image](https://user-images.githubusercontent.com/24732704/55021982-f822ec00-4ff9-11e9-802a-649cfdb4892c.png)
 
-clade	mammal
-genome	human
-assembly	Feb. 2009 (GRCh37/hg19)
-group	Variation
-track	All SNPs(151)
-region	genome
-output format	select fields from primary and related tables
-output file	all-snps-151.txt
-file type returned	plain text
-selected fields	chrom,chromEnd,name
+## UMC Utrecht internship code repository - LISA scripts
+
+### Background
+This folder contains scripts from this repository adapted to run on the LISA supercomputer. For the original scripts that will run on your system as well, please click on 'original' after a script's name, which will redirect you to the original script's folder.
+
+### Scripts
+- **lisa_snp_annotate_rs_ids.sh** - Script that annotates rs IDs for SNPs ([original](https://github.com/kjradem/umcu_internship/tree/master/GWAS/snp_annotate_rs_ids))
+
+### Usage
+- Please check the [LISA User Guide](https://userinfo.surfsara.nl/systems/lisa/user-guide)
