@@ -19,7 +19,7 @@ depict_file="$TMPDIR"/ea/output_ea/depict_ea_2018.txt
 mkdir "$TMPDIR"/ea # Create work directory
 mkdir "$TMPDIR"/ea/output_ea # Create output directory
 cp $HOME/Koen/GWAS_data/control_gwas/ea_2018_sum_stats.txt "$TMPDIR"/ea # Copy summary statistics file to work directory
-	# TO-DO: 1KGP reference SNPs # Copy 1KGP reference SNPs file to work directory
+cp $HOME/1K/g1000_eur.synonyms "$TMPDIR"/ea # Copy synonyms file for 1KGP SNPs to work directory
 cd "$TMPDIR"/ea # Move to work directory
 
 

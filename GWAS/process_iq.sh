@@ -19,7 +19,7 @@ depict_file="$TMPDIR"/iq/output_iq/depict_iq_2018.txt
 mkdir "$TMPDIR"/iq # Create work directory
 mkdir "$TMPDIR"/iq/output_iq # Create output directory
 cp $HOME/Koen/GWAS_data/control_gwas/iq_2018_sum_stats.txt "$TMPDIR"/iq # Copy summary statistics file to work directory
-	# TO-DO: 1KGP reference SNPs # Copy 1KGP reference SNPs file to work directory
+cp $HOME/1K/g1000_eur.synonyms "$TMPDIR"/iq # Copy synonyms file for 1KGP SNPs to work directory
 cd "$TMPDIR"/iq # Move to work directory
 
 
