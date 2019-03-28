@@ -45,8 +45,8 @@ awk 'BEGIN { print "SNP\tChr\tPos\tP" }{ print }' iq_tmp_depict.txt > ${depict_f
 # (3) File export and cleaning
 	# (3a) Summarize filter effect size
 wc -l iq_2018_sum_stats.txt >> ${summary_file} # Original file size
-wc -l iq_tmp_maf.txt >> ${summary_file} # Effect of INFO filter
-wc -l iq_tmp_maf_info.txt >> ${summary_file} # Effect of MAF filter
+wc -l iq_tmp_maf.txt >> ${summary_file} # Effect of MAF filter
+wc -l iq_tmp_maf_info.txt >> ${summary_file} # Effect of INFO filter
 wc -l iq_tmp_maf_info_p.txt >> ${summary_file} # Effect of P filter
 wc -l iq_tmp_maf_info_p_biallelic_header.txt >> ${summary_file} # Effect of bi-allelic filter
 wc -l ${output_file} >> ${summary_file} # Processed file size
