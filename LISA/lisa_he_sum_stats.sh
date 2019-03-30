@@ -37,10 +37,10 @@ awk '$9<0.05' tmp_maf.txt > tmp_maf_p.txt # Filter out SNPs with P>= 0.05
 awk '$4=="G" || $4=="A" || $4=="C" ||$4=="T"' tmp_maf_p.txt > tmp_bialleles.txt # Filter out multi-allelic effect alleles
 awk '$5=="G" || $5=="A" || $5=="C" ||$5=="T"' tmp_bialleles.txt > tmp_maf_p_biallelic.txt # Filter out multi-allelic non-effect alleles
 cat tmp_header.txt tmp_maf_p_biallelic.txt > tmp_cat.txt # Re-add header to file
-mv tmp_cat.txt > tmp_maf_p_biallelic.txt
+mv tmp_cat.txt tmp_maf_p_biallelic.txt
   # (2d) 1KGP filter
 awk 'BEGIN { OFS=""; print "SNP" } FNR>2 { for (i=1; i<=NF; i++) print "rs",$i }' g1000_eur.synonyms > tmp_synonyms.txt # Reformat SNP synonyms to include 'rs' prefix
-mv tmp_synonyms.txt > g1000_eur.synonyms
+mv tmp_synonyms.txt g1000_eur.synonyms
 awk 'NR == FNR{c[$1]++;next};c[$3] > 0' g1000_eur.synonyms tmp_maf_p_biallelic.txt > ${output_file} # Filter out SNPs not included in 1KGP list
 	# (2e) DEPICT formatting
 awk 'BEGIN { OFS = "\t" } FNR>1 {print $3,$1,$2,$9}' ${output_file} > tmp_depict.txt # Extract columns 'SNP', 'CHR', 'BP' and 'P'
