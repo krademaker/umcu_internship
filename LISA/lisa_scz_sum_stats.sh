@@ -54,6 +54,10 @@ grep 'rs' tmp_maf_info_p_biallelic_beta.txt > tmp_maf_info_p_biallelic_beta_rs.t
 cat tmp_header.txt tmp_maf_info_p_biallelic_beta_rs.txt > tmp_cat.txt # Re-add header to file
 mv tmp_cat.txt > tmp_maf_info_p_biallelic_beta_rs.txt
   # (2g) 1KGP filter
+awk -v n=1 'OFS="\t" { s = gensub("^(([^:]*:){"n"}).*$", "\\1", 1); sub(".$","",s); print s, $2, $3, $4, $5, $6, $7, $8, $9, $10}' tmp_maf_info_p_biallelic_beta_rs.txt > tmp_rs.txt # Isolate rsID from SNP column
+mv tmp_rs.txt tmp_maf_info_p_biallelic_beta_rs.txt
+cat tmp_header.txt tmp_maf_info_p_biallelic_beta_rs.txt > tmp_cat.txt # Re-add header to file
+mv tmp_cat.txt tmp_maf_info_p_biallelic_beta_rs.txt
 awk 'BEGIN { OFS=""; print "SNP" } FNR>2 { for (i=1; i<=NF; i++) print "rs",$i }' g1000_eur.synonyms > tmp_synonyms.txt # Reformat SNP synonyms to include 'rs' prefix
 mv tmp_synonyms.txt g1000_eur.synonyms
 awk 'NR == FNR{c[$1]++;next};c[$2] > 0' g1000_eur.synonyms tmp_maf_info_p_biallelic_beta_rs.txt > ${output_file} # Filter out SNPs not included in 1KGP list
