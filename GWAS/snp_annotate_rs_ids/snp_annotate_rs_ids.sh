@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# ABOUT: Script to annotate summary statistics with rs IDs (reference SNPs) when only SNP positions are given
+# ABOUT: Script to annotate summary statistics with rsIDs (reference SNPs) when only SNP positions are given
 # REQUIRED: UCSC SNP table (see README for details), GWAS summary statistics file
 # AUTHOR: Koen Rademaker
 # DATE: 27 March 2019
