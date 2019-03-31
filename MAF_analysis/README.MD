@@ -3,7 +3,7 @@
 ## UMC Utrecht internship code repository - Analysis of MDD MAF
 
 ### Background
-MAF indicates how common a SNP is in a population, and can be used to discern rare- from common variants. While processing summary statistics for the 2018 MDD GWAS [1], I noticed MAFs were given for both case- and control populations. Before deciding on whether to average these values and then filter them for a given threshold, I wanted to check the distribution of MAFs in MDD and control populations.
+MAF indicates how common a SNP is in a population, and can be used to discern rare- from common variants. While processing summary statistics for the 2018 MDD GWAS [1], I noticed MAFs were given for both case- and control populations. Before deciding on how to deal with this, and what filter to apply, I wanted to check the distribution of MAFs in MDD and control populations.
 
 ### Scripts
 - **maf_comparison.sh** - Script that downloads the summary statistics, unzips it, and selects specific columns of data
