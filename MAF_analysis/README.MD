@@ -29,6 +29,6 @@ MAF indicates how common a SNP is in a population, and can be used to discern ra
 [1] Wray et al. (2018), "Genome-wide association analyses identify 44 risk variants and refine the genetic architecture of major depression", _Nature Genetics_ 50, p668-681, doi: https://doi.org/10.1038/s41588-018-0090-3
 
 ### Glossary
-* **MAF** - Minor Allele Frequency; the frequency at which the second most common allele occur in a population
-* **MDD** - Major Depressive Disorder; mental disorder characterized by low mood, low self-esteem and loss of interest in normal activities
-* **SNP** - Single base-pair change that occurs on a specific genome position
+* **MAF** - _Minor Allele Frequency_; the frequency at which the second most common allele occur in a population
+* **MDD** - _Major Depressive Disorder_; mental disorder characterized by low mood, low self-esteem and loss of interest in normal activities
+* **SNP** - _Single Nucleotide Polymorphism_; single base-pair change that occurs on a specific genome position
