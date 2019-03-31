@@ -18,7 +18,8 @@ p_col=# Set to P column
 a1_col=# Set to A1 column
 a2_col=# Set to A2 column
 
-# (1) Perform QC(optionally write to temporary files)
+
+# (1) Perform QC (optional: write to tmp files)
 awk -v col="$maf_col" '$col<0.01 && $col>0.99' ${sum_stats} # Filter MAF (default: >0.01)
 
 awk -v col="$info_col" '$col>0.9' ${sum_stats} # Filter INFO score (default: >0.9)
