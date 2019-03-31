@@ -9,7 +9,8 @@ Summary statistics from GWASs can be insightful for further analyses in e.g. DEP
 - **sum_stats_qc.sh** - Script with general QC functions for summary statistics that can be adapted to your specific data.
 
 ### Data
-- None included, download links for summary statistics can be found in the relevant publications.
+- Summary statistics (optional: list of high-quality imputed SNPs), download links are typically provided in GWAS publications.
+- SNP synonyms file filtered to only include SNPs from the 1000 Genomes Project, files available separately from [MAGMA](https://ctg.cncr.nl/software/magma).
 
 ### Usage
 1. Adapt the script to your data format and filter requirements. Additionally, intermediate output can be written to files.
