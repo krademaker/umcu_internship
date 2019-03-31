@@ -39,31 +39,25 @@ awk 'NR == FNR{c[$1]++;next};c[$1] > 0' scz_2018_hq_imputed_snps.txt tmp_maf.txt
   # (2c) P filter
 awk '$9<0.05' tmp_maf_info.txt > tmp_maf_info_p.txt # Filter out SNPs with P >= 0.05
   # (2d) Bi-allelic filter
-awk '$5=="G" || $5=="A" || $5=="C" ||$5=="T"' tmp_maf_info_p.txt > tmp_bialleles.txt # Filter out multi-allelic effect alleles
-awk '$6=="G" || $6=="A" || $6=="C" ||$6=="T"' tmp_bialleles.txt > tmp_maf_info_p_biallelic.txt # Filter out multi-allelic non-effect alleles
-cat tmp_header.txt tmp_maf_info_p_biallelic.txt > tmp_cat.txt # Re-add header to file
-mv tmp_cat.txt tmp_maf_info_p_biallelic.txt
+awk '$5=="G" || $5=="A" || $5=="C" || $5=="T"' tmp_maf_info_p.txt > tmp_bialleles.txt # Filter out multi-allelic effect alleles
+awk '$6=="G" || $6=="A" || $6=="C" || $6=="T"' tmp_bialleles.txt > tmp_maf_info_p_biallelic.txt # Filter out multi-allelic non-effect alleles
   # (2e) Beta calculation
-awk '{print $0, "\tBETA"}' tmp_header.txt > tmp_beta_header.txt # Update header
-mv tmp_beta_header.txt tmp_header.txt
-awk 'FNR>1 {print $0, log($7)}' tmp_maf_info_p_biallelic.txt > tmp_beta.txt # Calculate beta as log(OR)
-cat tmp_header.txt tmp_beta.txt > tmp_cat.txt # Re-add header to file
-mv tmp_cat.txt tmp_maf_info_p_biallelic_beta.txt
+sed -i 's/\r//' tmp_maf_info_p_biallelic.txt # Format to allow new column to be appended
+awk 'FNR>1 {print $0, log($7)}' tmp_maf_info_p_biallelic.txt > tmp_maf_info_p_biallelic_beta.txt # Calculate beta as log(OR)
   # (2f) rsID filter
 grep 'rs' tmp_maf_info_p_biallelic_beta.txt > tmp_maf_info_p_biallelic_beta_rs.txt # Filter out SNPs without rsID
-cat tmp_header.txt tmp_maf_info_p_biallelic_beta_rs.txt > tmp_cat.txt # Re-add header to file
-mv tmp_cat.txt > tmp_maf_info_p_biallelic_beta_rs.txt
-  # (2g) 1KGP filter
-awk -v n=1 'OFS="\t" { s = gensub("^(([^:]*:){"n"}).*$", "\\1", 1); sub(".$","",s); print s, $2, $3, $4, $5, $6, $7, $8, $9, $10}' tmp_maf_info_p_biallelic_beta_rs.txt > tmp_rs.txt # Isolate rsID from SNP column
+awk -v n=1 '{s = gensub("^(([^:]*:){"n"}).*$", "\\1", 1); sub(".$","",s); print $0, s}' tmp_maf_info_p_biallelic_beta_rs.txt > tmp_rs.txt # Add rsID as separate column
 mv tmp_rs.txt tmp_maf_info_p_biallelic_beta_rs.txt
-cat tmp_header.txt tmp_maf_info_p_biallelic_beta_rs.txt > tmp_cat.txt # Re-add header to file
-mv tmp_cat.txt tmp_maf_info_p_biallelic_beta_rs.txt
-awk 'BEGIN { OFS=""; print "SNP" } FNR>2 { for (i=1; i<=NF; i++) print "rs",$i }' g1000_eur.synonyms > tmp_synonyms.txt # Reformat SNP synonyms to include 'rs' prefix
+  # (2g) 1KGP filter
+awk 'OFS=""; FNR>2 { for (i=1; i<=NF; i++) print "rs",$i }' g1000_eur.synonyms > tmp_synonyms.txt # Reformat SNP synonyms to include 'rs' prefix
 mv tmp_synonyms.txt g1000_eur.synonyms
-awk 'NR == FNR{c[$1]++;next};c[$2] > 0' g1000_eur.synonyms tmp_maf_info_p_biallelic_beta_rs.txt > ${output_file} # Filter out SNPs not included in 1KGP list
+awk 'NR == FNR{c[$1]++;next};c[$11] > 0' g1000_eur.synonyms tmp_maf_info_p_biallelic_beta_rs.txt > ${output_file} # Filter out SNPs not included in 1KGP list
+sed -i 's/\r//' tmp_header.txt # Update and re-add header
+sed 's/$/\tBETA\trsID/' tmp_header.txt > tmp_new_header.txt
+cat tmp_new_header.txt ${output_file} > tmp_cat.txt
+mv tmp_cat.txt ${output_file}
 	# (2h) DEPICT formatting
-awk 'BEGIN { OFS = "\t" } FNR>1 {print $1,$3,$4,$9}' ${output_file} > tmp_depict.txt # Extract columns 'SNP', 'CHR', 'BP' and 'P'
-awk 'BEGIN { print "SNP\tChr\tPos\tP" }{ print }' tmp_depict.txt > ${depict_file} # Reformat header for DEPICT file
+awk 'BEGIN { OFS="\t"; print "SNP\tChr\tPos\tP" } FNR>1 {print $11,$3,$4,$9}' ${output_file} > ${depict_file} # Extract SNP (rsID), Chr, BP and P columns
 
 
 # (3) File export and cleaning
