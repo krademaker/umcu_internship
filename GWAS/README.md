@@ -10,9 +10,6 @@ GWASs provide insight into the genetic background of traits and diseases, and re
 
 _(details of subfolders are explained in their own READMEs)_
 
-### Data
-- None included
-
 ### Usage
 **download_summary_statistics.sh**:
 1. `chmod 755 download_summary_statistics.sh`
