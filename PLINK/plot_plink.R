@@ -1,5 +1,5 @@
 # ABOUT: Script to visualize a Manhattan- & QQ plot for GWAS summary statistics
-# REQUIRED: qqman library, summary statistics fidatale
+# REQUIRED: qqman library, summary statistics data
 install.packages('qqman')
 # AUTHOR: Koen Rademaker
 # DATE: 5 April 2019
@@ -8,7 +8,7 @@ install.packages('qqman')
 library(qqman)
 
 # Set path to summary statistics file
-sum_stats_path='./Git/umcu_internship/PLINK/sex_autosomal_sum_stats.txt'
+sum_stats_path='./sex_autosomal_sum_stats.txt'
 
 # Load summary statistics data
 sum_stats <- read.delim(sum_stats_path)
