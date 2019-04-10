@@ -1,0 +1,3 @@
+[submodule "Single-Cell/perslab-sc-library"]
+	path = Single-Cell/perslab-sc-library
+	url = https://github.com/perslab/perslab-sc-library.git
