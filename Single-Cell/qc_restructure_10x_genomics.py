@@ -35,14 +35,14 @@ sc.settings.set_figure_params(dpi=300)
 
 
 # Step 4 - Set variables
-filename_input_h5='1M_neurons_neuron20k.h5'
-filename_cluster_ids='20k_clusters.csv'
+filename_input_h5=sys.argv[1]
+filename_cluster_ids=sys.argv[2]
+filename_mouse_mapping=sys.argv[3]
+filename_mouse_to_human=sys.argv[4]
 genome='mm10'
-filename_h5ad_out='1M_neurons_neuron_20k_qc.h5ad'
-filename_restructured_out='1M_neurons_neuron_20k_qc_avg_std_celltype.csv'
-filename_mapped_out='tmp_mapped_to_human.csv'
-filename_mouse_mapping='ensembl_v83_ensembl_mgisymbol_Mm.tab.gz' # NEW AVAILABLE?
-filename_mouse_to_human='ensembl_v82_Mm_Hs.tab.gz' # NEW AVAILABLE?
+filename_h5ad_out='10x_1M_neurons_qc.h5ad'
+filename_restructured_out='10x_1M_neurons_qc_restructured.csv'
+filename_mapped_out='10x_1M_neurons_qc_human_mapped.csv'
 
 
 # Step 5 - Load data
