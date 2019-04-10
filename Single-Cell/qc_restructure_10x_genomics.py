@@ -1,10 +1,10 @@
 #!/usr/bin/python
 
 # ABOUT: Script for QC and restructuring of 10x Genomics mouse brain scRNA-seq data
-# REQUIRED:     - HFD5 gene / cell matrix (see README)
-#               - Clustering output file (see README)
-#               - ENSEMBL to MGI mapping file (see README)
-#               - ENSEMBL mouse to human mapping file (see README)
+# REQUIRED: - HFD5 gene / cell matrix (see README)
+#           - Clustering output file (see README)
+#           - ENSEMBL to MGI mapping file (see README)
+#           - ENSEMBL mouse to human mapping file (see README)
 # AUTHOR: Koen Rademaker
 # DATE: 10 April 2019
 
