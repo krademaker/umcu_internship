@@ -19,10 +19,10 @@ import os
 import sys
 
 
-# Step 2 - Import "perslab-sc-library" repository
+# Step 2 - Import 'perslab-sc-library' repository
 path_to_script = os.path.realpath(__file__).split('/')
-path = "/".join(path_to_script[0:(len(path_to_script)-2)])
-sys.path.append("{}/Single-Cell/perslab-sc-library".format(path))
+path = '/'.join(path_to_script[0:(len(path_to_script)-2)])
+sys.path.append('{}/Single-Cell/perslab-sc-library'.format(path))
 from dropseq import get_average_by_celltype, standardize, normalize
 from gene_mapping import to_ensembl
 
