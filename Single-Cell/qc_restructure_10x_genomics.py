@@ -52,7 +52,7 @@ filename_mapped_out='10x_1M_neurons_qc_human_mapped.csv'
 # Step 5 - Load data
 sc_data=sc.read_10x_h5(filename_input_h5, genome)
 sc_data.var_names_make_unique()
-sc_data.obs['cell_labels'] = pd.read_csv(filename_cluster_ids, header=None, dtype='category')[1].values
+sc_data.obs['cell_labels'] = pd.read_csv(filename_cluster_ids, header=None, skiprows=0, dtype='category')[1].values
 
 
 # Step 6 - Load mouse to human gene mapping
@@ -92,7 +92,7 @@ sc.pl.scatter(sc_data, x='n_counts', y='n_genes', save='post_qc_counts_genes.png
 
 # Step 11 - Restructure data
 normalized_df=normalize(sc_data.to_df()) # Normalize gene expression across cells
-cell_cluster_ids=pd.read_csv(filename_cluster_ids, sep=',', header=None, index_col=0) # Load cluster ids for cells
+cell_cluster_ids=pd.read_csv(filename_cluster_ids, header=None, skiprows=1, index_col=0) # Load cluster IDs for cells
 cell_cluster_ids.columns=['cluster_id'] # Set DataFrame column name
 averaged_per_cell_type_df=get_average_by_celltype(normalized_df.T, cell_cluster_ids) # Average gene expression across cell types
 mapped_to_human,not_mapped=to_ensembl(mouse_mapping, mouse_to_human, averaged_per_cell_type_df) # Map to human genes
