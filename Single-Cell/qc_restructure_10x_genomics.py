@@ -7,7 +7,7 @@
 #           - ENSEMBL to MGI mapping file (see README)
 #           - ENSEMBL mouse to human mapping file (see README)
 # AUTHOR: Koen Rademaker
-# DATE: 10 April 2019
+# DATE: 11 April 2019
 
 
 # Step 1 - Import packages
@@ -30,7 +30,8 @@ from gene_mapping import to_ensembl
 
 # Step 3 - Set Scanpy settings
 sc.logging.print_versions()
-sc.settings.verbosity = 2
+sc.settings.verbosity = 5
+sc.settings.logfile='lisa_10x_1M_qc_restructure.log'
 sc.settings.autosave = True
 sc.settings.max_memory=40
 sc.settings.n_jobs=4
