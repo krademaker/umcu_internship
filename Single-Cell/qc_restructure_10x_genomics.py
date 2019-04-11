@@ -91,7 +91,7 @@ sc.pl.scatter(sc_data, x='n_counts', y='n_genes', save='post_qc_counts_genes.png
 
 
 # Step 11 - Restructure data
-normalized_df=normalize(sc_data.to_df()) # Normalize gene expression across cells
+normalized_df=normalize(sc_data.to_df().dropna(axis='index', how='all')) # Normalize gene expression across cells
 cell_cluster_ids=pd.read_csv(filename_cluster_ids, header=None, skiprows=1, index_col=0) # Load cluster IDs for cells
 cell_cluster_ids.columns=['cluster_id'] # Set DataFrame column name
 averaged_per_cell_type_df=get_average_by_celltype(normalized_df.T, cell_cluster_ids) # Average gene expression across cell types
