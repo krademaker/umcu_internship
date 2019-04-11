@@ -1,5 +1,6 @@
 #!/usr/bin/python
 
+
 # ABOUT: Script for QC and restructuring of 10x Genomics mouse brain scRNA-seq data
 # REQUIRED: - HFD5 gene / cell matrix (see README)
 #           - Clustering output file (see README)
@@ -27,10 +28,12 @@ from dropseq import get_average_by_celltype, standardize, normalize
 from gene_mapping import to_ensembl
 
 
-# Step 3 - Set logging and image settings
+# Step 3 - Set Scanpy settings
 sc.logging.print_versions()
 sc.settings.verbosity = 2
 sc.settings.autosave = True
+sc.settings.max_memory=40
+sc.settings.n_jobs=4
 sc.settings.set_figure_params(dpi=300)
 
 
