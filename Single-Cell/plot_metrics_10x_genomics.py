@@ -27,7 +27,7 @@ sc.settings.set_figure_params(dpi=300)
 # Step 3 - Set variables
 filename_input_h5=sys.argv[1]
 reference_genome='mm10'
-perc_mito_threshold=5
+perc_mito_threshold=10
 
 
 # Step 4 - Import data
@@ -90,7 +90,7 @@ plt.hist(sc_data.obs['percent_mito'],  bins=100, range=(0, 15), color='blue') # 
 plt.xlabel('% mtDNA per cell')
 plt.ylabel('Frequency')
 plt.title('% Mitochondrial DNA Distribution')
-plt.axvline(x=perc_mito_threshold, color='red', linestyle='--', label='>5% mtDNA ('+str(perc_exceeding_mito_threshold)+'%)')
+plt.axvline(x=perc_mito_threshold, color='red', linestyle='--', label='>'+str(perc_mito_threshold)+'% mtDNA ('+str(perc_exceeding_mito_threshold)+'%)')
 plt.legend(loc='upper right')
 plt.show()
 plt.savefig('mtDNA_distribution.png')
