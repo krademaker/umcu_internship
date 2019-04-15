@@ -28,6 +28,7 @@ sc.settings.set_figure_params(dpi=300)
 filename_input_h5=sys.argv[1]
 reference_genome='mm10'
 perc_mito_threshold=10
+min_genes_threshold=500
 
 
 # Step 4 - Import data
@@ -45,6 +46,7 @@ umi_sd=np.std(np.log10(sc_data.obs['n_counts']))
 gene_mean=np.mean(sc_data.obs['n_genes'])
 gene_sd=np.std(sc_data.obs['n_genes'])
 perc_exceeding_mito_threshold=np.round((len(sc_data.obs['percent_mito'].where(sc_data.obs['percent_mito'] > perc_mito_threshold).dropna())/len(sc_data.obs['percent_mito']))*100, decimals=1)
+perc_exceeding_min_genes=np.round((len(sc_data.obs['n_genes'].where(sc_data.obs['n_genes'] > min_genes_threshold).dropna())/len(sc_data.obs['n_genes']))*100, decimals=1)
 
 
 # Step 6 - Plot Scanpy metrics
@@ -63,7 +65,7 @@ matplotlib.style.use('classic')
 
 # Step 8 - Plot Matplotlib metrics
 plt.hist(np.log10(sc_data.obs['n_counts']), bins=20, color='blue') # Distribution of UMI counts
-plt.xlabel('UMIS per cell (log10)')
+plt.xlabel('UMIs per cell (log10)')
 plt.ylabel('Frequency')
 plt.title('UMI Distribution')
 plt.axvline(x=umi_mean-3*umi_sd, color='black', linestyle='--', label='-3 σ')
@@ -79,6 +81,7 @@ plt.xlabel('Genes per cell')
 plt.ylabel('Frequency')
 plt.title('Gene Distribution')
 plt.axvline(x=gene_mean-3*gene_sd, color='black', linestyle='--', label='-3 σ')
+plt.axvline(x=min_genes_threshold, color='magenta', linestyle='--', label='>'+str(min_genes_threshold)+' genes ('+str(perc_exceeding_min_genes)+'%)')
 plt.axvline(x=gene_mean, color='red', linestyle='--', label='μ')
 plt.axvline(x=gene_mean+3*gene_sd, color='black', linestyle='--', label='+3 σ')
 plt.legend(loc='upper right')
