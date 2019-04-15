@@ -9,6 +9,7 @@ Single cell RNA-sequencing (scRNA-seq) is a technique to measure and quantify RN
 _TO-DO: Details of approach_
 
 ### Scripts
+* **plot_metrics_10x_genomics.py** - Script to plot metrics of the 10x Genomics mouse brain dataset, such as distribution of counts per cell, distribution of genes per cell and percentage of mitochondrial DNA per cell. Generated plots are useful when deciding on QC thresholds.
 * **qc_restructure_10x_genomics.py** - Script for QC and restructuring of 10x Genomics mouse brain scRNA-seq data.
 _TO-DO: Details of scripts_
 
