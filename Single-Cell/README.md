@@ -24,5 +24,5 @@ _TO-DO: Details of usage_
 ### Requirements
 _TO-DO: Details of requirements_
 
-## References
+### References
 [1] 10x Genomics - 1.3 Million Single Cell Dataset from 10x Genomics. URL: https://community.10xgenomics.com/t5/10x-Blog/Our-1-3-million-single-cell-dataset-is-ready-to-download/ba-p/276
