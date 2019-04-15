@@ -3,7 +3,7 @@
 ## UMC Utrecht internship code repository - Single Cell
 
 ### Background
-_TO-DO: Background on scRNA-seq_
+Single cell RNA-sequencing (scRNA-seq) is a technique to measure and quantify RNA transcripts from individual cells, allowing the transcriptomes of heterogeneous systems such as the brain to be measured with a high resolution. This folder includes scripts to process and visualize the 10x Genomics 1.3 million mouse brain cells scRNA-seq dataset [1]. 
 
 ### Approach
 _TO-DO: Details of approach_
@@ -23,3 +23,6 @@ _TO-DO: Details of usage_
 
 ### Requirements
 _TO-DO: Details of requirements_
+
+## References
+[1] 10x Genomics - 1.3 Million Single Cell Dataset from 10x Genomics. URL: https://community.10xgenomics.com/t5/10x-Blog/Our-1-3-million-single-cell-dataset-is-ready-to-download/ba-p/276
