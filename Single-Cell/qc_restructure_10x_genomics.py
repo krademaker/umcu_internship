@@ -7,7 +7,7 @@
 #           - ENSEMBL to MGI mapping file (see README)
 #           - ENSEMBL mouse to human mapping file (see README)
 # AUTHOR: Koen Rademaker
-# DATE: 11 April 2019
+# DATE: 16 April 2019
 
 
 # Step 1 - Import packages
@@ -61,11 +61,20 @@ mouse_mapping=mouse_mapping[[isinstance(x, str) for x in mouse_mapping.index]]
 mouse_to_human=pd.read_csv(filename_mouse_to_human, compression='gzip', index_col=0, sep='\t')
 
 
-# Step 7 - Determine cell quality metrics (percentage mitochondrial genes, n.o. counts, n.o. genes)
+# Step 7 - Determine cell quality metrics (% mtDNA, UMI counts, gene counts)
+# Percentage of mtDNA per cell
 mito_genes=sc_data.var_names.str.startswith('mt-')
 sc_data.obs['percent_mito'] = np.sum(sc_data[:, mito_genes].X, axis=1).A1 / np.sum(sc_data.X, axis=1).A1
+mito_mean=np.mean(sc_data.obs['percent_mito'])
+mito_sd=np.std(sc_data.obs['percent_mito'])
+# Number of UMIs per cell
 sc_data.obs['n_counts'] = sc_data.X.sum(axis=1).A1
+umi_mean=np.mean(np.log10(sc_data.obs['n_counts']))
+umi_sd=np.std(np.log10(sc_data.obs['n_counts']))
+# Number of genes per cell
 sc.pp.filter_cells(sc_data, min_genes=0)
+gene_mean=np.mean(sc_data.obs['n_genes'])
+gene_sd=np.std(sc_data.obs['n_genes'])
 
 
 # Step 8 - Plot pre-QC metrics
@@ -75,13 +84,13 @@ sc.pl.scatter(sc_data, x='n_counts', y='n_genes', save='pre_qc_counts_genes.png'
 
 
 # Step 9 - Run QC on the data
-sc.pp.filter_cells(sc_data, min_counts=1) # Retain cells with >1 UMI counts
-sc.pp.filter_cells(sc_data, min_genes=500) # Retain cells with >500 genes
-sc.pp.filter_cells(sc_data, max_genes=4000) # Retain cells with <4000 genes
-sc.pp.filter_genes(sc_data, min_cells=1) # Retain genes occuring in >1 cell
-sc.pp.filter_genes(sc_data, min_counts=1) # Retain genes with >1 UMI counts
+sc.pp.filter_cells(sc_data, min_counts=1) # Remove cells with no UMI counts
+sc.pp.filter_cells(sc_data, min_counts=umi_mean-3*umi_sd) # Remove cells with a UMI count 3 SDs below the mean
+sc.pp.filter_cells(sc_data, max_counts=umi_mean+3*umi_sd) # Remove cells with a UMI count 3 SDs above the mean
+sc.pp.filter_cells(sc_data, min_genes=1000) # Remove cells with less than 1000 genes
+sc.pp.filter_cells(sc_data, max_genes=gene_mean+3*gene_sd) # Remove cells with a gene count 3 SDs above the mean
+sc_data=sc_data[sc_data.obs['percent_mito'] < mito_mean+3*mito_sd,:] # Remove cells with a % mtDNA 3 SDs above the mean
 sc_data.write_h5ad(filename_h5ad_out) # Save H5AD object for later use
-sc_data=sc_data[sc_data.obs['percent_mito'] < 0.1,:] # Retain cells with <10% mitochondrial genes
 
 
 # Step 10 - Plot post-QC metrics
