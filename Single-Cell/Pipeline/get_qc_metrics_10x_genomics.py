@@ -66,10 +66,10 @@ print('SD genes / cell: ', gene_sd)
 
 # Step 7 - Plot Matplotlib metrics
 # Distribution of % mtDNA
-plt.hist(sc_data.obs['percent_mito'],  bins=100, range=(0,25), color='blue')
+plt.hist(sc_data.obs['percent_mito'],  bins=100, color='blue')
 plt.xlabel('% mtDNA per cell')
 plt.ylabel('Frequency')
-plt.title('% Mitochondrial DNA Distribution [cut at 25%]')
+plt.title('% Mitochondrial DNA Distribution')
 plt.axvline(x=mito_mean-3*mito_sd, color='black', linestyle='--', label='-3 σ')
 plt.axvline(x=mito_mean, color='red', linestyle='--', label='μ')
 plt.axvline(x=mito_mean+3*mito_sd, color='black', linestyle='--', label='+3 σ ('+str(np.round(mito_mean+3*mito_sd,decimals=1))+')')
