@@ -25,7 +25,7 @@ sc.settings.n_jobs=4
 filename_input_h5=sys.argv[1]
 filename_cluster_ids=sys.argv[2]
 genome='mm10'
-n_cells=1306217
+n_cells=1306127
 n_partitions=4
 partition_size=int(np.round(n_cells/n_partitions, decimals=0))
 
@@ -47,5 +47,5 @@ partition.write_h5ad('partition_2.h5ad')
 partition=sc_data[sc_data.obs_names[2*partition_size:3*partition_size], :]
 partition.write_h5ad('partition_3.h5ad')
 
-partition=sc_data[sc_data.obs_names[3*partition_size:4*partition_size+1], :]
+partition=sc_data[sc_data.obs_names[3*partition_size:4*partition_size], :]
 partition.write_h5ad('partition_4.h5ad')
