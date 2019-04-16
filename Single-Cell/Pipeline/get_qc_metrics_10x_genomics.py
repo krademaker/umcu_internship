@@ -50,7 +50,7 @@ print('Mean %mtDNA / cell: ', mito_mean)
 print('SD %mtDNA / cell: ', mito_sd)
 # UMI count / cell
 sc_data.obs['n_counts']=sc_data.X.sum(axis=1).A1
-sc_data.obs['n_counts'].to_csv(str(filename_input_h5ad)+'_n_counts.csv')
+np.log10(sc_data.obs['n_counts']).to_csv(str(filename_input_h5ad)+'_n_counts.csv')
 umi_mean=np.mean(np.log10(sc_data.obs['n_counts']))
 umi_sd=np.std(np.log10(sc_data.obs['n_counts']))
 print('Mean UMIs / cell: ', umi_mean)
