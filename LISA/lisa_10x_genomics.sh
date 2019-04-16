@@ -13,7 +13,7 @@
 #           - ENSEMBL to MGI mapping file (see README)
 #           - ENSEMBL mouse to human mapping file (see README)
 # AUTHOR: Koen Rademaker
-# DATE: 15 April 2019
+# DATE: 16 April 2019
 
 
 # (0) File and variable organization
