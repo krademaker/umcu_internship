@@ -47,7 +47,7 @@ $HOME/Koen/Python-3.6.0/python ${partition_script_path} ${h5_file} ${cluster_fil
 
 
 # (2) Execute Python script to get QC metrics for each partition with the following arguments:
-# - Annotated gene / cell matrix partition - ${FILE_NAME}
+# - Annotated gene / cell matrix partition - ${partition_file}
 for partition_file in partition_1.h5ad partition_2.h5ad partition_3.h5ad partition_4.h5ad
 do
     $HOME/Koen/Python-3.6.0/python ${get_qc_script_path} ${partition_file}
@@ -72,14 +72,14 @@ gene_out_4=partition_4.h5ad_n_genes.csv
 
 
 # (4) Execute Python script for merging QC metrics on all partitions with the following arguments:
-# - % mtDNA / cell output - ${mtdna_out_X} (x4, one for each partition)
-# - UMI counts / cell output - ${umi_out_X} (x4, one for each partition)
-# - Gene counts / cell output - ${gene_out_X} (x4, one for each partition)
+# - % mtDNA / cell output - ${mtdna_out_X} (n=4, one for each partition)
+# - UMI counts / cell output - ${umi_out_X} (n=4, one for each partition)
+# - Gene counts / cell output - ${gene_out_X} (n=4, one for each partition)
 $HOME/Koen/Python-3.6.0/python ${merge_qc_script_path} ${mtdna_out_1} ${mtdna_out_2} ${mtdna_out_3} ${mtdna_out_4} ${umi_out_1} ${umi_out_2} ${umi_out_3} ${umi_out_4} ${gene_out_1} ${gene_out_2} ${gene_out_3} ${gene_out_4}
 
 
 # (5) Execute Python script to get QC metrics for each partition with the following arguments:
-# - Annotated gene / cell matrix partition - ${FILE_NAME}
+# - Annotated gene / cell matrix partition - ${partition_file}
 #for partition_file in partition_1.h5ad partition_2.h5ad partition_3.h5ad partition_4.h5ad
 #do
     #$HOME/Koen/Python-3.6.0/python ${qc_script_path} ${partition_file}
