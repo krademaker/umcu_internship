@@ -21,22 +21,14 @@ import os
 import sys
 
 
-# Step 2 - Import 'perslab-sc-library' repository
-path_to_script = os.path.realpath(__file__).split('/')
-path = '/'.join(path_to_script[0:(len(path_to_script)-2)])
-sys.path.append('{}/scripts/perslab-sc-library'.format(path))
-from dropseq import get_average_by_celltype, standardize, normalize
-from gene_mapping import to_ensembl
-
-
-# Step 3 - Set Scanpy settings
+# Step 2 - Set Scanpy settings
 sc.logging.print_versions()
 sc.settings.verbosity = 5
 sc.settings.logfile=sys.argv[1]+'_qc.log'
 sc.settings.max_memory=60
 
 
-# Step 4 - Set variables
+# Step 3 - Set variables
 filename_input_h5ad=sys.argv[1]
 mtdna_max=float(sys.argv[2])
 umi_count_min=10**(float(sys.argv[3]))
@@ -46,12 +38,12 @@ gene_count_max=float(sys.argv[6])
 filename_output_h5ad='qc_'+sys.argv[1]
 
 
-# Step 5 - Load data
+# Step 4 - Load data
 sc_data=sc.read_h5ad(filename_input_h5ad)
 sc.logging.print_memory_usage()
 
 
-# Step 6 - Run QC on the data
+# Step 5 - Run QC on the data
 sc.pp.filter_cells(sc_data, min_counts=1) # Remove cells with no UMI counts
 sc.logging.print_memory_usage()
 sc.pp.filter_cells(sc_data, min_counts=umi_count_min) # Remove cells with a log10 UMI count 3 SDs below the mean
@@ -66,5 +58,5 @@ sc_data=sc_data[sc_data.obs['percent_mito'] < mtdna_max,:] # Remove cells with a
 sc.logging.print_memory_usage()
 
 
-# Step 7 - Output H5AD file with filtered data
+# Step 6 - Output H5AD file with filtered data
 sc_data.write_h5ad(filename_output_h5ad)
