@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 # ABOUT: Script to get QC metrics and plot them for partitions of 10x Genomics 1.3 million mouse brain cells data
-# REQUIRED: - H5AD annotated gene / cell matrix
+# REQUIRED: - H5AD annotated gene / cell matrix (see README)
 # AUTHOR: Koen Rademaker
 # DATE: 18 April 2019
 

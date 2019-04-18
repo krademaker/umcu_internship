@@ -1,9 +1,9 @@
 #!/usr/bin/python3
 
 # ABOUT: Script to merge QC parameters for partitions of 10x Genomics 1.3 mouse brain cells data
-# REQUIRED: - % mtDNA / cell output (n=4, one for each partition)
-#           - UMI counts / cell output (n=4, one for each partition)
-#           - Gene counts / cell output (n=4, one for each partition)
+# REQUIRED: - % mtDNA / cell output (n=4, one for each partition, see README)
+#           - UMI counts / cell output (n=4, one for each partition, see README)
+#           - Gene counts / cell output (n=4, one for each partition, see README)
 # AUTHOR: Koen Rademaker
 # DATE: 18 April 2019
 
