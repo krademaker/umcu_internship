@@ -3,7 +3,7 @@
 # ABOUT: Script to get QC metrics and plot them for partitions of 10x Genomics 1.3 million mouse brain cells data
 # REQUIRED: - H5AD annotated gene / cell matrix
 # AUTHOR: Koen Rademaker
-# DATE: 17 April 2019
+# DATE: 18 April 2019
 
 
 # Step 1 - Import packages
@@ -101,3 +101,7 @@ plt.legend(loc='upper right')
 plt.show()
 plt.savefig(str(sys.argv[1])+'_Gene_distribution.png')
 plt.close()
+
+
+# Step 8 - Update H5AD file
+sc_data.write_h5ad(filename_input_h5ad)
