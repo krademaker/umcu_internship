@@ -5,7 +5,7 @@
 #           - UMI counts / cell output (n=4, one for each partition)
 #           - Gene counts / cell output (n=4, one for each partition)
 # AUTHOR: Koen Rademaker
-# DATE: 16 April 2019
+# DATE: 18 April 2019
 
 
 # Step 1 - Import packages
@@ -14,7 +14,7 @@ import pandas as pd
 import numpy as np
 
 
-# Step 3 - Set variables
+# Step 2 - Set variables
 filename_mtdna_1=sys.argv[1]
 filename_mtdna_2=sys.argv[2]
 filename_mtdna_3=sys.argv[3]
@@ -30,7 +30,7 @@ filename_gene_4=sys.argv[12]
 filename_out='merged_qc_params_10x_genomics.log'
 
 
-# Step 4 - Load data
+# Step 3 - Load data
 mtdna_1=pd.read_csv(filename_mtdna_1, header=None)
 mtdna_2=pd.read_csv(filename_mtdna_2, header=None)
 mtdna_3=pd.read_csv(filename_mtdna_3, header=None)
@@ -47,7 +47,7 @@ gene_3=pd.read_csv(filename_gene_3, header=None)
 gene_4=pd.read_csv(filename_gene_4, header=None)
 
 
-# Step 5 - Concatenate data
+# Step 4 - Concatenate data
 # # Concatenate % mtDNA / cell data
 mtdna_frames=[mtdna_1, mtdna_2, mtdna_3, mtdna_4]
 mtdna_concat=pd.concat(mtdna_frames)
@@ -59,7 +59,7 @@ gene_frames=[gene_1, gene_2, gene_3, gene_4]
 gene_concat=pd.concat(gene_frames)
 
 
-# Step 6 - Calculate QC metrics on all cells
+# Step 5 - Calculate QC metrics on all cells
 # Calculate mean and SD for % mtDNA / cell
 mtdna_mean=np.mean(mtdna_concat[1])
 mtdna_sd=np.std(mtdna_concat[1])
@@ -71,7 +71,7 @@ gene_mean=np.mean(gene_concat[1])
 gene_sd=np.std(gene_concat[1])
 
 
-# Step 7 - Save parameters to file
+# Step 6 - Save parameters to file
 f=open(filename_out, 'w')
 f.write('mtDNA mean: '+str(mtdna_mean)+'\nmtDNA SD: '+str(mtdna_sd)+'\nUMI mean: '+str(umi_mean)+'\nUMI SD: '+str(umi_sd)+'\nGene mean: '+str(gene_mean)+'\nGene SD: '+str(gene_sd))
 f.close()
