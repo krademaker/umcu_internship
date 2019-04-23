@@ -76,4 +76,4 @@ sc_data.write_h5ad(filename_input_h5ad)
 
 
 # Step 7 - Transpose and output data to gene / cell matrix
-sc_data.T.to_df().to_csv(filename_output_matrix, index=True, header=True, sep='\t')
+sc_data.T.to_df().to_csv(filename_output_matrix, index=True, header=True, sep='\t', compression='gzip')
