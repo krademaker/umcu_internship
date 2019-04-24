@@ -15,5 +15,5 @@ Script used to determine whether a given set of genes that are enriched in cells
 - MAGMA gene analysis output (magma.genes.out)
 
 ### Usage
-**mouse_to_human_gene_mapping.R**:
+**LEPR_genes_BMI_GWAS_enrichment.R**:
 1. `Rscript LEPR_genes_BMI_GWAS_enrichment.R`
