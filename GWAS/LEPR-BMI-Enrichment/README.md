@@ -3,19 +3,17 @@
 ## UMC Utrecht internship code repository - GWAS - Enrichment of specific genes in summary statistics
 
 ### Background
-Scripts used to determine whether a given set of genes that are enriched in cells expressing LEPR are also enriched in BMI GWAS summary statistics.
+Script used to determine whether a given set of genes that are enriched in cells expressing LEPR are also enriched in BMI GWAS summary statistics.
 
 ### Scripts
-* **mouse_to_human_gene_mapping.R** - Script that converts mouse genes to 1:1 human orthologs and outputs it to a file for later comparison.
+* **LEPR_genes_BMI_GWAS_enrichment.R** - Script to map mouse genes to 1:1 human orthologs and compare human genes against MAGMA gene analysis output for BMI GWAS.
 
 ### Requirements
 - Unix environment (I used Ubuntu 18.04)
-- R version 3.5> (https://www.r-project.org/) with the [One2One](https://github.com/NathanSkene/One2One) and [readxl](https://cran.r-project.org/web/packages/readxl/) packages installed
+- R version 3.5> (https://www.r-project.org/) with the [One2One](https://github.com/NathanSkene/One2One), [readxl](https://cran.r-project.org/web/packages/readxl/) and [xlsx](https://cran.r-project.org/web/packages/xlsx/) packages installed
 - File with list of mouse genes of interest (specifically an Excel sheet, yet this can be changed depending on data format)
+- MAGMA gene analysis output (magma.genes.out)
 
 ### Usage
 **mouse_to_human_gene_mapping.R**:
-1. `Rscript mouse_to_human_gene_mapping.R`
-
-### Glossary
-* **GWAS** - _Genome Wide Association Study_; hypothesis-free method to identify the genetic variants at whole-genome wide level associated with traits such as diseases
+1. `Rscript LEPR_genes_BMI_GWAS_enrichment.R`
