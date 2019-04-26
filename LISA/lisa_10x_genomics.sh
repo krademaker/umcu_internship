@@ -111,7 +111,7 @@ done
 ########## Merging post-QC gene / cell matrices into a single matrix ##########
 post_qc_matrix="$TMPDIR"/10x_genomics/post_qc_matrix.txt
 gunzip partition_*.h5ad_matrix.txt.gz
-paste -d'\t' partition_1.h5ad_matrix.txt <(cut -f2- partition_2.h5ad_matrix.txt) <(cut -f2- partition_3.h5ad_matrix.txt) <(cut -f2- partition_4.h5ad_matrix.txt) | column -t -s'\t' > ${post_qc_matrix}
+paste -d'\t' partition_1.h5ad_matrix.txt <(cut -f2- partition_2.h5ad_matrix.txt) <(cut -f2- partition_3.h5ad_matrix.txt) <(cut -f2- partition_4.h5ad_matrix.txt) | column -s'\t' > ${post_qc_matrix}
 gzip partition_*.h5ad_matrix.txt.gz
 gzip ${post_qc_matrix}
 post_qc_matrix="$TMPDIR"/10x_genomics/post_qc_matrix.txt.gz
