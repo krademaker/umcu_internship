@@ -4,3 +4,9 @@
 *.txt
 *.tab
 *.pyc
+.Rdata
+.Rhistory
+.bed
+.bim
+.fam
+.synonyms
