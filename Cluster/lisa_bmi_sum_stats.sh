@@ -32,7 +32,7 @@ head -n 1 bmi_2018_sum_stats.txt > tmp_header.txt
 	# (2a) MAF filter
 awk '$6>0.01 && $6<0.99' bmi_2018_sum_stats.txt > tmp_maf.txt # Filter out SNPs with MAF < 0.01
 	# (2b) P filter
-awk '$9<0.05' tmp_maf.txt > tmp_maf_p.txt # Filter out SNPs with P >= 0.05
+awk '$9<0.05 && $9>0' tmp_maf.txt > tmp_maf_p.txt # Filter out SNPs with P >= 0.05
 	# (2c) Bi-allelic filter
 awk '$4=="G" || $4=="A" || $4=="C" || $4=="T"' tmp_maf_p.txt > tmp_bialleles.txt # Filter out multi-allelic effect alleles
 awk '$5=="G" || $5=="A" || $5=="C" || $5=="T"' tmp_bialleles.txt > tmp_maf_p_biallelic.txt # Filter out multi-allelic non-effect alleles
