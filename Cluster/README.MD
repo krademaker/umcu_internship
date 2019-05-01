@@ -1,9 +1,9 @@
 ![image](https://user-images.githubusercontent.com/24732704/55021982-f822ec00-4ff9-11e9-802a-649cfdb4892c.png)
 
-## UMC Utrecht internship code repository - LISA scripts
+## UMC Utrecht internship code repository - Cluster computing scripts (LISA/Utrecht HPC)
 
 ### Background
-This folder contains scripts from this repository adapted to run on the LISA supercomputer. For the original scripts that will run on your system as well, please click on 'original' after a script's name, which will redirect you to the original script's folder.
+This folder contains scripts from this repository adapted to run on the LISA or Utrecht HPC cluster computers. For the original scripts that will run on your system as well, please click on 'original' after a script's name, which will redirect you to the original script's folder.
 
 ### Scripts
 - **lisa_10x_genomics.sh** - Script for partitioning, QC and restructuring 10x Genomics mouse brain scRNA-seq data. 
@@ -16,3 +16,4 @@ This folder contains scripts from this repository adapted to run on the LISA sup
 
 ### Usage
 - Please check the [LISA User Guide](https://userinfo.surfsara.nl/systems/lisa/user-guide)
+- Please check the [HPC User Guide](hpcwiki.op.umcutrecht.nl)
