@@ -32,10 +32,10 @@ def save_mean_cluster_level_gene_expression(df, path):
     df.to_csv(path, index=True, header=True, sep='\t')
 
 ########## Set paths to files ##########
-filename_count_data = '{}/Combined_plates_cleaned_Feb2019_genes1500_mit20perc.txt'.format(path)
-filename_cluster_data = '{}/cluster_per_cell_allcells_20clusters.txt'.format(path)
-filename_output_mean_cluster_gene_expression_mouse = '{}/JEPPE_MOUSE.txt'.format(path)
-filename_output_mean_cluster_gene_expression_human = '{}/JEPPE_HUMAN.txt'.format(path)
+filename_count_data = '{}/FILENAME'.format(path)
+filename_cluster_data = '{}/FILENAME.txt'.format(path)
+filename_output_mean_cluster_gene_expression_mouse = '{}/FILENAME.txt'.format(path)
+filename_output_mean_cluster_gene_expression_human = '{}/FILENAME.txt'.format(path)
 filename_output = '{}/FILENAME.txt'.format(path)
 filename_mouse_mapping = '{}/data/ensembl_v96_ensembl_genename_Mm.txt.gz'.format(path)
 filename_mouse_human_mapping = '{}/data/ensembl_v96_Mm_Hs_GRCh37.txt.gz'.format(path)
