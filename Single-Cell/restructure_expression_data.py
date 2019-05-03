@@ -30,6 +30,7 @@ def save_mean_cluster_level_gene_expression(df, path):
     '''
     df['mean'] = df.iloc[:, :].mean(axis=1)
     df.to_csv(path, index=True, header=True, sep='\t')
+    df.drop('mean', axis=1, inplace=True)
 
 ########## Set paths to files ##########
 filename_count_data = '{}/FILENAME'.format(path)
