@@ -47,5 +47,5 @@ boxplot(percentage~ID, clus_comp_full, xlab = 'Cluster ID', ylab = 'Percentage o
 boxplot(percentage~ID, clus_comp_half, xlab = 'Cluster ID', ylab = 'Percentage of total', main = 'Cluster composition of 1/2 dataset (n=653,108)')
 boxplot(percentage~ID, clus_comp_eighth, xlab = 'Cluster ID', ylab = 'Percentage of total', main = 'Cluster composition of 1/8 dataset (n=108,851)')
 boxplot(percentage~ID, clus_comp_twelfth, xlab = 'Cluster ID', ylab = 'Percentage of total', main = 'Cluster composition of 1/12 dataset (n=108,851)')
-boxplot(clus_comp_full$percentage, clus_comp_half$percentage, clus_comp_eighth$percentage, clus_comp_twelfth$percentage, names=c('Full', '1/2', '1/8', '1/12'), col=c('red', 'purple', 'cyan', 'pink'))
+boxplot(clus_comp_full$percentage, clus_comp_half$percentage, clus_comp_eighth$percentage, clus_comp_twelfth$percentage, xlab = 'Dataset', ylab = 'Percentage of total', main = 'Cluster composition of 10x Genomics subsampled datasets', names=c('Full', '1/2', '1/8', '1/12'), col=c('red', 'purple', 'cyan', 'pink'))
 dev.off()
