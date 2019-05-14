@@ -6,7 +6,7 @@
 # DATE:		13 May 2019
 
 ########## Set paths to scripts and files ##########
-visualization_script=~/umcu_internship/Single-Cell/10xGenomics/cluster_composition.R
+visualization_script=~/umcu_internship/Single-Cell/10xGenomics/visualize_cluster_composition.R
 cluster_file_1=/path/to/file
 cluster_file_2=/path/to/file
 cluster_file_N=/path/to/file
