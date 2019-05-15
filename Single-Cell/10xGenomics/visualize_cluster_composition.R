@@ -51,11 +51,11 @@ clust_comp_108k$percentage <- clust_comp_108k$percentage*100
 
 
 ########## Plot cluster compositions ##########
-pdf('cluster_compositions.pdf')
-boxplot(percentage~ID, clust_comp_1m, xlab = 'Cluster ID', ylab = 'Percentage of total', main = 'Cluster composition of full dataset (n=1,306,127)', ylim = c(0.0, 10.0), las = 2, cex.axis=0.5)
-boxplot(percentage~ID, clust_comp_653k, xlab = 'Cluster ID', ylab = 'Percentage of total', main = 'Cluster composition of 1/2 dataset (n=653,064)', ylim = c(0.0, 10.0), las = 2, cex.axis=0.5)
-boxplot(percentage~ID, clust_comp_326k, xlab = 'Cluster ID', ylab = 'Percentage of total', main = 'Cluster composition of 1/4 dataset (n=326,531)', ylim = c(0.0, 10.0), las = 2, cex.axis=0.5)
-boxplot(percentage~ID, clust_comp_163k, xlab = 'Cluster ID', ylab = 'Percentage of total', main = 'Cluster composition of 1/8 dataset (n=163,265)', ylim = c(0.0, 10.0), las = 2, cex.axis=0.5)
-boxplot(percentage~ID, clust_comp_108k, xlab = 'Cluster ID', ylab = 'Percentage of total', main = 'Cluster composition of 1/12 dataset (n=108,844)', ylim = c(0.0, 10.0), las = 2, cex.axis=0.5)
-boxplot(clust_comp_1m$percentage, clust_comp_653k$percentage, clust_comp_326k$percentage, clust_comp_163k$percentage, clust_comp_108k$percentage, xlab = 'Dataset', ylab = 'Percentage of total', main = 'Cluster composition of 10x Genomics subsampled datasets', names=c('Full', '1/2', '1/4', '1/8', '1/12'), col=c('red', 'purple', 'yellow', 'cyan', 'pink'))
+pdf('cluster_composition_10x_genomics.pdf')
+boxplot(percentage~ID, clust_comp_1m, xlab = 'Cluster ID', ylab = 'Percentage of cells', main = 'Cluster composition of full dataset (n=1,306,127)', ylim = c(0.0, 10.0), las = 2, cex.axis=0.5)
+boxplot(percentage~ID, clust_comp_653k, xlab = 'Cluster ID', ylab = 'Percentage of cells', main = 'Cluster composition of 1/2 dataset (n=653,064)', ylim = c(0.0, 10.0), las = 2, cex.axis=0.5)
+boxplot(percentage~ID, clust_comp_326k, xlab = 'Cluster ID', ylab = 'Percentage of cells', main = 'Cluster composition of 1/4 dataset (n=326,531)', ylim = c(0.0, 10.0), las = 2, cex.axis=0.5)
+boxplot(percentage~ID, clust_comp_163k, xlab = 'Cluster ID', ylab = 'Percentage of cells', main = 'Cluster composition of 1/8 dataset (n=163,265)', ylim = c(0.0, 10.0), las = 2, cex.axis=0.5)
+boxplot(percentage~ID, clust_comp_108k, xlab = 'Cluster ID', ylab = 'Percentage of cells', main = 'Cluster composition of 1/12 dataset (n=108,844)', ylim = c(0.0, 10.0), las = 2, cex.axis=0.5)
+boxplot(clust_comp_1m$percentage, clust_comp_653k$percentage, clust_comp_326k$percentage, clust_comp_163k$percentage, clust_comp_108k$percentage, xlab = 'Dataset', ylab = 'Percentage of cells', main = 'Cluster composition of 10x Genomics (subsampled) datasets', names=c('Full', '1/2', '1/4', '1/8', '1/12'), col=c('#00CC00', '#FF3333', '#99CCFF', '#FF9933', '#CC33FF'))
 dev.off()
