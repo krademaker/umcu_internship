@@ -21,10 +21,12 @@ import sys
 ########## Set variables ##########
 filename_input_csv = sys.argv[1]
 filename_cluster_ids = sys.argv[2]
-filename_h5ad_qc = sys.argv[3]
-filename_depict_out = sys.argv[4]
-filename_log_out = sys.argv[5]
+filename_human_mapping = sys.argv[3]
+filename_h5ad_qc = sys.argv[4]
+filename_depict_out = sys.argv[5]
+filename_log_out = sys.argv[6]
 cell_types = {1: "Hep 1", 2: "CD3+ αβ T cells", 3: "Hep 2", 4: "Inflammatory macrophages", 5: "Hep 3", 6: "Hep 4", 7: "Antibody secreting B cells", 8: "NK-like cells", 9: "γδ T cells 1", 10: "Non-inflammatory Macrophages", 11: "Periportal LSECs", 12: "Central venous LSECs", 13: "Portal endothelial cells", 14: "Hep 5", 15: "Hep 6", 16: "Mature B cells", 17: "Cholangiocytes", 18: "γδ T cells 2", 19: "Erthyroid cells", 20: "Stellate cells"}
+
 
 ########## Set Matplotlib & Scanpy settings ##########
 sc.logging.print_versions()
@@ -33,6 +35,20 @@ sc.settings.logfile = filename_log_out
 
 
 ########## Function declaration ##########
+# Function to map gene symbols to gene identifiers
+def to_ensembl(df_hs2hs, df):
+	mapped = []
+	unmapped = []
+	for ix in df.index.tolist():
+		if ix in df_hs2hs.index:
+			mapped.append(df_hs2hs.loc[ix, 'Ensembl Gene ID'])
+		else:
+			unmapped.append(ix)
+	df = df.drop(unmapped,axis=0)
+	df['Ensembl Gene ID'] = pd.Series(mapped, index=df.index)
+	df = df.set_index('Ensembl Gene ID')
+	return df
+
 # Function to normalize to 10k UMI and take log (from https://github.com/perslab/perslab-sc-library/blob/master/dropseq.py)
 def normalize(df):
 	dge = df.values									                        # (Koen: Replaced .as_matrix() with .values as the former is deprecated)
@@ -52,6 +68,10 @@ def standardize(df):
         return df.sub(df.mean(axis=1),axis=0).div(df.std(axis=1),axis=0)
 
 
+########## Load human gene mapping data ##########
+human_mapping = pd.read_csv(filename_human_mapping, compression='gzip', index_col=0, skiprows=1, names=['Ensembl Gene ID'], sep='\t')
+
+
 ########## Load data from CSV ##########
 liver_data = sc.read_csv(filename_input_csv, first_column_names=True)
 liver_data = liver_data.T
@@ -69,9 +89,9 @@ sc.pp.filter_genes(liver_data, min_cells=0)
 
 
 ########## Apply QC ##########
-sc.pp.filter_cells(liver_data, min_counts=1500) 								# Remove cells with fewer than 1500 UMI counts
+sc.pp.filter_cells(liver_data, min_counts=1500) 										# Remove cells with fewer than 1500 UMI counts
 liver_data=liver_data[liver_data.obs['percent_mito'] < 0.5,:]							# Remove cells with a % mtDNA above 5%
-sc.pp.filter_genes(liver_data, min_cells=3)									# Remove genes detected in less than 3 cells
+sc.pp.filter_genes(liver_data, min_cells=3)												# Remove genes detected in less than 3 cells
 
 
 ########## Save data to H5AD for later use ##########
@@ -81,7 +101,8 @@ liver_data.write_h5ad(filename_h5ad_qc)
 ########## Restructure data for DEPICT ##########
 cluster_id_cells = liver_data.obs['cell_labels'].to_frame()
 cluster_id_cells.columns = ['cluster_id']
-normalized = normalize(liver_data.to_df().T)									# Normalize cells
-cluster_averaged = get_average_by_celltype(normalized, cluster_id_cells)					# Average gene expression per cluster
-standardized = standardize(cluster_averaged)			 						# Standardize gene expression across cell types
-standardized.to_csv(filename_depict_out, sep='\t', header=True, index=True)					# Export final matrix
+normalized = normalize(liver_data.to_df().T)											# Normalize cells
+cluster_averaged = get_average_by_celltype(normalized, cluster_id_cells)				# Average gene expression per cluster
+standardized = standardize(cluster_averaged)			 								# Standardize gene expression across cell types
+standardized_ensembl = to_ensembl(human_mapping, standardized)							# Map gene symbols to Ensembl IDs
+standardized_ensembl.to_csv(filename_depict_out, sep='\t', header=True, index=True)		# Export final matrix
