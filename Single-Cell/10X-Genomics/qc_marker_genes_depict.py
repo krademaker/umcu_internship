@@ -56,12 +56,12 @@ def get_mapping(df_mm2mm,df_mm2hs,mm_symbol):
 			# Keep one-to-many mappings, by selecting most idential human gene
 			matches_hs = df_mm2hs.ix[matches_mm,:]
 			if len(matches_hs.shape) > 1:
-				row_index = np.argmax(matches_hs.ix[:,'% Identity with respect to Human gene'].tolist()) 
-				return matches_hs.ix[row_index,'Human Ensembl Gene ID'] 
+				row_index = np.argmax(matches_hs.ix[:,'% Identity with respect to Human gene'].tolist())
+				return matches_hs.ix[row_index,'Human Ensembl Gene ID']
 			else:
-				return matches_hs['Human Ensembl Gene ID'] 
+				return matches_hs['Human Ensembl Gene ID']
 	return 'not_found'
-	
+
 # Function to convert mouse gene identifiers to Ensembl human identifiers (from https://github.com/perslab/perslab-sc-library/blob/master/gene_mapping.py)
 def to_ensembl(df_mm2mm,df_mm2hs,df):
 	rows2drop = []
@@ -80,7 +80,7 @@ def to_ensembl(df_mm2mm,df_mm2hs,df):
 def normalize(df):
 	dge = df.values									# (Koen: Replaced .as_matrix() with .values as the former is deprecated)
 	col_sums = np.apply_along_axis(sum,0,dge)
-	mat_dge_norm =  np.log( dge/[float(x) for x in col_sums] * 10000 + 1 ) 
+	mat_dge_norm =  np.log( dge/[float(x) for x in col_sums] * 10000 + 1 )
 	df_dge_norm = pd.DataFrame(mat_dge_norm,index=df.index,columns=df.columns)
 	df_dge_norm.drop(df_dge_norm.index[df_dge_norm.sum(axis=1) == 0],axis=0,inplace=True)
 	return df_dge_norm
@@ -120,7 +120,6 @@ sc_data.obs['n_counts'] = sc_data.X.sum(axis=1).A1
 sc.pp.filter_cells(sc_data, min_genes=0)
 sc.pp.filter_genes(sc_data, min_cells=0)
 
-sc_data = sc.read_h5ad(filename_h5ad_default)
 mito_mean=np.mean(sc_data.obs['percent_mito'])
 mito_sd=np.std(sc_data.obs['percent_mito'])
 
@@ -167,7 +166,7 @@ sc_data.write_h5ad(filename_h5ad_qc_markers)
 ########## Restructure data for DEPICT ##########
 cluster_id_cells = sc_data.obs['cell_labels'].to_frame()
 cluster_id_cells.columns = ['cluster_id']
-normalized = normalize(sc_data.to_df().T)							# Normalize cells 
+normalized = normalize(sc_data.to_df().T)							# Normalize cells
 cluster_averaged = get_average_by_celltype(normalized, cluster_id_cells)			# Average gene expression per cluster
 normalized = None
 cluster_averaged.to_csv('tmp_averaged.tsv', sep='\t')						# Reload data as DataFrame, work-around for Pandas forcing CategoricalIndex on Scanpy output
