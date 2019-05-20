@@ -4,8 +4,8 @@
 # PARAMETERS:   - H5AD object with pre-qc data (sc_data_pre_qc)
 #               - H5AD object with post_qc data (sc_data_post_qc)
 #               - Number of cells, used in plot titles (n_cells)
-# AUTHOR: Koen Rademaker
-# DATE: 16 May 2019
+# AUTHOR:	Koen Rademaker
+# DATE:		17 May 2019
 
 
 ########## Import packages and settings ##########
@@ -16,6 +16,7 @@ import sys
 import matplotlib
 import matplotlib.pyplot as plt
 from matplotlib import rcParams
+
 
 ########## Set settings ##########
 matplotlib.use('Agg')
@@ -28,6 +29,7 @@ matplotlib.style.use('seaborn-bright')
 sc_data_pre_qc = sc.read_h5ad(sys.argv[1])
 sc_data_post_qc = sc.read_h5ad(sys.argv[2])
 n_cells = sys.argv[3]
+
 
 ########## Calculate mean and standard deviation ##########
 mtdna_mean = np.mean(sc_data_pre_qc.obs['percent_mito'])*100
@@ -100,7 +102,7 @@ plt.close()
 plt.hist(np.log10(sc_data_post_qc.obs['n_counts']), bins=100, color='red')
 plt.xlabel('UMIs per cell (log10)')
 plt.ylabel('Frequency')
-plt.title('UMI distribution for 108K cells after QC')
+plt.title('UMI distribution for +'n_cells'+ cells after QC')
 plt.tight_layout()
 plt.show()
 plt.savefig('POST_QC_umi_distribution.png', dpi=600)
@@ -110,7 +112,7 @@ plt.close()
 plt.hist(sc_data_post_qc.obs['n_genes'], bins=100, color='red')
 plt.xlabel('Genes per cell')
 plt.ylabel('Frequency')
-plt.title('Gene distribution for 108K cells after QC')
+plt.title('Gene distribution for '+n_cells+' cells after QC')
 plt.tight_layout()
 plt.show()
 plt.savefig('POST_QC_gene_distribution.png', dpi=600)
@@ -121,7 +123,7 @@ sc_data_post_qc.obs['percent_mito'] = sc_data_post_qc.obs['percent_mito'].apply(
 plt.hist(sc_data_post_qc.obs['percent_mito'], bins=100, range=[0, 20], color='red')
 plt.xlabel('% mtDNA per cell')
 plt.ylabel('Frequency')
-plt.title('% mtDNA distribution')
+plt.title('% mtDNA distribution for '+n_cells+' cells after QC')
 plt.tight_layout()
 plt.show()
 plt.savefig('POST_QC_mtdna_distribution.png', dpi=600)
