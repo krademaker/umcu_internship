@@ -10,7 +10,7 @@
 #		- Output of DEPICT restructuring (filename_depict_out)
 #		- Output logging file (filename_log_out)
 # AUTHOR:	Koen Rademaker, GitHub repository 'perslab-sc-library' (https://github.com/perslab/perslab-sc-library, customized code for own purposes)
-# DATE:		17 May 2019
+# DATE:		20 May 2019
 
 
 ########## Import packages ##########
@@ -168,12 +168,10 @@ cluster_id_cells = sc_data.obs['cell_labels'].to_frame()
 cluster_id_cells.columns = ['cluster_id']
 normalized = normalize(sc_data.to_df().T)							# Normalize cells
 cluster_averaged = get_average_by_celltype(normalized, cluster_id_cells)			# Average gene expression per cluster
-normalized = None
-cluster_averaged.to_csv('tmp_averaged.tsv', sep='\t')						# Reload data as DataFrame, work-around for Pandas forcing CategoricalIndex on Scanpy output
+'''
+cluster_averaged.to_csv('tmp_averaged.tsv', sep='\t')						# Reload data as DataFrame, optional work-around for Pandas forcing CategoricalIndex on Scanpy output
 cluster_averaged = pd.read_csv('tmp_averaged.tsv', sep='\t', index_col=0)
+'''
 mapped_to_human, not_mapped = to_ensembl(mouse_mapping, mouse_to_human, cluster_averaged) 	# Map to human genes
-cluster_averaged = None
-not_mapped = None
 standardized = standardize(mapped_to_human)			 				# Standardize gene expression across cell types
-mapped_to_human = None
 standardized.to_csv(filename_depict_out, sep='\t', header=True, index=True)			# Export final matrix
