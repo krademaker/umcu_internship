@@ -49,7 +49,7 @@ sc.settings.set_figure_params(dpi=600)
 ########## Function declaration ##########
 # Function to map from Mm symbol to Hs Ensembl gene identifiers (from https://github.com/perslab/perslab-sc-library/blob/master/gene_mapping.py)
 def get_mapping(df_mm2mm,df_mm2hs,mm_symbol):
-	if mm_symbol in df_mm2mm.index:							# (Koen: Removed call to PDB debugging)
+	if mm_symbol in df_mm2mm.index:							        # (Koen: Removed call to PDB debugging)
 		# Discard many-to-many mappings (e.g. Pou6f1, which maps to ENSMUSG00000009739 and ENSMUSG00000098598)
 		matches_mm = df_mm2mm.ix[mm_symbol,'Ensembl Gene ID']
 		if isinstance(matches_mm, str) and matches_mm in df_mm2hs.index: # isinstance check fails if several matches for mm_symbol
@@ -68,7 +68,7 @@ def to_ensembl(df_mm2mm,df_mm2hs,df):
 	mapping = []
 	for ix in df.index.tolist():
 		hs_ensembl_id = str(get_mapping(df_mm2mm,df_mm2hs,ix))
-		if hs_ensembl_id == 'not_found' or hs_ensembl_id == 'nan':		# (Koen: Updated to exclude both not_found and nan values)
+		if hs_ensembl_id == 'not_found' or hs_ensembl_id == 'nan':		        # (Koen: Updated to exclude both not_found and nan values)
 			rows2drop.append(ix)
 		else:
 			mapping.append(hs_ensembl_id)
@@ -78,7 +78,7 @@ def to_ensembl(df_mm2mm,df_mm2hs,df):
 
 # Function to normalize to 10k UMI and take log (from https://github.com/perslab/perslab-sc-library/blob/master/dropseq.py)
 def normalize(df):
-	dge = df.values									# (Koen: Replaced .as_matrix() with .values as the former is deprecated)
+	dge = df.values									        # (Koen: Replaced .as_matrix() with .values as the former is deprecated)
 	col_sums = np.apply_along_axis(sum,0,dge)
 	mat_dge_norm =  np.log( dge/[float(x) for x in col_sums] * 10000 + 1 )
 	df_dge_norm = pd.DataFrame(mat_dge_norm,index=df.index,columns=df.columns)
@@ -88,7 +88,7 @@ def normalize(df):
 # Function to average cells by cluster (from https://github.com/perslab/perslab-sc-library/blob/master/dropseq.py)
 def get_average_by_celltype(df_dge,df_cluster):
 	df_cluster = df_cluster.merge(df_dge.transpose(),left_index=True,right_index=True,how='inner').groupby('cluster_id',sort=False).mean().transpose()
-	df_cluster.columns = df_cluster.columns.astype(int)				# (Koen: Added code to sort columns in ascending order)
+	df_cluster.columns = df_cluster.columns.astype(int)			        	# (Koen: Added code to sort columns in ascending order)
 	df_cluster.columns.sort_index(axis=1, inplace=True)
 	return df_cluster
 
@@ -140,13 +140,13 @@ sc.pl.scatter(sc_data, x='n_counts', y='n_genes', save='_counts_genes_pre_qc.png
 
 
 ########## Apply QC ##########
-sc.pp.filter_cells(sc_data, min_counts=1) 						# Remove cells with no UMI counts
-sc.pp.filter_cells(sc_data, min_counts=umi_mean-3*umi_sd)				# Remove cells with a UMI count 3 SDs below the mean
-sc.pp.filter_cells(sc_data, max_counts=umi_mean+3*umi_sd)				# Remove cells with a UMI count 3 SDs above the mean
-sc.pp.filter_cells(sc_data, min_genes=1000)						# Remove cells with less than 1000 genes
-sc.pp.filter_cells(sc_data, max_genes=gene_mean+3*gene_sd)				# Remove cells with a gene count 3 SDs above the mean
-sc_data=sc_data[sc_data.obs['percent_mito'] < mito_mean+3*mito_sd,:]			# Remove cells with a % mtDNA 3 SDs above the mean
-sc.pp.filter_genes(sc_data, min_counts=1)						# Remove genes with no expression
+sc.pp.filter_cells(sc_data, min_counts=1) 						        # Remove cells with no UMI counts
+sc.pp.filter_cells(sc_data, min_counts=umi_mean-3*umi_sd)				        # Remove cells with a UMI count 3 SDs below the mean
+sc.pp.filter_cells(sc_data, max_counts=umi_mean+3*umi_sd)				        # Remove cells with a UMI count 3 SDs above the mean
+sc.pp.filter_cells(sc_data, min_genes=1000)						        # Remove cells with less than 1000 genes
+sc.pp.filter_cells(sc_data, max_genes=gene_mean+3*gene_sd)				        # Remove cells with a gene count 3 SDs above the mean
+sc_data=sc_data[sc_data.obs['percent_mito'] < mito_mean+3*mito_sd,:]			        # Remove cells with a % mtDNA 3 SDs above the mean
+sc.pp.filter_genes(sc_data, min_counts=1)						        # Remove genes with no expression
 
 
 ########## Plot cell quality metrics ##########
@@ -168,10 +168,8 @@ cluster_id_cells = sc_data.obs['cell_labels'].to_frame()
 cluster_id_cells.columns = ['cluster_id']
 normalized = normalize(sc_data.to_df().T)							# Normalize cells
 cluster_averaged = get_average_by_celltype(normalized, cluster_id_cells)			# Average gene expression per cluster
-'''
-cluster_averaged.to_csv('tmp_averaged.tsv', sep='\t')						# Reload data as DataFrame, optional work-around for Pandas forcing CategoricalIndex on Scanpy output
-cluster_averaged = pd.read_csv('tmp_averaged.tsv', sep='\t', index_col=0)
-'''
+# cluster_averaged.to_csv('tmp_averaged.tsv', sep='\t')						# Reload data as DataFrame, optional work-around for Pandas forcing CategoricalIndex on Scanpy output
+# cluster_averaged = pd.read_csv('tmp_averaged.tsv', sep='\t', index_col=0)
 mapped_to_human, not_mapped = to_ensembl(mouse_mapping, mouse_to_human, cluster_averaged) 	# Map to human genes
 standardized = standardize(mapped_to_human)			 				# Standardize gene expression across cell types
 standardized.to_csv(filename_depict_out, sep='\t', header=True, index=True)			# Export final matrix

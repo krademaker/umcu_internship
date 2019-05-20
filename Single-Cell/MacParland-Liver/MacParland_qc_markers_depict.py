@@ -7,7 +7,7 @@
 #		- Output of DEPICT restructuring (filename_depict_out)
 #		- Output logging file (filename_log_out)
 # AUTHOR:	Koen Rademaker, GitHub repository 'perslab-sc-library' (https://github.com/perslab/perslab-sc-library, customized code for own purposes)
-# DATE:		17 May 2019
+# DATE:	        20 May 2019
 
 
 ########## Import packages ##########
