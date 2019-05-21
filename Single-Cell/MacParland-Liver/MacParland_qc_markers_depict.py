@@ -37,17 +37,22 @@ sc.settings.logfile = filename_log_out
 ########## Function declaration ##########
 # Function to map gene symbols to gene identifiers
 def to_ensembl(df_hs2hs, df):
-	mapped = []
-	unmapped = []
+	gene_symbols = []
+	gene_ids = []
+	gene_data = []
 	for ix in df.index.tolist():
 		if ix in df_hs2hs.index:
-			mapped.append(df_hs2hs.loc[ix, 'Ensembl Gene ID'])
-		else:
-			unmapped.append(ix)
-	df = df.drop(unmapped,axis=0)
-	df['Ensembl Gene ID'] = pd.Series(mapped, index=df.index)
-	df = df.set_index('Ensembl Gene ID')
-	return df
+			if type(df_hs2hs.loc[ix, 'Ensembl Gene ID']) != str:
+				for duplicate in df_hs2hs.loc[ix, 'Ensembl Gene ID']:
+					gene_symbols.append(ix)
+					gene_ids.append(duplicate)
+					gene_data.append(df.loc[ix])
+			else:
+				gene_symbols.append(ix)
+				gene_ids.append(df_hs2hs.loc[ix, 'Ensembl Gene ID'])
+				gene_data.append(df.loc[ix])
+	multi_index = [np.array(gene_symbols), np.array(gene_ids)]
+	return pd.DataFrame(gene_data, index=multi_index)
 
 # Function to normalize to 10k UMI and take log (from https://github.com/perslab/perslab-sc-library/blob/master/dropseq.py)
 def normalize(df):
