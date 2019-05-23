@@ -9,7 +9,7 @@
 library(ggplot2)
 
 ########## Load input data ##########
-input_data <- read.csv('~/Desktop/10x_cluster_compositions.csv')
+input_data <- read.csv('~/umcu_internship/Single-Cell/data/10x_cluster_compositions.csv')
 
 ########## Plot cluster composition and save to file ##########
 pdf('cluster_composition_10x_genomics.pdf', paper='a4r', width=11.69, height=8.27)
