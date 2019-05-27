@@ -6,10 +6,10 @@
 #SBATCH --mail-user=K.J.Rademaker-2@umcutrecht.nl
 
 
-# ABOUT: Script to process height summary statistics data with (1) MAF > 0.01, (2) P < 0.05, (3) bi-allelic variants, (4) presence in 1000 Genomes Project (1KGP)
+# ABOUT: Script to process 2018 height summary statistics data with (1) MAF > 0.01, (2) P < 0.05, (3) bi-allelic variants, (4) presence in 1000 Genomes Project (1KGP)
 # REQUIRED: Yengo et al. (2018) height summary statistics, 1KGP reference SNPs
 # AUTHOR: Koen Rademaker
-# DATE: 30 March 2019
+# DATE: 27 May 2019
 
 
 # (1) File organization
