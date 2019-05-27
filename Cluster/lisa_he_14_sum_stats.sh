@@ -6,44 +6,44 @@
 #SBATCH --mail-user=K.J.Rademaker-2@umcutrecht.nl
 
 
-# ABOUT: Script to process 2014 BMI (Body Mass Index) summary statistics data with (1) MAF > 0.01, (2) P < 0.05, (3) bi-allelic variants, (4) presence in 1000 Genomes Project (1KGP)
-# REQUIRED: Wood et al. (2014) BMI summary statistics, 1KGP reference SNPs and BIM file
+# ABOUT: Script to process 2014 height summary statistics data with (1) MAF > 0.01, (2) P < 0.05, (3) bi-allelic variants, (4) presence in 1000 Genomes Project (1KGP)
+# REQUIRED: Wood et al. (2014) height summary statistics, 1KGP reference SNPs and BIM file
 # AUTHOR: Koen Rademaker
 # DATA: 27 May 2019
 
 
 # (1) File organization
-work_dir="$TMPDIR"/bmi # Create work directory
+work_dir="$TMPDIR"/he # Create work directory
 mkdir ${work_dir}
-out_dir="$TMPDIR"/bmi/output # Create output directory
+out_dir="$TMPDIR"/he/output # Create output directory
 mkdir ${out_dir}
 
-log_file=${out_dir}/log_bmi.txt
-output_file=${out_dir}/processed_bmi_2015_sum_stats.txt
-depict_file=${out_dir}/depict_bmi_2015.txt
+log_file=${out_dir}/log_he.txt
+output_file=${out_dir}/processed_he_2014_sum_stats.txt
+depict_file=${out_dir}/depict_he_2014.txt
 
-cp $HOME/Koen/GWAS_data/sum_stats/bmi_2015_sum_stats.txt ${work_dir} # Copy summary statistics to work directory
+cp $HOME/Koen/GWAS_data/sum_stats/he_2014_sum_stats.txt ${work_dir} # Copy summary statistics to work directory
 cp $HOME/1K/g1000_eur.synonyms ${work_dir} # Copy SNP synonyms to work directory
 cp $HOME/1K/g1000_eur.bim ${work_dir} # Copy BIM file to work directory
 cd ${work_dir} # Move to work directory
-head -n 1 bmi_2015_sum_stats.txt > tmp_header.txt
+head -n 1 he_2014_sum_stats.txt > tmp_header.txt
 
 
 # (2) Data processing
     # (2a) Add chromosome and base-pair information
-tail -n+2 bmi_2015_sum_stats.txt | cut -f 1 > tmp_rs # Extract column 'SNP'
+tail -n+2 he_2014_sum_stats.txt | cut -f 1 > tmp_rs # Extract column 'SNP'
 awk 'NR == FNR{c[$1]++;next};c[$2] > 0' tmp_rs g1000_eur.bim > tmp_rs_in_g1000 # Extract SNPs occurring in both files
 cut -f2,1,4 tmp_rs_in_g1000 > tmp_rs_in_g1000_chr_rs_bp # Extract columns 'CHR', 'SNP' and 'BP'
 sort -k2 tmp_rs_in_g1000_chr_rs_bp > tmp_rs_in_g1000_chr_rs_bp_sorted # Sort by rs ID
-sort -k1 bmi_2015_sum_stats.txt > bmi_2015_sum_stats_sorted.txt # Sort by rs ID
-awk -F'\t' 'NR==FNR{c[$2]++;next};c[$1] > 0' tmp_rs_in_g1000_chr_rs_bp_sorted bmi_2015_sum_stats_sorted.txt > bmi_2015_sum_stats_sorted_in_g1000.txt # Extract SNPs occurring in both files
-sort -k1 -V bmi_2015_sum_stats_sorted_in_g1000.txt > tmp # Sort summary statistics by rs ID
-mv tmp bmi_2015_sum_stats_sorted_in_g1000.txt
+sort -k1 he_2014_sum_stats.txt > he_2014_sum_stats_sorted.txt # Sort by rs ID
+awk -F'\t' 'NR==FNR{c[$2]++;next};c[$1] > 0' tmp_rs_in_g1000_chr_rs_bp_sorted he_2014_sum_stats_sorted.txt > he_2014_sum_stats_sorted_in_g1000.txt # Extract SNPs occurring in both files
+sort -k1 -V he_2014_sum_stats_sorted_in_g1000.txt > tmp # Sort summary statistics by rs ID
+mv tmp he_2014_sum_stats_sorted_in_g1000.txt
 sort -k2 -V tmp_rs_in_g1000_chr_rs_bp_sorted > tmp # Sort 'CHR', 'SNP' and 'BP' data by rs ID
 mv tmp tmp_rs_in_g1000_chr_rs_bp_sorted
-join -t $'\t' tmp_rs_in_g1000_chr_rs_bp_sorted bmi_2015_sum_stats_sorted_in_g1000.txt -1 2 -2 1 > bmi_2015_sum_stats_chr_bp.txt # Join two files, adding chromosome and base-pair values
+join -t $'\t' tmp_rs_in_g1000_chr_rs_bp_sorted he_2014_sum_stats_sorted_in_g1000.txt -1 2 -2 1 > he_2014_sum_stats_chr_bp.txt # Join two files, adding chromosome and base-pair values
 	# (2b) MAF filter
-awk '$6>0.01 && $6<0.99' bmi_2015_sum_stats_chr_bp.txt > tmp_maf.txt # Filter out SNPs with MAF < 0.01
+awk '$6>0.01 && $6<0.99' he_2014_sum_stats_chr_bp.txt > tmp_maf.txt # Filter out SNPs with MAF < 0.01
 	# (2c) P filter
 awk '$9<0.05 && $9>0' tmp_maf.txt > tmp_maf_p.txt # Filter out SNPs with P >= 0.05
 	# (2d) Bi-allelic filter
@@ -60,7 +60,7 @@ awk 'BEGIN { OFS="\t"; print "SNP\tChr\tPos\tP" } FNR>1 {print $1,$2,$3,$9}' ${o
 
 # (3) File export and cleaning
 	# (3a) Summarize filter effect size
-wc -l bmi_2015_sum_stats.txt >> ${log_file} # Original file size
+wc -l he_2014_sum_stats.txt >> ${log_file} # Original file size
 wc -l tmp_maf.txt >> ${log_file} # Effect of MAF filter
 wc -l tmp_maf_p.txt >> ${log_file} # Effect of P filter
 wc -l tmp_maf_p_biallelic.txt >> ${log_file} # Effect of bi-allelic filter
