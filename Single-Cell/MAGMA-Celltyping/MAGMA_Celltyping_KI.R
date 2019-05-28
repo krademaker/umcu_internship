@@ -18,6 +18,10 @@ library(MAGMA.Celltyping)
 
 ########## Set variables ##########
 genome_ref_dir = '~/Git/umcu_internship/Single-Cell/MAGMA-Celltyping/g1000_eur'
+if(!file.exists(sprintf("%s/g1000_eur.bed", genome_ref_dir))){
+    download.file("https://ctg.cncr.nl/software/MAGMA/ref_data/g1000_eur.zip",destfile=sprintf("%s.zip", genome_ref_dir))
+    unzip(sprintf("%s.zip",genome_ref_dir), exdir=genome_ref_dir)
+}
 genome_ref_path = sprintf('%s/g1000_eur', genome_ref_dir)
 
 sum_stats_dir = '~/Git/umcu_internship/Single-Cell/MAGMA-Celltyping/Summary-Statistics/'
