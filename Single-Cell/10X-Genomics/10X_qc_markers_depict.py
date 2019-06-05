@@ -10,7 +10,7 @@
 #		- Output of DEPICT restructuring (filename_depict_out)
 #		- Output logging file (filename_log_out)
 # AUTHOR:	Koen Rademaker, GitHub repository 'perslab-sc-library' (https://github.com/perslab/perslab-sc-library, customized code for own purposes)
-# DATE:		20 May 2019
+# DATE:		5 June 2019
 
 
 ########## Import packages ##########
@@ -96,6 +96,16 @@ def get_average_by_celltype(df_dge,df_cluster):
 def standardize(df):
         return df.sub(df.mean(axis=1),axis=0).div(df.std(axis=1),axis=0)
 
+# Function to remove cells of specific clusters from the AnnData object
+def remove_cluster_cells(sc_data_obj, clusters_to_remove):
+	cells_to_remove = []
+	for cluster in clusters_to_remove:
+		cells = sc_data_obj[sc_data_obj.obs['cell_labels']==str(cluster)].obs_names.tolist()
+		for cell in cells:
+			cells_to_remove.append(cell)
+	cells_to_keep = [cell for cell in sc_data_obj.obs_names if (cell not in cells_to_remove)]
+	return sc_data_obj[cells_to_keep, :]
+
 
 ########## Load mouse and human gene mapping data ##########
 mouse_mapping = pd.read_csv(filename_mouse_mapping, compression='gzip', index_col=1, sep='\t')
@@ -147,6 +157,10 @@ sc.pp.filter_cells(sc_data, min_genes=1000)						        # Remove cells with les
 sc.pp.filter_cells(sc_data, max_genes=gene_mean+3*gene_sd)				        # Remove cells with a gene count 3 SDs above the mean
 sc_data=sc_data[sc_data.obs['percent_mito'] < mito_mean+3*mito_sd,:]			        # Remove cells with a % mtDNA 3 SDs above the mean
 sc.pp.filter_genes(sc_data, min_counts=1)						        # Remove genes with no expression
+
+
+########## Remove cells from specific clusters ##########
+sc_data = remove_cluster_cells(sc_data, [12, 18, 19, 20])				# Remove cells from clusters 12, 18, 19 and 20
 
 
 ########## Plot cell quality metrics ##########
