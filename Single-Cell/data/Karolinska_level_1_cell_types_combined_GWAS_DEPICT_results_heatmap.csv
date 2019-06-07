@@ -1,0 +1,145 @@
+GWAS,Cell type,P,Significant
+SCZ (2018),Astrocytes / Ependymal,0.91,FALSE
+SCZ (2018),Dopaminergic neuron,0.28,FALSE
+SCZ (2018),DA neuroblast,1,FALSE
+SCZ (2018),Embr. DA neuron,0.98,FALSE
+SCZ (2018),Embr. GABA neuron,0.36,FALSE
+SCZ (2018),Embr. midbrain nucl. neuron,0.98,FALSE
+SCZ (2018),Endothelial-Mural,1,FALSE
+SCZ (2018),Hypoth. DA neurons,0.01,FALSE
+SCZ (2018),Hypoth. GABAergic neuron,0.16,FALSE
+SCZ (2018),Hypoth. glutamat. neuron,0.9,FALSE
+SCZ (2018),Interneurons,2.39E-05,TRUE
+SCZ (2018),Medium spiny neuron,0.000326,TRUE
+SCZ (2018),Microglia,0.99,FALSE
+SCZ (2018),Neural progenitors,1,FALSE
+SCZ (2018),Neuroblasts,0.87,FALSE
+SCZ (2018),Oligodendrocyte precursors,0.3,FALSE
+SCZ (2018),Oligodendrocytes,0.51,FALSE
+SCZ (2018),Oxytocin/vasopressin neurons,0.78,FALSE
+SCZ (2018),Pyramidal (CA1),4.97E-05,TRUE
+SCZ (2018),Pyramidal (SS),3.38E-05,TRUE
+SCZ (2018),Radial glia like,0.94,FALSE
+SCZ (2018),Serotonergic neuron,0.93,FALSE
+SCZ (2018),Striatal interneuron,0.27,FALSE
+SCZ (2018),Vasc. leptomeningeal cells,1,FALSE
+MDD (2018),Astrocytes / Ependymal,0.99,FALSE
+MDD (2018),Dopaminergic neuron,0.47,FALSE
+MDD (2018),DA neuroblast,0.5,FALSE
+MDD (2018),Embr. DA neuron,0.33,FALSE
+MDD (2018),Embr. GABA neuron,0.02,FALSE
+MDD (2018),Embr. midbrain nucl. neuron,0.12,FALSE
+MDD (2018),Endothelial-Mural,0.63,FALSE
+MDD (2018),Hypoth. DA neurons,0.14,FALSE
+MDD (2018),Hypoth. GABAergic neuron,0.79,FALSE
+MDD (2018),Hypoth. glutamat. neuron,0.59,FALSE
+MDD (2018),Interneurons,0.14,FALSE
+MDD (2018),Medium spiny neuron,0.47,FALSE
+MDD (2018),Microglia,0.99,FALSE
+MDD (2018),Neural progenitors,0.83,FALSE
+MDD (2018),Neuroblasts,0.13,FALSE
+MDD (2018),Oligodendrocyte precursors,0.66,FALSE
+MDD (2018),Oligodendrocytes,0.71,FALSE
+MDD (2018),Oxytocin/vasopressin neurons,0.7,FALSE
+MDD (2018),Pyramidal (CA1),0.13,FALSE
+MDD (2018),Pyramidal (SS),0.09,FALSE
+MDD (2018),Radial glia like,0.9,FALSE
+MDD (2018),Serotonergic neuron,0.1,FALSE
+MDD (2018),Striatal interneuron,0.24,FALSE
+MDD (2018),Vasc. leptomeningeal cells,0.46,FALSE
+Intelligence (2018),Astrocytes / Ependymal,0.52,FALSE
+Intelligence (2018),Dopaminergic neuron,0.41,FALSE
+Intelligence (2018),DA neuroblast,0.95,FALSE
+Intelligence (2018),Embr. DA neuron,0.85,FALSE
+Intelligence (2018),Embr. GABA neuron,0.2,FALSE
+Intelligence (2018),Embr. midbrain nucl. neuron,0.89,FALSE
+Intelligence (2018),Endothelial-Mural,0.21,FALSE
+Intelligence (2018),Hypoth. DA neurons,0.26,FALSE
+Intelligence (2018),Hypoth. GABAergic neuron,0.43,FALSE
+Intelligence (2018),Hypoth. glutamat. neuron,0.7,FALSE
+Intelligence (2018),Interneurons,0.42,FALSE
+Intelligence (2018),Medium spiny neuron,0.68,FALSE
+Intelligence (2018),Microglia,0.33,FALSE
+Intelligence (2018),Neural progenitors,0.36,FALSE
+Intelligence (2018),Neuroblasts,0.63,FALSE
+Intelligence (2018),Oligodendrocyte precursors,0.84,FALSE
+Intelligence (2018),Oligodendrocytes,0.4,FALSE
+Intelligence (2018),Oxytocin/vasopressin neurons,0.67,FALSE
+Intelligence (2018),Pyramidal (CA1),0.16,FALSE
+Intelligence (2018),Pyramidal (SS),0.16,FALSE
+Intelligence (2018),Radial glia like,0.16,FALSE
+Intelligence (2018),Serotonergic neuron,0.19,FALSE
+Intelligence (2018),Striatal interneuron,0.59,FALSE
+Intelligence (2018),Vasc. leptomeningeal cells,0.87,FALSE
+EA (2018),Astrocytes / Ependymal,1,FALSE
+EA (2018),Dopaminergic neuron,0.66,FALSE
+EA (2018),DA neuroblast,0.56,FALSE
+EA (2018),Embr. DA neuron,0.81,FALSE
+EA (2018),Embr. GABA neuron,0.0031,FALSE
+EA (2018),Embr. midbrain nucl. neuron,0.16,FALSE
+EA (2018),Endothelial-Mural,1,FALSE
+EA (2018),Hypoth. DA neurons,0.02,FALSE
+EA (2018),Hypoth. GABAergic neuron,0.7,FALSE
+EA (2018),Hypoth. glutamat. neuron,0.9,FALSE
+EA (2018),Interneurons,5.4E-07,TRUE
+EA (2018),Medium spiny neuron,1.84E-05,TRUE
+EA (2018),Microglia,1,FALSE
+EA (2018),Neural progenitors,0.33,FALSE
+EA (2018),Neuroblasts,0.21,FALSE
+EA (2018),Oligodendrocyte precursors,1,FALSE
+EA (2018),Oligodendrocytes,0.93,FALSE
+EA (2018),Oxytocin/vasopressin neurons,0.33,FALSE
+EA (2018),Pyramidal (CA1),2.23E-05,TRUE
+EA (2018),Pyramidal (SS),3.96E-06,TRUE
+EA (2018),Radial glia like,0.9,FALSE
+EA (2018),Serotonergic neuron,0.37,FALSE
+EA (2018),Striatal interneuron,0.08,FALSE
+EA (2018),Vasc. leptomeningeal cells,1,FALSE
+BMI (2015),Serotonergic neuron,0.00635,FALSE
+BMI (2015),Oxytocin/vasopressin neurons,0.00648,FALSE
+BMI (2015),Hypoth. GABAergic neuron,0.0076,FALSE
+BMI (2015),Hypoth. DA neurons,0.00781,FALSE
+BMI (2015),Hypoth. glutamat. neuron,0.02,FALSE
+BMI (2015),Embr. GABA neuron,0.02,FALSE
+BMI (2015),Dopaminergic neuron,0.06,FALSE
+BMI (2015),Striatal interneuron,0.17,FALSE
+BMI (2015),Neuroblasts,0.18,FALSE
+BMI (2015),DA neuroblast,0.19,FALSE
+BMI (2015),Embr. DA neuron,0.21,FALSE
+BMI (2015),Interneurons,0.23,FALSE
+BMI (2015),Pyramidal (SS),0.4,FALSE
+BMI (2015),Embr. midbrain nucl. neuron,0.58,FALSE
+BMI (2015),Medium spiny neuron,0.59,FALSE
+BMI (2015),Oligodendrocyte precursors,0.62,FALSE
+BMI (2015),Pyramidal (CA1),0.69,FALSE
+BMI (2015),Neural progenitors,0.84,FALSE
+BMI (2015),Radial glia like,0.93,FALSE
+BMI (2015),Astrocytes / Ependymal,0.93,FALSE
+BMI (2015),Oligodendrocytes,0.94,FALSE
+BMI (2015),Microglia,0.96,FALSE
+BMI (2015),Vasc. leptomeningeal cells,1,FALSE
+BMI (2015),Endothelial-Mural,1,FALSE
+Breast cancer (2017),Radial glia like,0.000161,TRUE
+Breast cancer (2017),Neural progenitors,0.000345,TRUE
+Breast cancer (2017),Neuroblasts,0.02,FALSE
+Breast cancer (2017),Embr. midbrain nucl. neuron,0.05,FALSE
+Breast cancer (2017),Oligodendrocyte precursors,0.07,FALSE
+Breast cancer (2017),Embr. GABA neuron,0.14,FALSE
+Breast cancer (2017),Embr. DA neuron,0.15,FALSE
+Breast cancer (2017),Endothelial-Mural,0.19,FALSE
+Breast cancer (2017),Vasc. leptomeningeal cells,0.21,FALSE
+Breast cancer (2017),DA neuroblast,0.25,FALSE
+Breast cancer (2017),Microglia,0.35,FALSE
+Breast cancer (2017),Astrocytes / Ependymal,0.37,FALSE
+Breast cancer (2017),Oligodendrocytes,0.45,FALSE
+Breast cancer (2017),Serotonergic neuron,0.76,FALSE
+Breast cancer (2017),Hypoth. GABAergic neuron,0.85,FALSE
+Breast cancer (2017),Hypoth. glutamat. neuron,0.92,FALSE
+Breast cancer (2017),Pyramidal (CA1),0.92,FALSE
+Breast cancer (2017),Pyramidal (SS),0.96,FALSE
+Breast cancer (2017),Interneurons,0.98,FALSE
+Breast cancer (2017),Medium spiny neuron,0.98,FALSE
+Breast cancer (2017),Striatal interneuron,0.99,FALSE
+Breast cancer (2017),Hypoth. DA neurons,0.99,FALSE
+Breast cancer (2017),Oxytocin/vasopressin neurons,1,FALSE
+Breast cancer (2017),Dopaminergic neuron,1,FALSE

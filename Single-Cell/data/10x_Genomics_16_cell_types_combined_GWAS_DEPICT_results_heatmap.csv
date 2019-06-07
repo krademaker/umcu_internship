@@ -1,0 +1,97 @@
+GWAS,Cell type,P,Significant
+Breast cancer (2017),Vasc. endothelial cells,0.03,FALSE
+Breast cancer (2017),Enteric neurons,0.04,FALSE
+Breast cancer (2017),Microglia,0.07,FALSE
+Breast cancer (2017),Interneurons (2),0.19,FALSE
+Breast cancer (2017),Enteric glial cells,0.22,FALSE
+Breast cancer (2017),Endothelial cells,0.29,FALSE
+Breast cancer (2017),Oligodendrocytes,0.33,FALSE
+Breast cancer (2017),Neurons,0.37,FALSE
+Breast cancer (2017),Astrocytes (2),0.55,FALSE
+Breast cancer (2017),Neuroblasts (1),0.67,FALSE
+Breast cancer (2017),Intermediate progenitors,0.8,FALSE
+Breast cancer (2017),Neurons (glutamatergic),0.81,FALSE
+Breast cancer (2017),Astrocytes (1),0.91,FALSE
+Breast cancer (2017),Interneurons (1),0.99,FALSE
+Breast cancer (2017),Cajal-Retzius cells,0.99,FALSE
+Breast cancer (2017),Neuroblasts (2),1,FALSE
+BMI (2015),Oligodendrocytes,0.05,FALSE
+BMI (2015),Neuroblasts (1),0.07,FALSE
+BMI (2015),Enteric glial cells,0.09,FALSE
+BMI (2015),Cajal-Retzius cells,0.13,FALSE
+BMI (2015),Astrocytes (1),0.14,FALSE
+BMI (2015),Neuroblasts (2),0.25,FALSE
+BMI (2015),Intermediate progenitors,0.29,FALSE
+BMI (2015),Neurons (glutamatergic),0.3,FALSE
+BMI (2015),Interneurons (1),0.35,FALSE
+BMI (2015),Astrocytes (2),0.46,FALSE
+BMI (2015),Enteric neurons,0.58,FALSE
+BMI (2015),Neurons,0.59,FALSE
+BMI (2015),Microglia,0.72,FALSE
+BMI (2015),Interneurons (2),0.77,FALSE
+BMI (2015),Endothelial cells,0.97,FALSE
+BMI (2015),Vasc. endothelial cells,0.99,FALSE
+MDD (2018),Neurons,0.01,FALSE
+MDD (2018),Neurons (glutamatergic),0.02,FALSE
+MDD (2018),Intermediate progenitors,0.1,FALSE
+MDD (2018),Neuroblasts (1),0.13,FALSE
+MDD (2018),Neuroblasts (2),0.15,FALSE
+MDD (2018),Interneurons (1),0.17,FALSE
+MDD (2018),Cajal-Retzius cells,0.28,FALSE
+MDD (2018),Enteric neurons,0.56,FALSE
+MDD (2018),Interneurons (2),0.57,FALSE
+MDD (2018),Astrocytes (2),0.64,FALSE
+MDD (2018),Oligodendrocytes,0.68,FALSE
+MDD (2018),Vasc. endothelial cells,0.86,FALSE
+MDD (2018),Enteric glial cells,0.87,FALSE
+MDD (2018),Astrocytes (1),0.93,FALSE
+MDD (2018),Endothelial cells,0.99,FALSE
+MDD (2018),Microglia,0.99,FALSE
+Intelligence (2018),Intermediate progenitors,0.12,FALSE
+Intelligence (2018),Enteric glial cells,0.14,FALSE
+Intelligence (2018),Oligodendrocytes,0.16,FALSE
+Intelligence (2018),Enteric neurons,0.18,FALSE
+Intelligence (2018),Astrocytes (1),0.23,FALSE
+Intelligence (2018),Neurons (glutamatergic),0.26,FALSE
+Intelligence (2018),Neuroblasts (1),0.26,FALSE
+Intelligence (2018),Neuroblasts (2),0.33,FALSE
+Intelligence (2018),Cajal-Retzius cells,0.34,FALSE
+Intelligence (2018),Microglia,0.34,FALSE
+Intelligence (2018),Astrocytes (2),0.35,FALSE
+Intelligence (2018),Interneurons (1),0.43,FALSE
+Intelligence (2018),Endothelial cells,0.52,FALSE
+Intelligence (2018),Interneurons (2),0.81,FALSE
+Intelligence (2018),Neurons,0.87,FALSE
+Intelligence (2018),Vasc. endothelial cells,1,FALSE
+EA (2018),Neuroblasts (2),0.00015,TRUE
+EA (2018),Neurons (glutamatergic),0.00104,FALSE
+EA (2018),Interneurons (1),0.00105,FALSE
+EA (2018),Neuroblasts (1),0.0032,FALSE
+EA (2018),Enteric glial cells,0.00689,FALSE
+EA (2018),Cajal-Retzius cells,0.04,FALSE
+EA (2018),Intermediate progenitors,0.06,FALSE
+EA (2018),Oligodendrocytes,0.1,FALSE
+EA (2018),Neurons,0.11,FALSE
+EA (2018),Interneurons (2),0.18,FALSE
+EA (2018),Astrocytes (2),0.26,FALSE
+EA (2018),Enteric neurons,0.27,FALSE
+EA (2018),Astrocytes (1),0.94,FALSE
+EA (2018),Vasc. endothelial cells,1,FALSE
+EA (2018),Microglia,1,FALSE
+EA (2018),Endothelial cells,1,FALSE
+SCZ (2018),Neuroblasts (2),0.000728,FALSE
+SCZ (2018),Oligodendrocytes,0.00172,FALSE
+SCZ (2018),Neurons (glutamatergic),0.03,FALSE
+SCZ (2018),Interneurons (1),0.03,FALSE
+SCZ (2018),Neuroblasts (1),0.05,FALSE
+SCZ (2018),Interneurons (2),0.11,FALSE
+SCZ (2018),Astrocytes (2),0.26,FALSE
+SCZ (2018),Neurons,0.29,FALSE
+SCZ (2018),Cajal-Retzius cells,0.36,FALSE
+SCZ (2018),Enteric glial cells,0.47,FALSE
+SCZ (2018),Intermediate progenitors,0.72,FALSE
+SCZ (2018),Vasc. endothelial cells,0.92,FALSE
+SCZ (2018),Enteric neurons,0.97,FALSE
+SCZ (2018),Microglia,0.99,FALSE
+SCZ (2018),Endothelial cells,1,FALSE
+SCZ (2018),Astrocytes (1),1,FALSE
