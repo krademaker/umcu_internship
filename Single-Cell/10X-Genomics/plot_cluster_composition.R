@@ -9,17 +9,14 @@
 library(ggplot2)
 
 ########## Load input data ##########
-input_data <- read.csv('~/umcu_internship/Single-Cell/data/10x_cluster_compositions.csv')
+data <- read.csv('~/Data/SingleCell_Data/10X_Genomics/cluster_composition/kmeans_20/kmeans_20_cluster_composition.csv')
+data$Cluster <- as.factor(data$Cluster)
 
 ########## Plot cluster composition and save to file ##########
-pdf('cluster_composition_10x_genomics.pdf', paper='a4r', width=11.69, height=8.27)
-p <- ggplot(input_data, aes(Cluster, Percentage)) +
-    geom_point(aes(colour = Dataset)) +
+ggplot(data, aes(Cluster, Percentage)) +
+    geom_bar(aes(fill = Dataset), position =  'dodge', stat = 'identity') +
     theme_classic() +
-    theme(axis.text.x = element_text(angle = 90, vjust = 0.5)) +
-    scale_x_continuous('Cluster', labels = as.character(input_data$Cluster), breaks = input_data$Cluster) +
-    ggtitle('Cluster composition for 10x Genomics subsets') +
-    theme(plot.title = element_text(hjust = 0.5)) +
+    scale_y_continuous(expand = expand_scale(mult = c(0, .1))) +
+    theme(legend.position = 'bottom', legend.title = element_text(size=12.5), legend.text = element_text(size = 10), axis.text = element_text(size = 12.5), axis.title = element_text(size = 12.5)) +
+    xlab('Cluster') +
     ylab('Percentage of cells')
-p
-dev.off()
