@@ -1,7 +1,6 @@
 # TITLE:    plot_cluster_composition.R
 # ABOUT:    Script to visualize cluster composition for 10x Genomics mouse scRNA-seq datasets (full and subsets)
 # INPUT:    cluster_composition.csv: File detailing the percentage of cells (column Percentage), cluster ID (column Cluster) and dataset (column Dataset)
-# OUTPUT:   cluster_composition_10x_genomics.pdf: Output plot stored in PDF file.
 # AUTHOR:   Koen Rademaker
 # DATE:     23 May 2019
 
@@ -9,7 +8,7 @@
 library(ggplot2)
 
 ########## Load input data ##########
-data <- read.csv('~/Data/SingleCell_Data/10X_Genomics/cluster_composition/kmeans_20/kmeans_20_cluster_composition.csv')
+data <- read.csv('~/umcu_internship/Single-Cell/data/10x_Genomics_cluster_compositions_kmeans_20.csv.gz')
 data$Cluster <- as.factor(data$Cluster)
 
 ########## Plot cluster composition and save to file ##########
