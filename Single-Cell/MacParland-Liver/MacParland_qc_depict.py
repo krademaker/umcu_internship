@@ -1,13 +1,14 @@
 #!/usr/bin/python
 
-# ABOUT: 	Script for QC, marker gene detection and DEPICT restructuring of MacParland et al. (2018) human liver scRNA-seq data
+# ABOUT: 	Script for MAGMA & DEPICT restructuring of MacParland et al. (2018) human liver scRNA-seq data
 # REQUIRED: 	- Input gene / cell matrix in CSV format (filename_input_csv)
 #		- Clustering identities of cells (filename_cluster_ids)
+#		- Ensembl human gene symbol > human gene ID conversion file (filename_human_mapping)
 #		- Annotated gene / cell matrix with QC applied in H5AD format (filename_h5ad_qc)
+#               - Output of MAGMA restructuring (filename_celltype_avg_out)
 #		- Output of DEPICT restructuring (filename_depict_out)
-#		- Output logging file (filename_log_out)
 # AUTHOR:	Koen Rademaker, GitHub repository 'perslab-sc-library' (https://github.com/perslab/perslab-sc-library, customized code for own purposes)
-# DATE:	        20 May 2019
+# DATE:	        17 June 2019
 
 
 ########## Import packages ##########
@@ -22,16 +23,9 @@ import sys
 filename_input_csv = sys.argv[1]
 filename_cluster_ids = sys.argv[2]
 filename_human_mapping = sys.argv[3]
-filename_h5ad_qc = sys.argv[4]
+filename_celltype_avg_out = sys.argv[4]
 filename_depict_out = sys.argv[5]
-filename_log_out = sys.argv[6]
 cell_types = {1: "Hep 1", 2: "CD3+ αβ T cells", 3: "Hep 2", 4: "Inflammatory macrophages", 5: "Hep 3", 6: "Hep 4", 7: "Antibody secreting B cells", 8: "NK-like cells", 9: "γδ T cells 1", 10: "Non-inflammatory Macrophages", 11: "Periportal LSECs", 12: "Central venous LSECs", 13: "Portal endothelial cells", 14: "Hep 5", 15: "Hep 6", 16: "Mature B cells", 17: "Cholangiocytes", 18: "γδ T cells 2", 19: "Erthyroid cells", 20: "Stellate cells"}
-
-
-########## Set Matplotlib & Scanpy settings ##########
-sc.logging.print_versions()
-sc.settings.verbosity = 5
-sc.settings.logfile = filename_log_out
 
 
 ########## Function declaration ##########
@@ -84,30 +78,12 @@ cell_labels = pd.read_csv(filename_cluster_ids, sep='\t', usecols=['CellName', '
 cell_labels.replace({"Cluster#": cell_types}, inplace=True)
 liver_data.obs['cell_labels'] = cell_labels
 
-
-########## Calculate cell/gene metrics ##########
-mito_genes=liver_data.var_names.str.startswith('MT-')
-liver_data.obs['percent_mito'] = np.sum(liver_data[:, mito_genes].X, axis=1) / np.sum(liver_data.X, axis=1)
-liver_data.obs['n_counts'] = liver_data.X.sum(axis=1)
-sc.pp.filter_cells(liver_data, min_genes=0)
-sc.pp.filter_genes(liver_data, min_cells=0)
-
-
-########## Apply QC ##########
-sc.pp.filter_cells(liver_data, min_counts=1500) 										# Remove cells with fewer than 1500 UMI counts
-liver_data=liver_data[liver_data.obs['percent_mito'] < 0.5,:]							# Remove cells with a % mtDNA above 5%
-sc.pp.filter_genes(liver_data, min_cells=3)												# Remove genes detected in less than 3 cells
-
-
-########## Save data to H5AD for later use ##########
-liver_data.write_h5ad(filename_h5ad_qc)
-
-
 ########## Restructure data for DEPICT ##########
 cluster_id_cells = liver_data.obs['cell_labels'].to_frame()
 cluster_id_cells.columns = ['cluster_id']
-normalized = normalize(liver_data.to_df().T)											# Normalize cells
-cluster_averaged = get_average_by_celltype(normalized, cluster_id_cells)				# Average gene expression per cluster
-standardized = standardize(cluster_averaged)			 								# Standardize gene expression across cell types
-standardized_ensembl = to_ensembl(human_mapping, standardized)							# Map gene symbols to Ensembl IDs
-standardized_ensembl.to_csv(filename_depict_out, sep='\t', header=True, index=True)		# Export final matrix
+normalized = normalize(liver_data.to_df().T)								# Normalize cells
+cell_type_averaged = get_average_by_celltype(normalized, cluster_id_cells)				# Average gene expression per cluster
+cell_type_averaged.to_csv(filename_celltype_avg_out, sep='\t', header=True, index=True)                 # Export cell type-averaged data for MAGMA analysis
+standardized = standardize(cluster_averaged)			 					# Standardize gene expression across cell types
+standardized_ensembl = to_ensembl(human_mapping, standardized)						# Map gene symbols to Ensembl IDs
+standardized_ensembl.to_csv(filename_depict_out, sep='\t', header=True, index=True)		        # Export standardized matrix for DEPICT analysis
