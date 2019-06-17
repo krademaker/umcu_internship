@@ -103,7 +103,9 @@ formal_cell_type_names <- c('Astrocytes / Ependymal', 'Dopaminergic neuron', 'DA
 
 ########## Prepare quantile groups for cell types ##########
 ctd = prepare.quantile.groups(ctd_allKI, specificity_species = 'mouse', numberOfBins = 41)
-ggplot(as.data.frame(ctd_allKI[[1]]$specificity), aes(x = interneurons)) + geom_histogram(bins = 100) # Example plot of quantile histogram for interneurons
+# (Example plot of quantile histogram for interneurons)
+ggplot(as.data.frame(ctd_allKI[[1]]$specificity), aes(x = interneurons)) + geom_histogram(bins = 100)
+
 
 #################### Analysis for Pardiñas et al. 2018 schizophrenia GWAS ####################
 # (1) Map SNPs to genes
