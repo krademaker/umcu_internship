@@ -7,7 +7,7 @@
 #           iq_sum_stats: Intelligence 2018 summary statistics, column order: SNP, CHR, POS, A1, A2, EAF_HRC, P, N
 #           bmi_sum_stats: Body Mass Index 2015 summary statistics, column order: SNP, CHR, BP, A1, A2, MAF, B, SE, P, N
 #           bc_sum_stats: Breast cancer 2017 summary statistics, column order: SNP, CHR, BP, A1, A2, MAF, BETA, SE, P
-# AUTHOR:   Koen Rademaker
+# AUTHOR:   Koen Rademaker, Github repository 'MAGMA.Celltyping' (https://github.com/NathanSkene/MAGMA_Celltyping, customized code for own purposes)
 # DATE:     17 June 2019
 
 
@@ -82,16 +82,16 @@ library(One2One)
 
 
 ########## Set variables ##########
-genome_ref_dir = '~/Git/umcu_internship/Single-Cell/MAGMA-Celltyping/g1000_eur'
+genome_ref_dir = '~/umcu_internship/Single-Cell/MAGMA-Celltyping/g1000_eur'
 if(!file.exists(sprintf('%s/g1000_eur.bed', genome_ref_dir))){
     download.file('https://ctg.cncr.nl/software/MAGMA/ref_data/g1000_eur.zip',destfile=sprintf('%s.zip', genome_ref_dir))
     unzip(sprintf('%s.zip',genome_ref_dir), exdir=genome_ref_dir)
 }
 genome_ref_path = sprintf('%s/g1000_eur', genome_ref_dir)
-sum_stats_dir = '~/Git/umcu_internship/Single-Cell/MAGMA-Celltyping/Summary-Statistics/'
-suppl_data_dir = '~/Data/MAGMA-Celltyping-GWAS/supplementary_data/'
+sum_stats_dir = '~/umcu_internship/Single-Cell/MAGMA-Celltyping/Summary-Statistics/'
+suppl_data_dir = '~/umcu_internship/Single-Cell/MAGMA-Celltyping/Output/'
 
-mean_expr_path <- '~/Git/umcu_internship/Single-Cell/data/10x_Genomics_16_cell_types_mean_expression.tsv'
+mean_expr_path <- '~/umcu_internship/Single-Cell/data/10x_Genomics_16_cell_types_mean_expression.tsv'
 scz_sum_stats = paste0(sum_stats_dir, 'clozuk_pgc2.meta.sumstats_MAGMA.txt')
 mdd_sum_stats = paste0(sum_stats_dir, 'MDD2018_ex23andMe_MAGMA.txt')
 ea_sum_stats = paste0(sum_stats_dir, 'EA_excl23andMe_MAGMA.txt')
@@ -117,8 +117,9 @@ ctd_10X[[1]]$specificity <- specificity_data
 ctd_10X = prepare.quantile.groups(ctd_10X, specificity_species = 'mouse', numberOfBins = 41)
 ctd_10X[[2]] <- NULL
 
-########## Optional plots of specificity ##########
-ggplot(ctd_10X[[1]]$specificity, aes(x = Interneurons_1)) + geom_histogram(bins = 100)
+
+########## Optional plots of specificity, e.g. oligodendrocytes ##########
+ggplot(ctd_10X[[1]]$specificity, aes(x = Oligodendrocytes)) + geom_histogram(bins = 100)
 
 
 #################### Analysis for Pardiñas et al. 2018 schizophrenia GWAS ####################
@@ -132,8 +133,8 @@ scz_top_10_assoc = calculate_celltype_associations(ctd_10X, scz_sum_stats, genom
 scz_linear_assoc[[1]]$results$Celltype = formal_cell_type_names
 scz_top_10_assoc[[1]]$results$Celltype = formal_cell_type_names
 # (5) Save analysis results as files
-write.table(scz_linear_assoc[[1]]$results, file = paste0(suppl_data_dir, '10x_lvl1_linear_scz_2018.tsv'), sep = '\t', row.names = FALSE)
-write.table(scz_top_10_assoc[[1]]$results, file = paste0(suppl_data_dir, '10x_lvl1_top10_scz_2018.tsv'), sep = '\t', row.names = FALSE)
+write.table(scz_linear_assoc[[1]]$results, file = paste0(suppl_data_dir, '10x_Genomics_linear_scz_2018.tsv'), sep = '\t', row.names = FALSE)
+write.table(scz_top_10_assoc[[1]]$results, file = paste0(suppl_data_dir, '10x_Genomics_top10_scz_2018.tsv'), sep = '\t', row.names = FALSE)
 # (6) Plot analysis results
 scz_linear_figures = custom_plot_celltype_associations(scz_linear_assoc, ctd = ctd_10X, useSignificanceLine = FALSE, plotLegend = FALSE, plotDendro = FALSE, gwas_title = 'Linear cell type association analysis - SCZ 2018', savePDF = FALSE)
 scz_top_10_figures = custom_plot_celltype_associations(scz_top_10_assoc, ctd = ctd_10X, useSignificanceLine = FALSE, plotLegend = FALSE, plotDendro = FALSE, gwas_title = 'Top 10% cell type association analysis - SCZ 2018', savePDF = FALSE)
@@ -150,8 +151,8 @@ mdd_top_10_assoc = calculate_celltype_associations(ctd_10X, mdd_sum_stats, genom
 mdd_linear_assoc[[1]]$results$Celltype = formal_cell_type_names
 mdd_top_10_assoc[[1]]$results$Celltype = formal_cell_type_names
 # (5) Save analysis results as files
-write.table(mdd_linear_assoc[[1]]$results, file = paste0(suppl_data_dir, '10x_lvl1_linear_mdd_2018.tsv'), sep = '\t', row.names = FALSE)
-write.table(mdd_top_10_assoc[[1]]$results, file = paste0(suppl_data_dir, '10x_lvl1_top10_mdd_2018.tsv'), sep = '\t', row.names = FALSE)
+write.table(mdd_linear_assoc[[1]]$results, file = paste0(suppl_data_dir, '10x_Genomics_linear_mdd_2018.tsv'), sep = '\t', row.names = FALSE)
+write.table(mdd_top_10_assoc[[1]]$results, file = paste0(suppl_data_dir, '10x_Genomics_top10_mdd_2018.tsv'), sep = '\t', row.names = FALSE)
 # (6) Plot analysis results
 mdd_linear_figures = custom_plot_celltype_associations(mdd_linear_assoc, ctd = ctd_10X, useSignificanceLine = FALSE, plotLegend = FALSE, plotDendro = FALSE, gwas_title = 'Linear cell type association analysis - MDD 2018', savePDF = FALSE)
 mdd_top_10_figures = custom_plot_celltype_associations(mdd_top_10_assoc, ctd = ctd_10X, useSignificanceLine = FALSE, plotLegend = FALSE, plotDendro = FALSE, gwas_title = 'Top 10% cell type association analysis - MDD 2018', savePDF = FALSE)
@@ -168,8 +169,8 @@ ea_top_10_assoc = calculate_celltype_associations(ctd_10X, ea_sum_stats, genome_
 ea_linear_assoc[[1]]$results$Celltype = formal_cell_type_names
 ea_top_10_assoc[[1]]$results$Celltype = formal_cell_type_names
 # (5) Save analysis results as files
-write.table(ea_linear_assoc[[1]]$results, file = paste0(suppl_data_dir, '10x_lvl1_linear_ea_2018.tsv'), sep = '\t', row.names = FALSE)
-write.table(ea_top_10_assoc[[1]]$results, file = paste0(suppl_data_dir, '10x_lvl1_top10_ea_2018.tsv'), sep = '\t', row.names = FALSE)
+write.table(ea_linear_assoc[[1]]$results, file = paste0(suppl_data_dir, '10x_Genomics_linear_ea_2018.tsv'), sep = '\t', row.names = FALSE)
+write.table(ea_top_10_assoc[[1]]$results, file = paste0(suppl_data_dir, '10x_Genomics_top10_ea_2018.tsv'), sep = '\t', row.names = FALSE)
 # (6) Plot analysis results
 ea_linear_figures = custom_plot_celltype_associations(ea_linear_assoc, ctd = ctd_10X, useSignificanceLine = FALSE, plotLegend = FALSE, plotDendro = FALSE, gwas_title = 'Linear cell type association analysis - EA 2018', savePDF = FALSE)
 ea_top_10_figures = custom_plot_celltype_associations(ea_top_10_assoc, ctd = ctd_10X, useSignificanceLine = FALSE, plotLegend = FALSE, plotDendro = FALSE, gwas_title = 'Top 10% cell type association analysis - EA 2018', savePDF = FALSE)
@@ -186,8 +187,8 @@ iq_top_10_assoc = calculate_celltype_associations(ctd_10X, iq_sum_stats, genome_
 iq_linear_assoc[[1]]$results$Celltype = formal_cell_type_names
 iq_top_10_assoc[[1]]$results$Celltype = formal_cell_type_names
 # (5) Save analysis results as files
-write.table(iq_linear_assoc[[1]]$results, file = paste0(suppl_data_dir, '10x_lvl1_linear_iq_2018.tsv'), sep = '\t', row.names = FALSE)
-write.table(iq_top_10_assoc[[1]]$results, file = paste0(suppl_data_dir, '10x_lvl1_top10_iq_2018.tsv'), sep = '\t', row.names = FALSE)
+write.table(iq_linear_assoc[[1]]$results, file = paste0(suppl_data_dir, '10x_Genomics_linear_iq_2018.tsv'), sep = '\t', row.names = FALSE)
+write.table(iq_top_10_assoc[[1]]$results, file = paste0(suppl_data_dir, '10x_Genomics_top10_iq_2018.tsv'), sep = '\t', row.names = FALSE)
 # (6) Plot analysis results
 iq_linear_figures = custom_plot_celltype_associations(iq_linear_assoc, ctd = ctd_10X, useSignificanceLine = FALSE, plotLegend = FALSE, plotDendro = FALSE, gwas_title = 'Linear cell type association analysis - Intelligence 2018', savePDF = FALSE)
 iq_top_10_figures = custom_plot_celltype_associations(iq_top_10_assoc, ctd = ctd_10X, useSignificanceLine = FALSE, plotLegend = FALSE, plotDendro = FALSE, gwas_title = 'Top 10% cell type association analysis - Intelligence 2018', savePDF = FALSE)
@@ -204,8 +205,8 @@ bmi_top_10_assoc = calculate_celltype_associations(ctd_10X, bmi_sum_stats, genom
 bmi_linear_assoc[[1]]$results$Celltype = formal_cell_type_names
 bmi_top_10_assoc[[1]]$results$Celltype = formal_cell_type_names
 # (5) Save analysis results as files
-write.table(bmi_linear_assoc[[1]]$results, file = paste0(suppl_data_dir, '10x_lvl1_linear_bmi_2015.tsv'), sep = '\t', row.names = FALSE)
-write.table(bmi_top_10_assoc[[1]]$results, file = paste0(suppl_data_dir, '10x_lvl1_top10_bmi_2015.tsv'), sep = '\t', row.names = FALSE)
+write.table(bmi_linear_assoc[[1]]$results, file = paste0(suppl_data_dir, '10x_Genomics_linear_bmi_2015.tsv'), sep = '\t', row.names = FALSE)
+write.table(bmi_top_10_assoc[[1]]$results, file = paste0(suppl_data_dir, '10x_Genomics_top10_bmi_2015.tsv'), sep = '\t', row.names = FALSE)
 # (6) Plot analysis results
 bmi_linear_figures = custom_plot_celltype_associations(bmi_linear_assoc, ctd = ctd_10X, useSignificanceLine = FALSE, plotLegend = FALSE, plotDendro = FALSE, gwas_title = 'Linear cell type association analysis - BMI 2015', savePDF = FALSE)
 bmi_top_10_figures = custom_plot_celltype_associations(bmi_top_10_assoc, ctd = ctd_10X, useSignificanceLine = FALSE, plotLegend = FALSE, plotDendro = FALSE, gwas_title = 'Top 10% cell type association analysis - BMI 2015', savePDF = FALSE)
@@ -222,8 +223,8 @@ bc_top_10_assoc = calculate_celltype_associations(ctd_10X, bc_sum_stats, genome_
 bc_linear_assoc[[1]]$results$Celltype = formal_cell_type_names
 bc_top_10_assoc[[1]]$results$Celltype = formal_cell_type_names
 # (5) Save analysis results as files
-write.table(bc_linear_assoc[[1]]$results, file = paste0(suppl_data_dir, '10x_lvl1_linear_bc_2017.tsv'), sep = '\t', row.names = FALSE)
-write.table(bc_top_10_assoc[[1]]$results, file = paste0(suppl_data_dir, '10x_lvl1_top10_bc_2017.tsv'), sep = '\t', row.names = FALSE)
+write.table(bc_linear_assoc[[1]]$results, file = paste0(suppl_data_dir, '10x_Genomics_linear_bc_2017.tsv'), sep = '\t', row.names = FALSE)
+write.table(bc_top_10_assoc[[1]]$results, file = paste0(suppl_data_dir, '10x_Genomics_top10_bc_2017.tsv'), sep = '\t', row.names = FALSE)
 # (6) Plot analysis results
 bc_linear_figures = custom_plot_celltype_associations(bc_linear_assoc, ctd = ctd_10X, useSignificanceLine = FALSE, plotLegend = FALSE, plotDendro = FALSE, gwas_title = 'Linear cell type association analysis - Breast cancer 2017', savePDF = FALSE)
 bc_top_10_figures = custom_plot_celltype_associations(bc_top_10_assoc, ctd = ctd_10X, useSignificanceLine = FALSE, plotLegend = FALSE, plotDendro = FALSE, gwas_title = 'Top 10% cell type association analysis - Breast cancer 2017', savePDF = FALSE)
