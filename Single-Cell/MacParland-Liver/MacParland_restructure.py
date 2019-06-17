@@ -4,7 +4,6 @@
 # REQUIRED: 	- Input gene / cell matrix in CSV format (filename_input_csv)
 #		- Clustering identities of cells (filename_cluster_ids)
 #		- Ensembl human gene symbol > human gene ID conversion file (filename_human_mapping)
-#		- Annotated gene / cell matrix with QC applied in H5AD format (filename_h5ad_qc)
 #               - Output of MAGMA restructuring (filename_celltype_avg_out)
 #		- Output of DEPICT restructuring (filename_depict_out)
 # AUTHOR:	Koen Rademaker, GitHub repository 'perslab-sc-library' (https://github.com/perslab/perslab-sc-library, customized code for own purposes)
