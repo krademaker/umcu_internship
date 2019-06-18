@@ -1,10 +1,12 @@
 # TITLE:    plot_combined_gwas_depict_results.R
 # ABOUT:    Script to plot DEPICT results and highlight significant cell types for different scRNA-seq datasets.
-# INPUT:    file_path_10x_genomics_lvl1: Combined GWAS DEPICT results for 10x Genomics dataset
-# INPUT:    file_path_karolinska_lvl1: Combined GWAS DEPICT results for Karolinska Institute dataset
+# INPUT:    file_path_10x_genomics_lvl1: Combined GWAS DEPICT results for 10x Genomics dataset level 1 (n=16)
+# INPUT:    file_path_10x_genomics_lvl2: Combined GWAS DEPICT results for 10x Genomicd dataset level 2 (n=59)
+# INPUT:    file_path_karolinska_lvl1: Combined GWAS DEPICT results for Karolinska Institute (KI) dataset level 1 (n=24)
+# INPUT:    file_path_karolinska_lvl2: Combined GWAS DEPICT results for Karolinska Institute (KI) dataset levle 2 (n=149)
 # INPUT:    file_path_macparland: Combined GWAS DEPICT results for MacParland dataset
 # AUTHOR:   Koen Rademaker
-# DATE:     13 June 2019
+# DATE:     18 June 2019
 
 
 ########## Load required libraries ##########
