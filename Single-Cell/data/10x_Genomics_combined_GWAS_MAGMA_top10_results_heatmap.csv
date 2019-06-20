@@ -1,0 +1,97 @@
+GWAS,Cell type,P,Significant
+SCZ (2018),Glutamatergic neurons,2.0198E-05,TRUE
+SCZ (2018),Neuroblasts 1,0.076582,FALSE
+SCZ (2018),Astrocytes 1,0.91825,FALSE
+SCZ (2018),Neuroblasts 2,6.9997E-05,TRUE
+SCZ (2018),Intermediate progenitors,0.20574,FALSE
+SCZ (2018),Enteric glial cells,0.91489,FALSE
+SCZ (2018),Interneurons 1,0.00054792,FALSE
+SCZ (2018),Neurons,9.9838E-05,TRUE
+SCZ (2018),Interneurons 2,0.039306,FALSE
+SCZ (2018),Vascular endothelial cells,0.98683,FALSE
+SCZ (2018),Enteric neurons,0.82996,FALSE
+SCZ (2018),Cajal-Retzius cells,0.28064,FALSE
+SCZ (2018),Oligodendrocytes,0.013761,FALSE
+SCZ (2018),Astrocytes 2,0.94582,FALSE
+SCZ (2018),Endothelial cells,0.96048,FALSE
+SCZ (2018),Microglia,0.99652,FALSE
+MDD (2018),Glutamatergic neurons,0.095638,FALSE
+MDD (2018),Neuroblasts 1,0.061691,FALSE
+MDD (2018),Astrocytes 1,0.44968,FALSE
+MDD (2018),Neuroblasts 2,0.051623,FALSE
+MDD (2018),Intermediate progenitors,0.68967,FALSE
+MDD (2018),Enteric glial cells,0.89709,FALSE
+MDD (2018),Interneurons 1,0.0020978,FALSE
+MDD (2018),Neurons,0.011132,FALSE
+MDD (2018),Interneurons 2,0.03436,FALSE
+MDD (2018),Vascular endothelial cells,0.67662,FALSE
+MDD (2018),Enteric neurons,0.66248,FALSE
+MDD (2018),Cajal-Retzius cells,0.019859,FALSE
+MDD (2018),Oligodendrocytes,0.33877,FALSE
+MDD (2018),Astrocytes 2,0.81493,FALSE
+MDD (2018),Endothelial cells,0.91415,FALSE
+MDD (2018),Microglia,0.48215,FALSE
+Intelligence (2018),Glutamatergic neurons,0.014401,FALSE
+Intelligence (2018),Neuroblasts 1,6.0097E-07,TRUE
+Intelligence (2018),Astrocytes 1,0.99448,FALSE
+Intelligence (2018),Neuroblasts 2,0.0037107,FALSE
+Intelligence (2018),Intermediate progenitors,0.16802,FALSE
+Intelligence (2018),Enteric glial cells,0.78361,FALSE
+Intelligence (2018),Interneurons 1,0.0018121,FALSE
+Intelligence (2018),Neurons,0.00094916,FALSE
+Intelligence (2018),Interneurons 2,0.083754,FALSE
+Intelligence (2018),Vascular endothelial cells,1,FALSE
+Intelligence (2018),Enteric neurons,0.33299,FALSE
+Intelligence (2018),Cajal-Retzius cells,0.85142,FALSE
+Intelligence (2018),Oligodendrocytes,0.28903,FALSE
+Intelligence (2018),Astrocytes 2,0.99826,FALSE
+Intelligence (2018),Endothelial cells,0.99991,FALSE
+Intelligence (2018),Microglia,0.6932,FALSE
+EA (2018),Glutamatergic neurons,0.00015336,TRUE
+EA (2018),Neuroblasts 1,0.00048958,TRUE
+EA (2018),Astrocytes 1,0.99412,FALSE
+EA (2018),Neuroblasts 2,0.03007,FALSE
+EA (2018),Intermediate progenitors,0.95769,FALSE
+EA (2018),Enteric glial cells,0.58702,FALSE
+EA (2018),Interneurons 1,3.6428E-06,TRUE
+EA (2018),Neurons,6.4836E-05,TRUE
+EA (2018),Interneurons 2,0.069331,FALSE
+EA (2018),Vascular endothelial cells,0.99996,FALSE
+EA (2018),Enteric neurons,0.6787,FALSE
+EA (2018),Cajal-Retzius cells,0.38083,FALSE
+EA (2018),Oligodendrocytes,0.05654,FALSE
+EA (2018),Astrocytes 2,0.96043,FALSE
+EA (2018),Endothelial cells,0.99997,FALSE
+EA (2018),Microglia,0.99504,FALSE
+BMI (2015),Glutamatergic neurons,0.026079,FALSE
+BMI (2015),Neuroblasts 1,0.03307,FALSE
+BMI (2015),Astrocytes 1,0.18202,FALSE
+BMI (2015),Neuroblasts 2,0.14184,FALSE
+BMI (2015),Intermediate progenitors,0.33637,FALSE
+BMI (2015),Enteric glial cells,0.405,FALSE
+BMI (2015),Interneurons 1,0.36246,FALSE
+BMI (2015),Neurons,0.041061,FALSE
+BMI (2015),Interneurons 2,0.34902,FALSE
+BMI (2015),Vascular endothelial cells,0.99521,FALSE
+BMI (2015),Enteric neurons,0.44695,FALSE
+BMI (2015),Cajal-Retzius cells,0.77991,FALSE
+BMI (2015),Oligodendrocytes,0.21516,FALSE
+BMI (2015),Astrocytes 2,0.3059,FALSE
+BMI (2015),Endothelial cells,0.78078,FALSE
+BMI (2015),Microglia,0.61688,FALSE
+Breast cancer (2017),Glutamatergic neurons,0.77856,FALSE
+Breast cancer (2017),Neuroblasts 1,0.17862,FALSE
+Breast cancer (2017),Astrocytes 1,0.73607,FALSE
+Breast cancer (2017),Neuroblasts 2,0.9944,FALSE
+Breast cancer (2017),Intermediate progenitors,0.36455,FALSE
+Breast cancer (2017),Enteric glial cells,0.19397,FALSE
+Breast cancer (2017),Interneurons 1,0.77138,FALSE
+Breast cancer (2017),Neurons,0.90299,FALSE
+Breast cancer (2017),Interneurons 2,0.070072,FALSE
+Breast cancer (2017),Vascular endothelial cells,0.10146,FALSE
+Breast cancer (2017),Enteric neurons,0.053223,FALSE
+Breast cancer (2017),Cajal-Retzius cells,0.66343,FALSE
+Breast cancer (2017),Oligodendrocytes,0.52515,FALSE
+Breast cancer (2017),Astrocytes 2,0.45426,FALSE
+Breast cancer (2017),Endothelial cells,0.41656,FALSE
+Breast cancer (2017),Microglia,0.34396,FALSE

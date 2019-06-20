@@ -1,0 +1,121 @@
+GWAS,Cell type,P,Significant
+SCZ (2018),Central venous LSECs,0.4944,FALSE
+SCZ (2018),Cholangiocytes,0.98654,FALSE
+SCZ (2018),Non-inflammatory Macrophages,0.98066,FALSE
+SCZ (2018),CD3+ αβ T cells,0.82435,FALSE
+SCZ (2018),Inflammatory macrophages,0.93619,FALSE
+SCZ (2018),NK-like cells,0.81123,FALSE
+SCZ (2018),γδ T cells 1,0.8955,FALSE
+SCZ (2018),Hep 5,0.77486,FALSE
+SCZ (2018),Portal endothelial cells,0.30577,FALSE
+SCZ (2018),γδ T cells 2,0.15641,FALSE
+SCZ (2018),Periportal LSECs,0.79512,FALSE
+SCZ (2018),Hep 6,0.73047,FALSE
+SCZ (2018),Mature B cells,0.70536,FALSE
+SCZ (2018),Stellate cells,0.6051,FALSE
+SCZ (2018),Antibody secreting B cells,0.75889,FALSE
+SCZ (2018),Erthyroid cells,0.20315,FALSE
+SCZ (2018),Hep 2,0.96135,FALSE
+SCZ (2018),Hep 3,0.84878,FALSE
+SCZ (2018),Hep 1,0.98528,FALSE
+SCZ (2018),Hep 4,0.99661,FALSE
+MDD (2018),Central venous LSECs,0.20485,FALSE
+MDD (2018),Cholangiocytes,0.90932,FALSE
+MDD (2018),Non-inflammatory Macrophages,0.62483,FALSE
+MDD (2018),CD3+ αβ T cells,0.49829,FALSE
+MDD (2018),Inflammatory macrophages,0.60054,FALSE
+MDD (2018),NK-like cells,0.51639,FALSE
+MDD (2018),γδ T cells 1,0.88826,FALSE
+MDD (2018),Hep 5,0.081989,FALSE
+MDD (2018),Portal endothelial cells,0.29324,FALSE
+MDD (2018),γδ T cells 2,0.70927,FALSE
+MDD (2018),Periportal LSECs,0.23425,FALSE
+MDD (2018),Hep 6,0.87253,FALSE
+MDD (2018),Mature B cells,0.88834,FALSE
+MDD (2018),Stellate cells,0.62211,FALSE
+MDD (2018),Antibody secreting B cells,0.92938,FALSE
+MDD (2018),Erthyroid cells,0.9018,FALSE
+MDD (2018),Hep 2,0.31328,FALSE
+MDD (2018),Hep 3,0.48758,FALSE
+MDD (2018),Hep 1,0.68127,FALSE
+MDD (2018),Hep 4,0.28352,FALSE
+Intelligence (2018),Central venous LSECs,0.98831,FALSE
+Intelligence (2018),Cholangiocytes,0.87642,FALSE
+Intelligence (2018),Non-inflammatory Macrophages,0.93113,FALSE
+Intelligence (2018),CD3+ αβ T cells,0.89455,FALSE
+Intelligence (2018),Inflammatory macrophages,0.53398,FALSE
+Intelligence (2018),NK-like cells,0.91124,FALSE
+Intelligence (2018),γδ T cells 1,0.52343,FALSE
+Intelligence (2018),Hep 5,0.39726,FALSE
+Intelligence (2018),Portal endothelial cells,0.9992,FALSE
+Intelligence (2018),γδ T cells 2,0.35008,FALSE
+Intelligence (2018),Periportal LSECs,0.98451,FALSE
+Intelligence (2018),Hep 6,0.88008,FALSE
+Intelligence (2018),Mature B cells,0.95965,FALSE
+Intelligence (2018),Stellate cells,0.99182,FALSE
+Intelligence (2018),Antibody secreting B cells,0.51992,FALSE
+Intelligence (2018),Erthyroid cells,0.20595,FALSE
+Intelligence (2018),Hep 2,0.77867,FALSE
+Intelligence (2018),Hep 3,0.56684,FALSE
+Intelligence (2018),Hep 1,0.96458,FALSE
+Intelligence (2018),Hep 4,0.3696,FALSE
+EA (2018),Central venous LSECs,0.21508,FALSE
+EA (2018),Cholangiocytes,0.99893,FALSE
+EA (2018),Non-inflammatory Macrophages,0.97154,FALSE
+EA (2018),CD3+ αβ T cells,0.61394,FALSE
+EA (2018),Inflammatory macrophages,0.92471,FALSE
+EA (2018),NK-like cells,0.8748,FALSE
+EA (2018),γδ T cells 1,0.80948,FALSE
+EA (2018),Hep 5,0.89474,FALSE
+EA (2018),Portal endothelial cells,0.79906,FALSE
+EA (2018),γδ T cells 2,0.18792,FALSE
+EA (2018),Periportal LSECs,0.73657,FALSE
+EA (2018),Hep 6,0.59714,FALSE
+EA (2018),Mature B cells,0.88412,FALSE
+EA (2018),Stellate cells,0.72083,FALSE
+EA (2018),Antibody secreting B cells,0.98237,FALSE
+EA (2018),Erthyroid cells,0.089054,FALSE
+EA (2018),Hep 2,0.84811,FALSE
+EA (2018),Hep 3,0.94813,FALSE
+EA (2018),Hep 1,0.97121,FALSE
+EA (2018),Hep 4,0.84027,FALSE
+BMI (2015),Central venous LSECs,0.37301,FALSE
+BMI (2015),Cholangiocytes,0.94048,FALSE
+BMI (2015),Non-inflammatory Macrophages,0.82931,FALSE
+BMI (2015),CD3+ αβ T cells,0.85141,FALSE
+BMI (2015),Inflammatory macrophages,0.86561,FALSE
+BMI (2015),NK-like cells,0.38115,FALSE
+BMI (2015),γδ T cells 1,0.46142,FALSE
+BMI (2015),Hep 5,0.32009,FALSE
+BMI (2015),Portal endothelial cells,0.99171,FALSE
+BMI (2015),γδ T cells 2,0.19174,FALSE
+BMI (2015),Periportal LSECs,0.82825,FALSE
+BMI (2015),Hep 6,0.75369,FALSE
+BMI (2015),Mature B cells,0.18046,FALSE
+BMI (2015),Stellate cells,0.39147,FALSE
+BMI (2015),Antibody secreting B cells,0.71257,FALSE
+BMI (2015),Erthyroid cells,0.20351,FALSE
+BMI (2015),Hep 2,0.36654,FALSE
+BMI (2015),Hep 3,0.93419,FALSE
+BMI (2015),Hep 1,0.52749,FALSE
+BMI (2015),Hep 4,0.77374,FALSE
+Breast cancer (2017),Central venous LSECs,0.81389,FALSE
+Breast cancer (2017),Cholangiocytes,0.15723,FALSE
+Breast cancer (2017),Non-inflammatory Macrophages,0.60411,FALSE
+Breast cancer (2017),CD3+ αβ T cells,0.4843,FALSE
+Breast cancer (2017),Inflammatory macrophages,0.50106,FALSE
+Breast cancer (2017),NK-like cells,0.42888,FALSE
+Breast cancer (2017),γδ T cells 1,0.77895,FALSE
+Breast cancer (2017),Hep 5,0.65744,FALSE
+Breast cancer (2017),Portal endothelial cells,0.79691,FALSE
+Breast cancer (2017),γδ T cells 2,0.35128,FALSE
+Breast cancer (2017),Periportal LSECs,0.31471,FALSE
+Breast cancer (2017),Hep 6,0.74708,FALSE
+Breast cancer (2017),Mature B cells,0.43422,FALSE
+Breast cancer (2017),Stellate cells,0.010223,FALSE
+Breast cancer (2017),Antibody secreting B cells,0.52438,FALSE
+Breast cancer (2017),Erthyroid cells,0.0084795,FALSE
+Breast cancer (2017),Hep 2,0.93051,FALSE
+Breast cancer (2017),Hep 3,0.8611,FALSE
+Breast cancer (2017),Hep 1,0.91581,FALSE
+Breast cancer (2017),Hep 4,0.63315,FALSE
