@@ -7,7 +7,7 @@
 #               - Output of MAGMA restructuring (filename_celltype_avg_out)
 #		- Output of DEPICT restructuring (filename_depict_out)
 # AUTHOR:	Koen Rademaker, GitHub repository 'perslab-sc-library' (https://github.com/perslab/perslab-sc-library, customized code for own purposes)
-# DATE:	        17 June 2019
+# DATE:	        20 June 2019
 
 
 ########## Import packages ##########
@@ -76,6 +76,7 @@ liver_data = liver_data.T
 cell_labels = pd.read_csv(filename_cluster_ids, sep='\t', usecols=['CellName', 'Cluster#'], index_col=0)
 cell_labels.replace({"Cluster#": cell_types}, inplace=True)
 liver_data.obs['cell_labels'] = cell_labels
+
 
 ########## Restructure data for DEPICT ##########
 cluster_id_cells = liver_data.obs['cell_labels'].to_frame()
