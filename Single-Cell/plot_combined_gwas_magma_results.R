@@ -1,13 +1,13 @@
 # TITLE:    plot_combined_gwas_magma_results.R
 # ABOUT:    Script to plot MAGMA results and highlight significant cell types for different scRNA-seq datasets.
 # INPUT:    file_path_10x_genomics_linear: Combined GWAS MAGMA linear mode results for 10x Genomics dataset (16 cell types)
-# INPUT:    file_path_karolinska_linear: Combined GWAS MAGMA linear mode results for KI dataset level 1 (24 cell types)
-# INPUT:    file_path_macparland_linear: Combined GWAS MAGMA linear mode results for MacParland dataset (20 cell types)
 # INPUT:    file_path_10x_genomics_top10: Combined GWAS MAGMA top 10% mode results for 10x Genomics dataset (16 cell types)
+# INPUT:    file_path_karolinska_linear: Combined GWAS MAGMA linear mode results for KI dataset level 1 (24 cell types)
 # INPUT:    file_path_karolinska_top10: Combined GWAS MAGMA top 10% mode results for KI dataset level 1 (24 cell types)
+# INPUT:    file_path_macparland_linear: Combined GWAS MAGMA linear mode results for MacParland dataset (20 cell types)
 # INPUT:    file_path_macparland_top10: Combined GWAS MAGMA top 10% mode results for MacParland dataset (20 cell types)
 # AUTHOR:   Koen Rademaker
-# DATE:     18 June 2019
+# DATE:     20 June 2019
 
 
 ########## Load required libraries ##########
@@ -21,13 +21,12 @@ cell_type_order_10x_genomics <- c('Astrocytes 1', 'Astrocytes 2', 'Cajal-Retzius
 cell_type_order_karolinska_lvl1 <- c('Pyramidal (CA1)','Pyramidal (SS)','Interneurons','Medium spiny neuron', 'Astrocytes / Ependymal','Dopaminergic neuron','DA neuroblast','Embr. DA neuron','Embr. GABA neuron','Embr. midbrain nucl. neuron','Endothelial-Mural','Microglia','Neural progenitors','Neuroblasts','Oligodendrocyte precursors','Oligodendrocytes','Radial glia like','Striatal interneuron','Vasc. leptomeningeal cells', 'Hypoth. DA neurons','Hypoth. GABAergic neuron','Hypoth. glutamat. neuron', 'Oxytocin/vasopressin neurons','Serotonergic neuron')
 cell_type_order_macparland <- c('Antibody secreting B cells','CD3+ αβ T cells','Central venous LSECs','Cholangiocytes','Erthyroid cells','Hep 1','Hep 2','Hep 3','Hep 4','Hep 5','Hep 6','Inflammatory macrophages','Mature B cells','NK-like cells','Non-inflammatory Macrophages','Periportal LSECs','Portal endothelial cells','Stellate cells','γδ T cells 1','γδ T cells 2')
 
-#       TO-DO: Update file paths
-file_path_10x_genomics_linear <- '~/Data/MAGMA-Celltyping/results/10x_Genomics/10x_Genomics_combined_GWAS_MAGMA_linear_results_heatmap.csv'
-file_path_karolinska_linear <- '~/Data/MAGMA-Celltyping/results/KI/KI_level_1_combined_GWAS_MAGMA_linear_results_heatmap.csv'
-file_path_macparland_linear <- '~/Data/MAGMA-Celltyping/results/MacParland/MacParland_combined_GWAS_MAGMA_linear_results_heatmap.csv'
-file_path_10x_genomics_top10 <- '~/Data/MAGMA-Celltyping/results/10x_Genomics/10x_Genomics_combined_GWAS_MAGMA_top10_results_heatmap.csv'
-file_path_karolinska_top10 <- '~/Data/MAGMA-Celltyping/results/KI/KI_level_1_combined_GWAS_MAGMA_top10_results_heatmap.csv'
-file_path_macparland_top10 <- '~/Data/MAGMA-Celltyping/results/MacParland/MacParland_combined_GWAS_MAGMA_top10_results_heatmap.csv'
+file_path_10x_genomics_linear <- '~/umcu_internship/Single-Cell/data/10x_Genomics_combined_GWAS_MAGMA_linear_results_heatmap.csv'
+file_path_10x_genomics_top10 <- '~/umcu_internship/Single-Cell/data/10x_Genomics_combined_GWAS_MAGMA_top10_results_heatmap.csv'
+file_path_karolinska_linear <- '~/umcu_internship/Single-Cell/data/KI_level_1_combined_GWAS_MAGMA_linear_results_heatmap.csv'
+file_path_karolinska_top10 <- '~/umcu_internship/Single-Cell/data/KI_level_1_combined_GWAS_MAGMA_top10_results_heatmap.csv'
+file_path_macparland_linear <- '~/umcu_internship/Single-Cell/data/MacParland_combined_GWAS_MAGMA_linear_results_heatmap.csv'
+file_path_macparland_top10 <- '~/umcu_internship/Single-Cell/data/MacParland_combined_GWAS_MAGMA_top10_results_heatmap.csv'
 
 
 ########## Plot MAGMA linear mode results for 10x Genomics dataset ##########
@@ -48,9 +47,9 @@ significant_frames_10x_linear <- data.frame(lapply(significant_frames_10x_linear
 # (3) Plot heatmap
 ggplot(data=heatmap_10x_linear) +
     geom_raster(aes(x = factor(GWAS, level = gwas_order), y = Cell.type, fill = P)) +
-    scale_fill_gradient2(limits = c(0.0, 1.0), low = 'navyblue', mid = 'snow', high = 'white', midpoint = 0.1, space = 'Lab', na.value = 'grey50', guide = 'colourbar') +
+    scale_fill_gradient2(limits = c(0.0, 1.0), low = 'navyblue', mid = 'snow', high = 'white', midpoint = 0.1, space = 'Lab', na.value = 'grey50', guide = guide_colorbar(frame.colour = 'black', ticks.colour = 'black')) +
     geom_rect(data = significant_frames_10x_linear, size = 0.5, fill = NA, colour = 'red', aes(xmin = GWAS - 0.5, xmax = GWAS + 0.5, ymin = Cell.type - 0.5, ymax = Cell.type + 0.5)) +
-    labs(title = '', x = 'GWAS', y = 'Cell type') + # TO-DO: Title
+    labs(x = 'GWAS', y = 'Cell type') +
     theme_classic(12) +
     theme(title = element_text(size = 9), axis.text.y = element_text(size = 8), axis.text.x = element_text(angle=90, hjust=1), plot.title = element_text(hjust = 0.5))
 
@@ -84,9 +83,9 @@ significant_frames_ki_linear <- data.frame(lapply(significant_frames_ki_linear,a
 # (3) Plot heatmap
 ggplot(data=heatmap_ki_linear) +
     geom_raster(aes(x = factor(GWAS, level = gwas_order), y = factor(Cell.type, level = cell_type_order_karolinska_lvl1), fill = P)) +
-    scale_fill_gradient2(limits = c(0.0, 1.0), low = 'navyblue', mid = 'snow', high = 'white', midpoint = 0.1, space = 'Lab', na.value = 'grey50', guide = 'colourbar') +
+    scale_fill_gradient2(limits = c(0.0, 1.0), low = 'navyblue', mid = 'snow', high = 'white', midpoint = 0.1, space = 'Lab', na.value = 'grey50', guide = guide_colorbar(frame.colour = 'black', ticks.colour = 'black')) +
     geom_rect(data = significant_frames_ki_linear, size = 0.5, fill = NA, colour = 'red', aes(xmin = GWAS - 0.5, xmax = GWAS + 0.5, ymin = Cell.type - 0.5, ymax = Cell.type + 0.5)) +
-    labs(title = '', x = 'GWAS', y = 'Cell type') + # TO-DO: Title
+    labs(x = 'GWAS', y = 'Cell type') +
     theme_classic(12) +
     theme(axis.text.x = element_text(angle=90, hjust=1), plot.title = element_text(hjust = 0.5))
 
@@ -111,9 +110,9 @@ significant_frames_macparland_linear <- data.frame(lapply(significant_frames_mac
 # (3) Plot heatmap
 ggplot(data=heatmap_macparland_linear) +
     geom_raster(aes(x = factor(GWAS, level = gwas_order), y = factor(Cell.type, level = cell_type_order_macparland), fill = P)) +
-    scale_fill_gradient2(limits = c(0.0, 1.0), low = 'navyblue', mid = 'snow', high = 'white', midpoint = 0.1, space = 'Lab', na.value = 'grey50', guide = 'colourbar') +
+    scale_fill_gradient2(limits = c(0.0, 1.0), low = 'navyblue', mid = 'snow', high = 'white', midpoint = 0.1, space = 'Lab', na.value = 'grey50', guide = guide_colorbar(frame.colour = 'black', ticks.colour = 'black')) +
     geom_rect(data = significant_frames_macparland_linear, size = 0.5, fill = NA, colour = 'red', aes(xmin = GWAS - 0.5, xmax = GWAS + 0.5, ymin = Cell.type - 0.5, ymax = Cell.type + 0.5)) +
-    labs(title = '', x = 'GWAS', y = 'Cell type') + # TO-DO: Title
+    labs(x = 'GWAS', y = 'Cell type') +
     theme_classic(12) +
     theme(axis.text.x = element_text(angle=90, hjust=1), plot.title = element_text(hjust = 0.5))
 
@@ -133,9 +132,9 @@ significant_frames_10x_top10 <- data.frame(lapply(significant_frames_10x_top10,a
 # (3) Plot heatmap
 ggplot(data=heatmap_10x_top10) +
     geom_raster(aes(x = factor(GWAS, level = gwas_order), y = Cell.type, fill = P)) +
-    scale_fill_gradient2(limits = c(0.0, 1.0), low = 'navyblue', mid = 'snow', high = 'white', midpoint = 0.1, space = 'Lab', na.value = 'grey50', guide = 'colourbar') +
+    scale_fill_gradient2(limits = c(0.0, 1.0), low = 'navyblue', mid = 'snow', high = 'white', midpoint = 0.1, space = 'Lab', na.value = 'grey50', guide = guide_colorbar(frame.colour = 'black', ticks.colour = 'black')) +
     geom_rect(data = significant_frames_10x_top10, size = 0.5, fill = NA, colour = 'red', aes(xmin = GWAS - 0.5, xmax = GWAS + 0.5, ymin = Cell.type - 0.5, ymax = Cell.type + 0.5)) +
-    labs(title = '', x = 'GWAS', y = 'Cell type') + # TO-DO: Title
+    labs(x = 'GWAS', y = 'Cell type') +
     theme_classic(12) +
     theme(title = element_text(size = 9), axis.text.y = element_text(size = 8), axis.text.x = element_text(angle=90, hjust=1), plot.title = element_text(hjust = 0.5))
 
@@ -158,9 +157,9 @@ significant_frames_ki_top10 <- data.frame(lapply(significant_frames_ki_top10,as.
 # (3) Plot heatmap
 ggplot(data=heatmap_ki_top10) +
     geom_raster(aes(x = factor(GWAS, level = gwas_order), y = factor(Cell.type, level = cell_type_order_karolinska_lvl1), fill = P)) +
-    scale_fill_gradient2(limits = c(0.0, 1.0), low = 'navyblue', mid = 'snow', high = 'white', midpoint = 0.1, space = 'Lab', na.value = 'grey50', guide = 'colourbar') +
+    scale_fill_gradient2(limits = c(0.0, 1.0), low = 'navyblue', mid = 'snow', high = 'white', midpoint = 0.1, space = 'Lab', na.value = 'grey50', guide = guide_colorbar(frame.colour = 'black', ticks.colour = 'black')) +
     geom_rect(data = significant_frames_ki_top10, size = 0.5, fill = NA, colour = 'red', aes(xmin = GWAS - 0.5, xmax = GWAS + 0.5, ymin = Cell.type - 0.5, ymax = Cell.type + 0.5)) +
-    labs(title = '', x = 'GWAS', y = 'Cell type') + # TO-DO: Title
+    labs(x = 'GWAS', y = 'Cell type') +
     theme_classic(12) +
     theme(axis.text.x = element_text(angle=90, hjust=1), plot.title = element_text(hjust = 0.5))
 
@@ -171,7 +170,7 @@ heatmap_macparland_top10 <- read.csv(file_path_macparland_top10)
 # (2) Plot heatmap
 ggplot(data=heatmap_macparland_top10) +
     geom_raster(aes(x = factor(GWAS, level = gwas_order), y = factor(Cell.type, level = cell_type_order_macparland), fill = P)) +
-    scale_fill_gradient2(limits = c(0.0, 1.0), low = 'navyblue', mid = 'snow', high = 'white', midpoint = 0.1, space = 'Lab', na.value = 'grey50', guide = 'colourbar') +
-    labs(title = '', x = 'GWAS', y = 'Cell type') + # TO-DO: Title
+    scale_fill_gradient2(limits = c(0.0, 1.0), low = 'navyblue', mid = 'snow', high = 'white', midpoint = 0.1, space = 'Lab', na.value = 'grey50', guide = guide_colorbar(frame.colour = 'black', ticks.colour = 'black')) +
+    labs(x = 'GWAS', y = 'Cell type')
     theme_classic(12) +
     theme(axis.text.x = element_text(angle=90, hjust=1), plot.title = element_text(hjust = 0.5))
