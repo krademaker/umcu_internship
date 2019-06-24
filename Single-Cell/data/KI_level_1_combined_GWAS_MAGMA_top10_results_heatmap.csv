@@ -95,30 +95,30 @@ EA (2018),Radial glia like,0.95733,FALSE
 EA (2018),Serotonergic neuron,0.13261,FALSE
 EA (2018),Striatal interneuron,0.23289,FALSE
 EA (2018),Vasc. leptomeningeal cells,0.9889,FALSE
-BMI (20215),Astrocytes / Ependymal,0.19302,FALSE
-BMI (20215),Dopaminergic neuron,0.00044222,FALSE
-BMI (20215),DA neuroblast,0.23865,FALSE
-BMI (20215),Embr. DA neuron,0.31151,FALSE
-BMI (20215),Embr. GABA neuron,0.034813,FALSE
-BMI (20215),Embr. midbrain nucl. neuron,0.43539,FALSE
-BMI (20215),Endothelial-Mural,0.98595,FALSE
-BMI (20215),Hypoth. DA neurons,0.21673,FALSE
-BMI (20215),Hypoth. GABAergic neuron,0.0056103,FALSE
-BMI (20215),Hypoth. glutamat. neuron,0.34814,FALSE
-BMI (20215),Interneurons,0.41628,FALSE
-BMI (20215),Medium spiny neuron,0.00043919,FALSE
-BMI (20215),Microglia,0.91482,FALSE
-BMI (20215),Neural progenitors,0.55811,FALSE
-BMI (20215),Neuroblasts,0.12101,FALSE
-BMI (20215),Oligodendrocyte precursors,0.20786,FALSE
-BMI (20215),Oligodendrocytes,0.60035,FALSE
-BMI (20215),Oxytocin/vasopressin neurons,0.82975,FALSE
-BMI (20215),Pyramidal (CA1),0.0047639,FALSE
-BMI (20215),Pyramidal (SS),0.010972,FALSE
-BMI (20215),Radial glia like,0.55106,FALSE
-BMI (20215),Serotonergic neuron,0.072238,FALSE
-BMI (20215),Striatal interneuron,0.31331,FALSE
-BMI (20215),Vasc. leptomeningeal cells,0.65611,FALSE
+BMI (2015),Astrocytes / Ependymal,0.19302,FALSE
+BMI (2015),Dopaminergic neuron,0.00044222,FALSE
+BMI (2015),DA neuroblast,0.23865,FALSE
+BMI (2015),Embr. DA neuron,0.31151,FALSE
+BMI (2015),Embr. GABA neuron,0.034813,FALSE
+BMI (2015),Embr. midbrain nucl. neuron,0.43539,FALSE
+BMI (2015),Endothelial-Mural,0.98595,FALSE
+BMI (2015),Hypoth. DA neurons,0.21673,FALSE
+BMI (2015),Hypoth. GABAergic neuron,0.0056103,FALSE
+BMI (2015),Hypoth. glutamat. neuron,0.34814,FALSE
+BMI (2015),Interneurons,0.41628,FALSE
+BMI (2015),Medium spiny neuron,0.00043919,FALSE
+BMI (2015),Microglia,0.91482,FALSE
+BMI (2015),Neural progenitors,0.55811,FALSE
+BMI (2015),Neuroblasts,0.12101,FALSE
+BMI (2015),Oligodendrocyte precursors,0.20786,FALSE
+BMI (2015),Oligodendrocytes,0.60035,FALSE
+BMI (2015),Oxytocin/vasopressin neurons,0.82975,FALSE
+BMI (2015),Pyramidal (CA1),0.0047639,FALSE
+BMI (2015),Pyramidal (SS),0.010972,FALSE
+BMI (2015),Radial glia like,0.55106,FALSE
+BMI (2015),Serotonergic neuron,0.072238,FALSE
+BMI (2015),Striatal interneuron,0.31331,FALSE
+BMI (2015),Vasc. leptomeningeal cells,0.65611,FALSE
 Breast cancer (2017),Astrocytes / Ependymal,0.048804,FALSE
 Breast cancer (2017),Dopaminergic neuron,0.37014,FALSE
 Breast cancer (2017),DA neuroblast,0.39466,FALSE
