@@ -1,0 +1,73 @@
+Cell type,P,Method
+Astrocytes / Ependymal,0.91,DEPICT
+DA neuroblast,1,DEPICT
+Dopaminergic neuron,0.28,DEPICT
+Embr. DA neuron,0.98,DEPICT
+Embr. GABA neuron,0.36,DEPICT
+Embr. midbrain nucl. neuron,0.98,DEPICT
+Endothelial-Mural,1,DEPICT
+Hypoth. DA neurons,0.01,DEPICT
+Hypoth. GABAergic neuron,0.16,DEPICT
+Hypoth. glutamat. neuron,0.9,DEPICT
+Interneurons,2.39E-05,DEPICT
+Medium spiny neuron,0.000326,DEPICT
+Microglia,0.99,DEPICT
+Neural progenitors,1,DEPICT
+Neuroblasts,0.87,DEPICT
+Oligodendrocyte precursors,0.3,DEPICT
+Oligodendrocytes,0.51,DEPICT
+Oxytocin/vasopressin neurons,0.78,DEPICT
+Pyramidal (CA1),4.97E-05,DEPICT
+Pyramidal (SS),3.38E-05,DEPICT
+Radial glia like,0.94,DEPICT
+Serotonergic neuron,0.93,DEPICT
+Striatal interneuron,0.27,DEPICT
+Vasc. leptomeningeal cells,1,DEPICT
+Astrocytes / Ependymal,0.918485,LDSC (simulated)
+DA neuroblast,0.68185,LDSC (simulated)
+Dopaminergic neuron,0.35051,LDSC (simulated)
+Embr. DA neuron,0.84336,LDSC (simulated)
+Embr. GABA neuron,0.56131,LDSC (simulated)
+Embr. midbrain nucl. neuron,0.93283,LDSC (simulated)
+Endothelial-Mural,0.99818,LDSC (simulated)
+Hypoth. DA neurons,0.402905,LDSC (simulated)
+Hypoth. GABAergic neuron,0.37552,LDSC (simulated)
+Hypoth. glutamat. neuron,0.941905,LDSC (simulated)
+Interneurons,0.01947295,LDSC (simulated)
+Medium spiny neuron,0.0001643406,LDSC (simulated)
+Microglia,0.994825,LDSC (simulated)
+Neural progenitors,0.97968,LDSC (simulated)
+Neuroblasts,0.85849,LDSC (simulated)
+Oligodendrocyte precursors,0.536425,LDSC (simulated)
+Oligodendrocytes,0.430045,LDSC (simulated)
+Oxytocin/vasopressin neurons,0.86794,LDSC (simulated)
+Pyramidal (CA1),2.485339175E-05,LDSC (simulated)
+Pyramidal (SS),5.48285E-05,LDSC (simulated)
+Radial glia like,0.936905,LDSC (simulated)
+Serotonergic neuron,0.535955,LDSC (simulated)
+Striatal interneuron,0.27913,LDSC (simulated)
+Vasc. leptomeningeal cells,0.99429,LDSC (simulated)
+Astrocytes / Ependymal,0.92697,MAGMA
+DA neuroblast,0.3637,MAGMA
+Dopaminergic neuron,0.42102,MAGMA
+Embr. DA neuron,0.70672,MAGMA
+Embr. GABA neuron,0.76262,MAGMA
+Embr. midbrain nucl. neuron,0.88566,MAGMA
+Endothelial-Mural,0.99636,MAGMA
+Hypoth. DA neurons,0.79581,MAGMA
+Hypoth. GABAergic neuron,0.59104,MAGMA
+Hypoth. glutamat. neuron,0.98381,MAGMA
+Interneurons,0.038922,MAGMA
+Medium spiny neuron,2.6812E-06,MAGMA
+Microglia,0.99965,MAGMA
+Neural progenitors,0.95936,MAGMA
+Neuroblasts,0.84698,MAGMA
+Oligodendrocyte precursors,0.77285,MAGMA
+Oligodendrocytes,0.35009,MAGMA
+Oxytocin/vasopressin neurons,0.95588,MAGMA
+Pyramidal (CA1),6.7835E-09,MAGMA
+Pyramidal (SS),7.5857E-05,MAGMA
+Radial glia like,0.93381,MAGMA
+Serotonergic neuron,0.14191,MAGMA
+Striatal interneuron,0.28826,MAGMA
+Vasc. leptomeningeal cells,0.98858,MAGMA

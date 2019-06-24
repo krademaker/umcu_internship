@@ -1,0 +1,49 @@
+Cell type,P,Method
+Astrocytes (1),1,DEPICT
+Astrocytes (2),0.26,DEPICT
+Cajal-Retzius cells,0.36,DEPICT
+Endothelial cells,1,DEPICT
+Enteric glial cells,0.47,DEPICT
+Enteric neurons,0.97,DEPICT
+Intermediate progenitors,0.72,DEPICT
+Interneurons (1),0.03,DEPICT
+Interneurons (2),0.11,DEPICT
+Microglia,0.99,DEPICT
+Neuroblasts (1),0.05,DEPICT
+Neuroblasts (2),0.000728,DEPICT
+Neurons,0.29,DEPICT
+Neurons (glutamatergic),0.03,DEPICT
+Oligodendrocytes,0.00172,DEPICT
+Vascular endothelial cells,0.92,DEPICT
+Neuroblasts (2),0.0003989985,LDSC (simulated)
+Oligodendrocytes,0.0077405,LDSC (simulated)
+Neurons (glutamatergic),0.015010099,LDSC (simulated)
+Interneurons (1),0.01527396,LDSC (simulated)
+Neuroblasts (1),0.063291,LDSC (simulated)
+Interneurons (2),0.074653,LDSC (simulated)
+Neurons,0.145049919,LDSC (simulated)
+Cajal-Retzius cells,0.32032,LDSC (simulated)
+Intermediate progenitors,0.46287,LDSC (simulated)
+Astrocytes (2),0.60291,LDSC (simulated)
+Enteric glial cells,0.692445,LDSC (simulated)
+Enteric neurons,0.89998,LDSC (simulated)
+Vascular endothelial cells,0.953415,LDSC (simulated)
+Astrocytes (1),0.959125,LDSC (simulated)
+Endothelial cells,0.98024,LDSC (simulated)
+Microglia,0.99326,LDSC (simulated)
+Astrocytes (1),0.91825,MAGMA
+Astrocytes (2),0.94582,MAGMA
+Cajal-Retzius cells,0.28064,MAGMA
+Endothelial cells,0.96048,MAGMA
+Enteric glial cells,0.91489,MAGMA
+Enteric neurons,0.82996,MAGMA
+Intermediate progenitors,0.20574,MAGMA
+Interneurons (1),0.00054792,MAGMA
+Interneurons (2),0.039306,MAGMA
+Microglia,0.99652,MAGMA
+Neuroblasts (1),0.076582,MAGMA
+Neuroblasts (2),6.9997E-05,MAGMA
+Neurons,9.9838E-05,MAGMA
+Neurons (glutamatergic),2.0198E-05,MAGMA
+Oligodendrocytes,0.013761,MAGMA
+Vascular endothelial cells,0.98683,MAGMA
