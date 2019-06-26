@@ -1,0 +1,11 @@
+# best practice to execute all scripts within the default folder to prevent issues with file pathing
+
+# (1) Clone LDSC repository from GitHub
+```git clone https://github.com/bulik/ldsc.git```
+```cd ldsc```
+
+# (2) Set up designated environment
+```wget https://repo.anaconda.com/miniconda/Miniconda2-latest-Linux-x86_64.sh```
+```bash Miniconda2-latest-Linux-x86_64.sh```
+```conda env create --file environment.yml```
+```source activate ldsc```
