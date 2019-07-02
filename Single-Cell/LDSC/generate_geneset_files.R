@@ -1,8 +1,9 @@
-# TITLE:	preprare_annotation_data.R
-# ABOUT:	TO-DO
-# INPUT:	TO-DO
+# TITLE:	generate_geneset_files.R
+# ABOUT:	Script to prepare LDSC annotation data by generating gene set files for sub-annotations.
+# INPUT:	mean_expr_path: Mean gene expression data for 10x Genomics cell types.
+# INPUT:    human_gene_reference_path: Reference file for human genes (hg19), including chromosomes, gene names and gene IDs.
 # AUTHOR:	Koen Rademaker
-# DATE:		28 June 2019
+# DATE:		2 July 2019
 
 ########## Load required libraries ##########
 library(MAGMA.Celltyping)
@@ -55,23 +56,26 @@ translate_mouse_symbol_to_ensembl <- function(genes_mouse_symbol){
     return(genes_human_ensembl)
 }
 
-partition_genes_by_chromosome <- function(genes, cell_type, decile, out_dir='~/Data/LDSC/'){
+partition_genes_by_chromosome <- function(genes, dataset='10x_Genomics', cell_type, decile, out_dir=getwd()){
+    if(!dir.exists(out_dir)){
+        dir.create(out_dir)
+    }
     for (chr in 1:22){
         # Partition genes per chromosome
         chr_partitioned_genes <- human_gene_reference %>%
             filter(human_gene_reference$CHROMOSOME == chr & human_gene_reference$GENE_ID %in% genes) %>%
             select('GENE_ID')
         # Write file
-        f <- file(paste(out_dir, '10x_Genomics.', cell_type, '.', decile, '.', chr, '.GeneSet', sep = ''), open = 'w')
+        f <- file(paste(out_dir, '/', dataset, '.', cell_type, '.', decile, '.', chr, '.GeneSet', sep = ''), open = 'w')
         write.table(chr_partitioned_genes, file = f, sep = '\t', row.names = F, col.names = F, quote = F)
         close(f)
     }
 }
 
 ########## Set variables ##########
-mean_expr_path <- '~/Git/umcu_internship/Single-Cell/data/10x_Genomics_16_cell_types_mean_expression.tsv'
-human_gene_reference_path <- '~/Git/umcu_internship/Single-Cell/data/gencode_v19_genes_only.tab'
-formal_cell_type_names <- c('Glutamatergic neurons', 'Neuroblasts 1', 'Astrocytes 1', 'Neuroblasts 2', 'Intermediate progenitors', 'Enteric glial cells', 'Interneurons 1', 'Neurons', 'Interneurons 2', 'Vascular endothelial cells', 'Enteric neurons', 'Cajal-Retzius cells', 'Oligodendrocytes', 'Astrocytes 2', 'Endothelial cells', 'Microglia')
+mean_expr_path <- '~/umcu_internship/Single-Cell/data/10x_Genomics_16_cell_types_mean_expression.tsv'
+human_gene_reference_path <- '~/umcu_internship/Single-Cell/data/gencode_v19_genes_only.tab'
+geneset_out_path = '~/umcu_internship/Single-Cell/LDSC/Files/GeneSet'
 
 ########## Load human gene reference data and remove Ensembl ID version numbers ##########
 human_gene_reference <- read.delim(human_gene_reference_path)
@@ -93,23 +97,22 @@ ctd_10X[[1]]$specificity <- specificity_data
 ctd_10X = prepare.quantile.groups(ctd_10X, specificity_species = 'mouse', numberOfBins = 10)
 ctd_10X[[2]] <- NULL
 
-########## Store unmapped genes ##########
-unmapped_genes <- row.names(specificity_data)[!(row.names(specificity_data) %in% row.names(ctd_10X[[1]]$specificity_quantiles))]
-
-########## Create gene set files ##########
+########## Compose gene sets for specificity deciles of cell types per chromosome and store to file ##########
 for (cell_type in names(ctd_10X[[1]]$specificity)){
     # Genes not expressed in a cell type
     cell_type_non_expressed <- get_specificity_decile_genes(ctd_10X, cell_type, 0)
     ensembl_cell_type_non_expressed <- translate_mouse_symbol_to_ensembl(cell_type_non_expressed)
     partition_genes_by_chromosome(genes = ensembl_cell_type_non_expressed,
                                   cell_type = cell_type,
-                                  decile = 'N')
+                                  decile = 'N',
+                                  out_dir = geneset_out_path)
     # Genes in specificity decile of cell type 
     for (decile_n in 1:10){
         cell_type_decile_expressed <- get_specificity_decile_genes(ctd_10X, cell_type, decile_n)
         ensembl_cell_type_decile_expressed <- translate_mouse_symbol_to_ensembl(cell_type_decile_expressed)
         partition_genes_by_chromosome(genes = ensembl_cell_type_non_expressed,
                                       cell_type = cell_type,
-                                      decile = toString(decile_n))
+                                      decile = toString(decile_n),
+                                      out_dir = geneset_out_path)
     }
 }
