@@ -66,7 +66,7 @@ partition_genes_by_chromosome <- function(genes, dataset='10x_Genomics', cell_ty
             filter(human_gene_reference$CHROMOSOME == chr & human_gene_reference$GENE_ID %in% genes) %>%
             select('GENE_ID')
         # Write file
-        f <- file(paste(out_dir, '/', dataset, '.', cell_type, '.', decile, '.', chr, '.GeneSet', sep = ''), open = 'w')
+        f <- file(paste(out_dir, '/', dataset, '.', cell_type, '.', chr, '.', decile, '.GeneSet', sep = ''), open = 'w')
         write.table(chr_partitioned_genes, file = f, sep = '\t', row.names = F, col.names = F, quote = F)
         close(f)
     }
