@@ -3,7 +3,7 @@
 # INPUT:	mean_expr_path: Mean gene expression data for 10x Genomics cell types.
 # INPUT:    human_gene_reference_path: Reference file for human genes (hg19), including chromosomes, gene names and gene IDs.
 # AUTHOR:	Koen Rademaker
-# DATE:		2 July 2019
+# DATE:		3 July 2019
 
 ########## Load required libraries ##########
 library(MAGMA.Celltyping)
@@ -110,7 +110,7 @@ for (cell_type in names(ctd_10X[[1]]$specificity)){
     for (decile_n in 1:10){
         cell_type_decile_expressed <- get_specificity_decile_genes(ctd_10X, cell_type, decile_n)
         ensembl_cell_type_decile_expressed <- translate_mouse_symbol_to_ensembl(cell_type_decile_expressed)
-        partition_genes_by_chromosome(genes = ensembl_cell_type_non_expressed,
+        partition_genes_by_chromosome(genes = ensembl_cell_type_decile_expressed,
                                       cell_type = cell_type,
                                       decile = toString(decile_n),
                                       out_dir = geneset_out_path)
