@@ -26,10 +26,19 @@ declare -a specificity_deciles=(N 1 2 3 4 5 6 7 8 9 10)
 
 ########## Organize LDSC ##########
 # Download background data
-	# PLINK
-	# HapMap3 SNPS
+echo "-- Downloading 1000 Genomes Project phase 3 plink files--"
+wget https://data.broadinstitute.org/alkesgroup/LDSCORE/1000G_Phase3_plinkfiles.tgz -P ${files_dir}
+tar -xvzf ${files_dir}/1000G_Phase3_plinkfiles.tgz
+echo "-- Downloading HapMap3 SNPs --"
+wget https://data.broadinstitute.org/alkesgroup/LDSCORE/hapmap3_snps.tgz -P ${files_dir}
+tar -xvzf ${files_dir}/hapmap3_snps.tgz
 # Declare variables
+phase3_1000G_dir=${files_dir}/1000G_EUR_Phase3_plink
+hapmap3_dir=${files_dir}/hapmap3_snps
+ld_window=1
+dataset="10x_Genomics"
 # Activate LDSC environment
+conda activate ldsc
 
 
 ########## Calculate LD scores with annotation files ##########
