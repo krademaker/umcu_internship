@@ -1,7 +1,7 @@
-# TITLE:	generate_geneset_files.R
-# ABOUT:	Script to prepare LDSC annotation data by generating gene set files for sub-annotations.
+# TITLE:	make_gene_set_files.R
+# ABOUT:	Script to prepare LDSC annotation data by creating gene set files for sub-annotations.
 # INPUT:	mean_expr_path: Mean gene expression data for 10x Genomics cell types.
-# INPUT:    human_gene_reference_path: Reference file for human genes (hg19), including chromosomes, gene names and gene IDs.
+# INPUT:    	human_gene_reference_path: Reference file for human genes (hg19), including chromosomes, gene names and gene IDs.
 # AUTHOR:	Koen Rademaker
 # DATE:		3 July 2019
 
