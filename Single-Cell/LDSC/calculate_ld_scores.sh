@@ -47,7 +47,7 @@ for ct in ${cell_types[@]}; do
 	# (2) Iterate over chromosomes
 	for chr in {1..22}; do
 		# (3) Calculate LD scores
-		python ${ldsc_dir}ldsc.py \
+		python ${ldsc_dir}/ldsc.py \
 			--l2 \
 			--bfile ${phase3_1000G_dir}/1000G.EUR.QC.${chr} \
 			--ld-wind-cm ${ld_window} \
