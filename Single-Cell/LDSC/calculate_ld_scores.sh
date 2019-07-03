@@ -21,7 +21,6 @@ mkdir -p ${tmp_dir}
 mkdir -p ${ld_scores_dir}
 # Declare variables
 declare -a cell_types=("Glutamatergic_neurons" "Neuroblasts_1" "Astrocytes_1" "Neuroblasts_2" "Intermediate_progenitors" "Enteric_glial_cells" "Interneurons_1" "Neurons" "Interneurons_2" "Vascular_endothelial_cells" "Enteric_neurons" "Cajal_Retzius_cells" "Oligodendrocytes" "Astrocytes_2" "Endothelial_cells" "Microglia")
-declare -a specificity_deciles=(N 1 2 3 4 5 6 7 8 9 10)
 
 
 ########## Organize LDSC ##########
