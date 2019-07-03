@@ -43,9 +43,15 @@ conda activate ldsc
 
 ########## Calculate LD scores with annotation files ##########
 # (1) Iterate over cell types
-# (2) Iterate over chromosomes
-# (3) Copy annotation file to temporary folder
-# (4) Calculate LD scores
-# (5) Merge files together for export
-# (6) Export
-# (7) Clear temporary folder
+for ct in ${cell_types[@]}; do
+	# (2) Iterate over chromosomes
+	for chr in {1..22}; do
+		# (3) Calculate LD scores
+		python ${ldsc_dir}ldsc.py \
+			--l2 \
+			--bfile ${phase3_1000G_dir}/1000G.EUR.QC.${chr} \
+			--ld-wind-cm ${ld_window} \
+			--annot ${annotation_dir}/${dataset}_${ct}_${chr}.annot.gz \
+			--thin-annot \
+			--out ${ld_scores_dir}/${dataset}_${ct}_${chr} \
+			--print-snps ${hapmap3_dir}/hm.${chr}.snp
