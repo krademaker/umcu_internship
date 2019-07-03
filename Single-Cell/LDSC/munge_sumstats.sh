@@ -1,13 +1,13 @@
 # GOAL:		Munge GWAS summary statistics for LDSC partitioned heritability
 # REQUIRED:	GWAS summary statistics files, working LDSC environment (see README)
 # AUTHOR:	Koen Rademaker
-# DATE:		27 June 2019
+# DATE:		3 July 2019
 
 
 ########## Set up environment and variables ##########
-ldsc_dir=./ldsc
-sum_stats_dir=./Summary-Statistics
-data_dir=./Files
+ldsc_dir=~/umcu_internship/Single-Cell/LDSC/ldsc
+data_dir=~/umcu_internship/Single-Cell/LDSC/Files
+sum_stats_dir=${data_dir}/Summary-Statistics
 conda activate ldsc
 
 
