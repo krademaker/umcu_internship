@@ -54,3 +54,5 @@ for ct in ${cell_types[@]}; do
 			--thin-annot \
 			--out ${ld_scores_dir}/${dataset}_${ct}_${chr} \
 			--print-snps ${hapmap3_dir}/hm.${chr}.snp
+	done
+done
