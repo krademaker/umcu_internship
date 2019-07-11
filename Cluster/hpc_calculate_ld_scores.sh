@@ -8,7 +8,7 @@
 #$ -o /home/hers_en/krademaker/output/
 #$ -M K.J.Rademaker-2@umcutrecht.nl
 #$ -m beas
-#$ -l h_rt=24:00:00
+#$ -l h_rt=1:00:00
 #$ -l h_vmem=16G
 #$ -pe threaded 4
 #############################################
