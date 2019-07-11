@@ -43,9 +43,10 @@ significant_frames_10x <- data.frame(lapply(significant_frames_10x,as.numeric))
 ggplot(data=heatmap_10x_genomics) +
     geom_raster(aes(x = factor(GWAS, level = gwas_order), y = factor(Cell.type, level = cell_type_order_10x_genomics_lvl1), fill = P)) +
     scale_fill_gradient2(limits = c(0.0, 1.0), low = 'navyblue', mid = 'snow', high = 'white', midpoint = 0.1, space = 'Lab', na.value = 'grey50', guide = guide_colorbar(frame.colour = 'black', ticks.colour = 'black')) +
-    geom_rect(data = significant_frames_10x, size = 0.5, fill = NA, colour = 'red', aes(xmin = GWAS - 0.5, xmax = GWAS + 0.5, ymin = Cell.type - 0.5, ymax = Cell.type + 0.5)) +
+    geom_rect(data = significant_frames_10x, size = 0.75, fill = NA, colour = 'red', aes(xmin = GWAS - 0.5, xmax = GWAS + 0.5, ymin = Cell.type - 0.5, ymax = Cell.type + 0.5)) +
     labs(x = 'GWAS', y = 'Cell type') +
-    theme_classic(12) +
+    theme_classic(14) +
+    theme(axis.title.x = element_text(size = 12), axis.title.y = element_text(size = 12)) +
     theme(title = element_text(size = 9), axis.text.x = element_text(angle=90, hjust=1), plot.title = element_text(hjust = 0.5))
 
 
@@ -120,7 +121,7 @@ ggplot(data=heatmap_karolinska) +
     geom_rect(data = significant_frames_karolinska, size = 0.25, fill = NA, colour = 'red', aes(xmin = GWAS - 0.5, xmax = GWAS + 0.5, ymin = Cell.type - 0.5, ymax = Cell.type + 0.5)) +
     labs(title = 'KI dataset (level 2)', x = 'GWAS', y = 'Cell type') +
     theme_classic(12) +
-    theme(axis.text.y = element_text(size=3), axis.text.x = element_text(angle=90, hjust=1), plot.title = element_text(hjust = 0.5))
+    theme(axis.text.y = element_text(size=5), axis.text.x = element_text(angle=90, hjust=1), plot.title = element_text(hjust = 0.5))
 
 
 ########## Plot DEPICT results for MacParland human liver dataset, 20 cell types ##########
