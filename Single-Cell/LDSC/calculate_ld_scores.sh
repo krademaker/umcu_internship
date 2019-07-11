@@ -25,12 +25,9 @@ declare -a cell_types=("Microglia" "Endothelial_cells" "Astrocytes_2" "Oligodend
 
 ########## Organize LDSC ##########
 # Download background data
-#	echo "-- Downloading 1000 Genomes Project phase 3 plink files--"
-#	wget https://data.broadinstitute.org/alkesgroup/LDSCORE/1000G_Phase3_plinkfiles.tgz -P ${files_dir}
-#	tar -xvzf ${files_dir}/1000G_Phase3_plinkfiles.tgz
-#	echo "-- Downloading HapMap3 SNPs --"
-#	wget https://data.broadinstitute.org/alkesgroup/LDSCORE/hapmap3_snps.tgz -P ${files_dir}
-#	tar -xvzf ${files_dir}/hapmap3_snps.tgz
+echo "-- Downloading HapMap3 SNPs --"
+wget https://data.broadinstitute.org/alkesgroup/LDSCORE/hapmap3_snps.tgz -P ${files_dir}
+tar -xvzf ${files_dir}/hapmap3_snps.tgz
 # Declare variables
 phase3_1000G_dir=${files_dir}/1000G_EUR_Phase3_plink
 hapmap3_dir=${files_dir}/hapmap3_snps
