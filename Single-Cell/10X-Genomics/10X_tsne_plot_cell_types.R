@@ -20,7 +20,7 @@ kmeans_qc_cells_df <- read.delim("~/umcu_internship/Single-Cell/data/tsne_cell_t
 # (1) Graph-based clustering
 graphclust_all_cells_df$Cluster <- factor(graphclust_all_cells_df$Cluster)
 graphclust_all_cells_labels <- data.frame(Cluster = levels(graphclust_all_cells_df$Cluster),
-                                          label = paste0('Cluster ', levels(graphclust_all_cells_df$Cluster)))
+                                          label = levels(graphclust_all_cells_df$Cluster))
 graphclust_all_cells_labels_2 <- graphclust_all_cells_df %>%
     group_by(Cluster) %>%
     summarize(TSNE.1 = mean(TSNE.1), TSNE.2 = mean(TSNE.2)) %>%
@@ -29,7 +29,7 @@ graphclust_all_cells_labels_2 <- graphclust_all_cells_df %>%
 # (2) K-means clustering
 kmeans_all_cells_df$Cluster <- factor(kmeans_all_cells_df$Cluster)
 kmeans_all_cells_labels <- data.frame(Cluster = levels(kmeans_all_cells_df$Cluster),
-                                      label = paste0('Cluster ', levels(kmeans_all_cells_df$Cluster)))
+                                      label = levels(kmeans_all_cells_df$Cluster))
 kmeans_all_cells_labels_2 <- kmeans_all_cells_df %>%
     group_by(Cluster) %>%
     summarize(TSNE.1 = mean(TSNE.1), TSNE.2 = mean(TSNE.2)) %>%
@@ -48,31 +48,31 @@ kmeans_qc_cells_labels_2 <- kmeans_qc_cells_df %>%
 ggplot(graphclust_all_cells_df, aes(x = TSNE.1, y = TSNE.2, color = Cluster)) +
     geom_point(size = 1, alpha = 1) +
     theme_classic() +
-    ggtitle('Clusters in 10x Genomics dataset using graph-based clustering') +
+    ggtitle('') +
     xlab('t-SNE dimension 1') +
     ylab('t-SNE dimension 2') +
     theme(plot.title = element_text(hjust = 0.5), axis.text.y = element_text(size=2)) +
     theme(legend.position = 'none') +
-    ggrepel::geom_label_repel(data = graphclust_all_cells_labels_2, aes(label = label), size=3)
+    ggrepel::geom_label_repel(data = graphclust_all_cells_labels_2, aes(label = label), size=5)
 
 ########## Plot for all cells using k-means clustering ##########
 ggplot(kmeans_all_cells_df, aes(x = TSNE.1, y = TSNE.2, color = Cluster)) +
     geom_point(size = 1, alpha = 1) +
     theme_classic() +
-    ggtitle('Clusters in 10x Genomics dataset using k-means clustering') +
+    ggtitle('') +
     xlab('t-SNE dimension 1') +
     ylab('t-SNE dimension 2') +
     theme(plot.title = element_text(hjust = 0.5)) +
     theme(legend.position = 'none') +
-    ggrepel::geom_label_repel(data = kmeans_all_cells_labels_2, aes(label = label), size=3)
+    ggrepel::geom_label_repel(data = kmeans_all_cells_labels_2, aes(label = label), size=5)
 
 ########## Plot for 108K subset (QC applied) ##########
 ggplot(kmeans_qc_cells_df, aes(x = TSNE.1, y = TSNE.2, color = Cluster)) +
     geom_point(size = 1, alpha = 1) +
     theme_classic() +
-    ggtitle('Cell types for 10x Genomics 108K subset with QC applied') +
+    ggtitle('') +
     xlab('t-SNE dimension 1') +
     ylab('t-SNE dimension 2') +
     theme(plot.title = element_text(hjust = 0.5)) +
     theme(legend.position = 'none') +
-    ggrepel::geom_label_repel(data = kmeans_qc_cells_labels_2, aes(label = label), size=2.75)
+    ggrepel::geom_label_repel(data = kmeans_qc_cells_labels_2, aes(label = label), size=4)
