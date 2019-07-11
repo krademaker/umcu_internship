@@ -6,13 +6,13 @@
 # INPUT:	Ensembl gene coordinates, 1000 Genomes Project Phase 3 plink files (will automatically be downloaded and organized)
 # OUTPUT:	LDSC thin-annotation files (annot.gz) per autosomal chromosome for all cell types
 # AUTHOR:	Koen Rademaker
-# DATE:		3 July 2019
+# DATE:		11 July 2019
 
 
 ########## Initialize script ##########
 # Set folder paths
-ldsc_dir=~/umcu_internship/Single-Cell/LDSC/ldsc
-files_dir=~/umcu_internship/Single-Cell/LDSC/Files
+ldsc_dir=~/Git/umcu_internship/Single-Cell/LDSC/ldsc
+files_dir=~/Git/umcu_internship/Single-Cell/LDSC/Files
 genesets_dir=${files_dir}/GeneSet
 annotation_dir=${files_dir}/Annotation
 tmp_dir=${files_dir}/tmp
@@ -64,7 +64,7 @@ for ct in ${cell_types[@]}; do
 		done
 		# (7) Merge sub-annotation files into single annotation file
 		echo "-- Merging sub-annotation files to single annotation file for ${ct} (cell type) on chromosome ${chr} --"
-		paste -d "\t" ${tmp_dir}/${dataset}_${ct}_${chr}_{N,1,2,3,4,5,6,7,8,9,10}.annot > ${annotation_dir}/${dataset}_${ct}_${chr}.annot
+		paste -d "\t" ${tmp_dir}/${dataset}_${ct}_${chr}_{N,1,2,3,4,5,6,7,8,9,10}.annot > ${annotation_dir}/${dataset}_${ct}.${chr}.annot
 		gzip ${annotation_dir}/${dataset}_${ct}_${chr}.annot
 		# (8) Clear temporary folder
 		rm ${tmp_dir}/*
