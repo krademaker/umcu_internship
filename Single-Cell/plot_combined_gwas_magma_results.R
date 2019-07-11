@@ -110,12 +110,11 @@ significant_frames_macparland_linear <- data.frame(lapply(significant_frames_mac
 # (3) Plot heatmap
 ggplot(data=heatmap_macparland_linear) +
     geom_raster(aes(x = factor(GWAS, level = gwas_order), y = factor(Cell.type, level = cell_type_order_macparland), fill = P)) +
-    scale_fill_gradient2(limits = c(0.0, 1.0), low = 'navyblue', mid = 'snow', high = 'white', midpoint = 0.1, space = 'Lab', na.value = 'grey50', guide = guide_colorbar(frame.colour = 'black', ticks.colour = 'black')) +
+    scale_fill_gradient2(limits = c(0.0, 1.0), low = 'brown4', mid = 'snow', high = 'white', midpoint = 0.1, space = 'Lab', na.value = 'grey50', guide = guide_colorbar(frame.colour = 'black', ticks.colour = 'black')) +
     geom_rect(data = significant_frames_macparland_linear, size = 0.5, fill = NA, colour = 'red', aes(xmin = GWAS - 0.5, xmax = GWAS + 0.5, ymin = Cell.type - 0.5, ymax = Cell.type + 0.5)) +
     labs(x = 'GWAS', y = 'Cell type') +
     theme_classic(12) +
     theme(axis.text.x = element_text(angle=90, hjust=1), plot.title = element_text(hjust = 0.5))
-
 
 ########## Plot MAGMA top 10% mode results for 10x Genomics dataset ##########
 # (1) Load data
@@ -170,7 +169,7 @@ heatmap_macparland_top10 <- read.csv(file_path_macparland_top10)
 # (2) Plot heatmap
 ggplot(data=heatmap_macparland_top10) +
     geom_raster(aes(x = factor(GWAS, level = gwas_order), y = factor(Cell.type, level = cell_type_order_macparland), fill = P)) +
-    scale_fill_gradient2(limits = c(0.0, 1.0), low = 'navyblue', mid = 'snow', high = 'white', midpoint = 0.1, space = 'Lab', na.value = 'grey50', guide = guide_colorbar(frame.colour = 'black', ticks.colour = 'black')) +
+    scale_fill_gradient2(limits = c(0.0, 1.0), low = 'brown4', mid = 'snow', high = 'white', midpoint = 0.1, space = 'Lab', na.value = 'grey50', guide = guide_colorbar(frame.colour = 'black', ticks.colour = 'black')) +
     labs(x = 'GWAS', y = 'Cell type')
     theme_classic(12) +
     theme(axis.text.x = element_text(angle=90, hjust=1), plot.title = element_text(hjust = 0.5))
