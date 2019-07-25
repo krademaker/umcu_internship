@@ -9,3 +9,10 @@
 ```bash Miniconda2-latest-Linux-x86_64.sh```
 ```conda env create --file environment.yml```
 ```source activate ldsc```
+
+# (3) Order
+- munge_sumstats.sh
+- make_gene_set_files.R
+- make_annotation_files.sh
+- calculate_ld_scores.sh
+- partition_h2.sh
