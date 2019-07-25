@@ -65,7 +65,7 @@ for ct in ${cell_types[@]}; do
 		# (7) Merge sub-annotation files into single annotation file
 		echo "-- Merging sub-annotation files to single annotation file for ${ct} (cell type) on chromosome ${chr} --"
 		paste -d "\t" ${tmp_dir}/${dataset}_${ct}_${chr}_{N,1,2,3,4,5,6,7,8,9,10}.annot > ${annotation_dir}/${dataset}_${ct}.${chr}.annot
-		gzip ${annotation_dir}/${dataset}_${ct}_${chr}.annot
+		gzip ${annotation_dir}/${dataset}_${ct}.${chr}.annot
 		# (8) Clear temporary folder
 		rm ${tmp_dir}/*
 	done	
