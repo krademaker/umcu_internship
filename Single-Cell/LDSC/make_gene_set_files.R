@@ -1,9 +1,9 @@
 # TITLE:	make_gene_set_files.R
 # ABOUT:	Script to prepare LDSC annotation data by creating gene set files for sub-annotations.
-# INPUT:	mean_expr_path: Mean gene expression data for 10x Genomics cell types.
+# INPUT:	mean_expr_path: Mean gene expression data for cell types.
 # INPUT:    	human_gene_reference_path: Reference file for human genes (hg19), including chromosomes, gene names and gene IDs.
 # AUTHOR:	Koen Rademaker
-# DATE:		3 July 2019
+# DATE:		31 July 2019
 
 ########## Load required libraries ##########
 library(MAGMA.Celltyping)
@@ -16,7 +16,7 @@ library(tibble)
 get_specificity_decile_genes <- function(ctd, cell_type, decile){
     genes <- as.data.frame(ctd[[1]]$specificity_quantiles[, cell_type]) %>%
         rownames_to_column('gene') %>%
-        filter(ctd_10X[[1]]$specificity_quantiles[, cell_type] == decile) %>%
+        filter(ctd[[1]]$specificity_quantiles[, cell_type] == decile) %>%
         pull(gene)
     return(genes)
 }
@@ -56,7 +56,7 @@ translate_mouse_symbol_to_ensembl <- function(genes_mouse_symbol){
     return(genes_human_ensembl)
 }
 
-partition_genes_by_chromosome <- function(genes, dataset='10x_Genomics', cell_type, decile, out_dir=getwd()){
+partition_genes_by_chromosome <- function(genes, dataset, cell_type, decile, out_dir=getwd()){
     if(!dir.exists(out_dir)){
         dir.create(out_dir)
     }
@@ -73,7 +73,6 @@ partition_genes_by_chromosome <- function(genes, dataset='10x_Genomics', cell_ty
 }
 
 ########## Set variables ##########
-mean_expr_path <- '~/umcu_internship/Single-Cell/data/10x_Genomics_16_cell_types_mean_expression.tsv'
 human_gene_reference_path <- '~/umcu_internship/Single-Cell/data/gencode_v19_genes_only.tab'
 geneset_out_path = '~/umcu_internship/Single-Cell/LDSC/Files/GeneSet'
 
@@ -81,16 +80,20 @@ geneset_out_path = '~/umcu_internship/Single-Cell/LDSC/Files/GeneSet'
 human_gene_reference <- read.delim(human_gene_reference_path)
 human_gene_reference$GENE_ID <- sapply(strsplit(as.character(human_gene_reference$GENE_ID), '\\.'), `[`, 1)
 
-########## Load cell type-level mean expression data & calculate specificity metric S(g,c) ##########
-mean_expr_data <- read.delim(mean_expr_path, row.names = 1)
-specificity_data <- mean_expr_data/rowSums(mean_expr_data)
-
 ########## Load homolog translation table ##########
 homolog_translation <- get_homolog_translation()
 
+# (1) ANALYSIS FOR 10x GENOMICS DATASET
+########## Load cell type-level mean expression data & calculate specificity metric S(g,c) ##########
+mean_expr_path_10xGenomics <- '~/umcu_internship/Single-Cell/data/10x_Genomics_16_cell_types_mean_expression.tsv'
+mean_expr_data <- read.delim(mean_expr_path_10xGenomics, row.names = 1)
+specificity_data <- mean_expr_data/rowSums(mean_expr_data)
+
 ########## Restructure ctd object for MAGMA cell type association analysis ##########
 ctd_10X <- MAGMA.Celltyping::ctd_allKI
+	# REMOVE IF DEEMED OBSOLETE
 ctd_10X[[1]]$mean_exp <- mean_expr_data
+	# REMOVE IF DEEMED OBSOLETE
 ctd_10X[[1]]$specificity <- specificity_data
 
 ########## Calculate specificity deciles (least-to-most specific expression) ##########
@@ -103,6 +106,7 @@ for (cell_type in names(ctd_10X[[1]]$specificity)){
     cell_type_non_expressed <- get_specificity_decile_genes(ctd_10X, cell_type, 0)
     ensembl_cell_type_non_expressed <- translate_mouse_symbol_to_ensembl(cell_type_non_expressed)
     partition_genes_by_chromosome(genes = ensembl_cell_type_non_expressed,
+				  dataset = '10x_Genomics',
                                   cell_type = cell_type,
                                   decile = 'N',
                                   out_dir = geneset_out_path)
@@ -111,6 +115,36 @@ for (cell_type in names(ctd_10X[[1]]$specificity)){
         cell_type_decile_expressed <- get_specificity_decile_genes(ctd_10X, cell_type, decile_n)
         ensembl_cell_type_decile_expressed <- translate_mouse_symbol_to_ensembl(cell_type_decile_expressed)
         partition_genes_by_chromosome(genes = ensembl_cell_type_decile_expressed,
+				      dataset = '10x_Genomics',
+                                      cell_type = cell_type,
+                                      decile = toString(decile_n),
+                                      out_dir = geneset_out_path)
+    }
+}
+
+# (2) ANALYSIS FOR KAROLINSKA INSTITUTE DATASET
+########## Load cell type-level mean expression data & calculate specificity metric S(g,c) ##########
+# TO-DO Load KI dataset from MAGMA.Celltyping
+#	Calculate specificity deciles
+#	Remove level 2
+#	Save mean_expr_data and specificity_data variables
+
+########## Compose gene sets for specificity deciles of cell types per chromosome and store to file ##########
+for (cell_type in names(ctd_allKI[[1]]$specificity)){
+    # Genes not expressed in a cell type
+    cell_type_non_expressed <- get_specificity_decile_genes(ctd_allKI, cell_type, 0)
+    ensembl_cell_type_non_expressed <- translate_mouse_symbol_to_ensembl(cell_type_non_expressed)
+    partition_genes_by_chromosome(genes = ensembl_cell_type_non_expressed,
+                                  dataset = 'KI',
+                                  cell_type = cell_type,
+                                  decile = 'N',
+                                  out_dir = geneset_out_path)
+    # Genes in specificity decile of cell type 
+    for (decile_n in 1:10){
+        cell_type_decile_expressed <- get_specificity_decile_genes(ctd_allKI, cell_type, decile_n)
+        ensembl_cell_type_decile_expressed <- translate_mouse_symbol_to_ensembl(cell_type_decile_expressed)
+        partition_genes_by_chromosome(genes = ensembl_cell_type_decile_expressed,
+                                      dataset = 'KI',
                                       cell_type = cell_type,
                                       decile = toString(decile_n),
                                       out_dir = geneset_out_path)
