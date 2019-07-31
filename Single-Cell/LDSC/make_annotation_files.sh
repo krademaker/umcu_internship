@@ -6,19 +6,19 @@
 # INPUT:	Ensembl gene coordinates, 1000 Genomes Project Phase 3 plink files (will automatically be downloaded and organized)
 # OUTPUT:	LDSC thin-annotation files (annot.gz) per autosomal chromosome for all cell types
 # AUTHOR:	Koen Rademaker
-# DATE:		11 July 2019
+# DATE:		31 July 2019
 
 
 ########## Initialize script ##########
 # Set folder paths
-ldsc_dir=~/Git/umcu_internship/Single-Cell/LDSC/ldsc
-files_dir=~/Git/umcu_internship/Single-Cell/LDSC/Files
+ldsc_dir=~/umcu_internship/Single-Cell/LDSC/ldsc
+files_dir=~//umcu_internship/Single-Cell/LDSC/Files
 genesets_dir=${files_dir}/GeneSet
 annotation_dir=${files_dir}/Annotation
 tmp_dir=${files_dir}/tmp
+miniconda_dir=~/miniconda2
 # Create folders
 mkdir -p ${tmp_dir}
-mkdir -p ${annotation_dir}
 # Declare variables
 declare -a cell_types=("Glutamatergic_neurons" "Neuroblasts_1" "Astrocytes_1" "Neuroblasts_2" "Intermediate_progenitors" "Enteric_glial_cells" "Interneurons_1" "Neurons" "Interneurons_2" "Vascular_endothelial_cells" "Enteric_neurons" "Cajal_Retzius_cells" "Oligodendrocytes" "Astrocytes_2" "Endothelial_cells" "Microglia")
 declare -a specificity_deciles=(N 1 2 3 4 5 6 7 8 9 10)
@@ -37,7 +37,7 @@ phase3_1000G_dir=${files_dir}/1000G_EUR_Phase3_plink
 window_size=100000
 dataset="10x_Genomics"
 # Activate LDSC environment
-conda activate ldsc
+source ${miniconda_dir}/bin/activate ldsc
 
 
 ########## Make LDSC annotation files ##########
@@ -46,12 +46,12 @@ for ct in ${cell_types[@]}; do
 	# (2) Iterate over chromosomes	
 	for chr in {1..22}; do
 		# (3) Copy gene set files for specificity deciles to temporary folder
-		for gene_set_file in ${genesets_dir}/10x_Genomics.${ct}.${chr}.*.GeneSet; do cp "$gene_set_file" "${tmp_dir}"; done
+		for gene_set_file in ${genesets_dir}/${dataset}.${ct}.${chr}.*.GeneSet; do cp "$gene_set_file" "${tmp_dir}"; done
 		# (4) Iterate over specificity deciles
 		for decile in "${specificity_deciles[@]}"; do
 			# (5) Create sub-annotation file
 			echo "-- Creating sub-annotation file for ${ct} (cell type), chromosome ${chr}, specificity decile ${decile} --"
-			gene_set_file=${tmp_dir}/10x_Genomics.${ct}.${chr}.${decile}.GeneSet
+			gene_set_file=${tmp_dir}/${dataset}.${ct}.${chr}.${decile}.GeneSet
 			python ${ldsc_dir}/make_annot.py \
 				--gene-set-file ${gene_set_file} \
 				--gene-coord-file ${gene_coord_file} \
