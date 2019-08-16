@@ -31,3 +31,19 @@ Neurons,9.9838E-05,MAGMA (top 10%)
 Neurons (glutamatergic),2.0198E-05,MAGMA (top 10%)
 Oligodendrocytes,0.013761,MAGMA (top 10%)
 Vascular endothelial cells,0.98683,MAGMA (top 10%)
+Astrocytes (1),0.989720266607799,LDSC
+Astrocytes (2),0.535456817219464,LDSC
+Cajal-Retzius cells,0.017601444443458,LDSC
+Endothelial cells,0.282841437822889,LDSC
+Enteric glial cells,0.903017276834992,LDSC
+Enteric neurons,0.546030565328938,LDSC
+Neurons (glutamatergic),4.0009353042856E-08,LDSC
+Intermediate progenitors,0.085959257957138,LDSC
+Interneurons (1),1.44161044541822E-08,LDSC
+Interneurons (2),2.82980003855612E-05,LDSC
+Microglia,0.427510812501478,LDSC
+Neuroblasts (1),3.96522146364697E-06,LDSC
+Neuroblasts (2),6.79386049124971E-09,LDSC
+Neurons,1.21549562545914E-07,LDSC
+Oligodendrocytes,2.44627133566291E-06,LDSC
+Vascular endothelial cells,0.395418684931492,LDSC
